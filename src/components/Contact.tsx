@@ -8,7 +8,13 @@ import {
   SOCIALS,
 } from "../lib/data";
 
-const BUDGETS = ["< ₹60k", "₹60k–1.5L", "₹1.5L–4L", "₹4L+"];
+const BUDGETS = [
+  "Less than ₹10k",
+  "₹10k–25k",
+  "₹25k–60k",
+  "₹60k–1L",
+  "Above ₹1L",
+];
 
 type Errors = { name?: string; email?: string; message?: string };
 
@@ -72,11 +78,11 @@ export default function Contact() {
             <>
               Got a project?
               <br />
-              Let's make it <span className="text-coral">loud.</span>
+              Let's make it <span className="text-coral">real.</span>
               <Asterisk className="ml-3 inline h-8 w-8 text-coral md:h-12 md:w-12" />
             </>
           }
-          note="Tell us where you want to be in six months. We'll reply with how to get there — free, within 24 hours."
+          note="We would love to hear about your business and your goals. Drop us a message and we will reply within a day."
         />
 
         <div className="grid gap-14 lg:grid-cols-12">
@@ -90,7 +96,7 @@ export default function Contact() {
                 >
                   <span>
                     <span className="block font-mono text-[10px] uppercase tracking-[0.24em] text-mist">
-                      Email us
+                      Email
                     </span>
                     <span className="font-display text-xl font-medium text-paper transition-colors group-hover:text-coral md:text-2xl">
                       {CONTACT_EMAIL}
@@ -104,29 +110,13 @@ export default function Contact() {
                 >
                   <span>
                     <span className="block font-mono text-[10px] uppercase tracking-[0.24em] text-mist">
-                      Call us
+                      Call Us
                     </span>
                     <span className="font-display text-xl font-medium text-paper transition-colors group-hover:text-coral md:text-2xl">
                       {CONTACT_PHONE}
                     </span>
                   </span>
                   <ArrowUpRight />
-                </a>
-                <a
-                  href="https://wa.me/919810045210"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex items-center justify-between border-b border-line py-6"
-                >
-                  <span>
-                    <span className="block font-mono text-[10px] uppercase tracking-[0.24em] text-mist">
-                      WhatsApp
-                    </span>
-                    <span className="font-display text-xl font-medium text-paper transition-colors group-hover:text-aqua md:text-2xl">
-                      Chat with the studio
-                    </span>
-                  </span>
-                  <ArrowUpRight className="group-hover:text-aqua" />
                 </a>
               </div>
             </Reveal>
@@ -229,7 +219,7 @@ export default function Contact() {
                             id="c-name"
                             value={form.name}
                             onChange={(e) => set("name")(e.target.value)}
-                            placeholder="Priya Sharma"
+                            placeholder="Migal Arunadann"
                             className={inputClass(errors.name)}
                           />
                           {errors.name && (
@@ -250,7 +240,7 @@ export default function Contact() {
                             type="email"
                             value={form.email}
                             onChange={(e) => set("email")(e.target.value)}
-                            placeholder="priya@brand.com"
+                            placeholder="migal@needil.com"
                             className={inputClass(errors.email)}
                           />
                           {errors.email && (

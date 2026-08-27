@@ -37,7 +37,7 @@ export const SERVICES: Service[] = [
     accent: "coral",
     icon: "web",
     description:
-      "Conversion-first websites engineered around your brand voice — from wireframe to launch. Every layout is built to load fast, rank well and turn visitors into enquiries, not just to look good in a screenshot.",
+      "Our websites are designed and engineered around your brand voice — from wireframe to launch. Every layout is built to load fast, rank well and turn visitors into enquiries. The motive is not just to look good in the screens.",
     deliverables: [
       "UI/UX & wireframes",
       "Custom front-end build",
@@ -55,7 +55,7 @@ export const SERVICES: Service[] = [
     accent: "aqua",
     icon: "cart",
     description:
-      "Full-stack online stores with payment gateways, inventory logic and checkout flows tuned for Indian and global buyers. We design carts people actually finish — then optimise them until the numbers sing.",
+      "WordPress online stores integrated with WooCommerce, Payment Gateways, Inventory Logic and Checkout Flows tuned for Indian and Global buyers. We design carts people actually finish and then optimise them until the numbers sing.",
     deliverables: [
       "WooCommerce / custom carts",
       "Payment gateway setup",
@@ -73,7 +73,7 @@ export const SERVICES: Service[] = [
     accent: "amber",
     icon: "store",
     description:
-      "Shopify stores built for scale — theme customisation, app stacks, migrations and headless builds. Whether you're launching your first product or replatforming a messy legacy store, we make Shopify work harder.",
+      "Shopify stores built for scale — theme customisation, app stacks, migrations and headless builds. Whether you are launching your first product, redoing a messy online store, or replatforming an existing brick and mortar store, we make Shopify work for you.",
     deliverables: [
       "Store setup & theme design",
       "Headless / Hydrogen builds",
@@ -91,12 +91,12 @@ export const SERVICES: Service[] = [
     accent: "aqua",
     icon: "pulse",
     description:
-      "Patient-first content for clinics, hospitals, pharma and health-tech — written with clinicians, checked for compliance and packaged for every channel. Authority-building content that ranks without fear-mongering.",
+      "Patient-first content for Doctors, Surgeons, Clinics, Hospitals, Pharma and Health-tech organizations — written with Qualified Medical content creators, checked for compliance and packaged for every channel. Authority-building content that ranks.",
     deliverables: [
       "Clinic & hospital websites",
       "Doctor-led social content",
       "Patient education articles",
-      "Compliance-aware copywriting",
+      "Compliance Confirming Copywriting",
       "Medical video scripts",
       "Local SEO for practices",
     ],
@@ -105,16 +105,16 @@ export const SERVICES: Service[] = [
     id: "app-development",
     num: "05",
     title: "App Development",
-    tag: "iOS + Android",
+    tag: "Android",
     accent: "coral",
     icon: "phone",
     description:
-      "Native and cross-platform apps that ship on time and survive real users. From MVP sprints to full product teams, we design, build and iterate apps people keep on their home screen.",
+      "Android apps that ship on time and survive real users. From MVP sprints to full product teams, we design, build and iterate apps clients love and serve their intended purposes.",
     deliverables: [
       "React Native / Flutter",
       "MVP in 6–10 weeks",
       "API & backend engineering",
-      "Play Store / App Store launch",
+      "Play Store launch",
       "Push & retention loops",
       "Post-launch care plans",
     ],
@@ -283,37 +283,34 @@ export const TESTIMONIALS = [
 
 export const FAQS = [
   {
-    q: "How long does a typical website take?",
-    a: "A focused business website ships in 3–5 weeks; e-commerce and Shopify builds usually run 5–8 weeks depending on catalogue size and integrations. You get a live staging link from the first week, so there are no big-bang reveals.",
-  },
-  {
-    q: "Do you work with early-stage startups?",
-    a: "Yes — roughly a third of our clients are pre-Series A. We offer scoped MVP packages for apps and lean launch stores for D2C brands, so you validate fast without over-building.",
+    q: "How long does it take to design a website?",
+    a: "A focused business website can be designed in 3–5 weeks. Shopify and e-commerce builds usually run 5 to 7 weeks depending on catalogue size and integrations. You get a live staging link from the first week, so there are no big-bang reveals.",
   },
   {
     q: "Is your medical content compliance-safe?",
-    a: "Every healthcare piece is drafted from clinician-reviewed briefs, checked against advertising norms for medical services, and approved by your team before publishing. We write to build trust, never to overclaim.",
+    a: "Every healthcare article we write begins with a doctor-reviewed brief. We check it against advertising norms for medical services, and your team approves it before we hit publish. Our goal is simple. Build trust, not make exaggerated claims. Because in healthcare, credibility matters more than clever words.",
   },
   {
-    q: "What does a project cost?",
-    a: "Websites start around ₹60k, Shopify builds around ₹90k, content retainers around ₹35k/month, and app MVPs around ₹4L. Every quote is fixed-scope — no surprise invoices, ever.",
+    q: "What does the Projects cost?",
+    a: "Our pricing is transparent and built around fixed-scope quotes — so what you see is exactly what you pay. Websites start around ₹5,000 and go up to ₹60,000. Shopify stores begin at ₹10,000 and can scale to ₹60,000. Content creation is offered as a monthly package, starting at ₹15,000/month and reaching ₹90,000 depending on video production requirements. For app development, MVPs typically start around ₹1,00,000, with SaaS-based pricing available for generic solutions. No surprises. No hidden costs. Just honest, straightforward pricing.",
   },
   {
     q: "Will you maintain the site after launch?",
-    a: "That's the plan. Growth care retainers cover hosting, updates, security, backups and a monthly experiment roadmap — because a website should appreciate, not depreciate.",
+    a: "That is the plan. Here is how we keep things running smoothly. Our Growth Care plans cover hosting, regular updates, security, backups, and a fresh experiment roadmap every month. Because your website is an asset and it should only get better with time.",
   },
   {
     q: "Can you take over a project another agency abandoned?",
-    a: "Happily, and often. We run a code-and-content audit first, give you an honest fix-vs-rebuild recommendation, and then take ownership of the roadmap.",
+    a: "Every project is different. We begin by auditing your code and content, then give you a straight answer — fix it or rebuild it. From there, we take charge of the roadmap. If your technology is outdated, we'll suggest a fresh start. If the code is tangled and confusing, rebuilding is the smarter choice.",
   },
 ];
 
 export const SOCIALS = [
+  { name: "Facebook", href: "https://facebook.com", icon: "facebook" },
   { name: "Instagram", href: "https://instagram.com", icon: "instagram" },
   { name: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
   { name: "X", href: "https://x.com", icon: "x" },
-  { name: "Behance", href: "https://behance.net", icon: "behance" },
+  { name: "YouTube", href: "https://youtube.com", icon: "youtube" },
 ] as const;
 
-export const CONTACT_EMAIL = "hello@llesocial.media";
-export const CONTACT_PHONE = "+91 98100 45210";
+export const CONTACT_EMAIL = "info@llesocialmedia.com";
+export const CONTACT_PHONE = "+91 8838396187";

@@ -69,7 +69,7 @@ function ServicesAccordion() {
       {SERVICES.map((s, i) => {
         const isOpen = open === i;
         return (
-          <div key={s.id} className="border-b border-line">
+          <div key={s.id} id={s.id} className="scroll-mt-28 border-b border-line">
             <button
               onClick={() => setOpen(isOpen ? -1 : i)}
               aria-expanded={isOpen}
@@ -131,14 +131,15 @@ function ServicesAccordion() {
                 >
                   <div className="grid gap-8 pb-10 md:grid-cols-12 md:pl-[4rem]">
                     <div className="md:col-span-6">
-                      <p className="max-w-xl text-base leading-relaxed text-mist">
+                      <p className="max-w-xl text-justify text-base leading-relaxed text-mist hyphens-auto">
                         {s.description}
                       </p>
                       <a
-                        href="#contact"
+                        href={`#${s.id}`}
+                        onClick={() => setOpen(i)}
                         className={`group/link mt-6 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] ${ACCENT_TEXT[s.accent]}`}
                       >
-                        Start here
+                        Learn More
                         <svg
                           viewBox="0 0 16 16"
                           className="h-3 w-3 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5"
@@ -287,10 +288,10 @@ export default function Services() {
               <>
                 Services built to
                 <br />
-                <span className="text-coral">make noise.</span>
+                <span className="text-coral">deliver results.</span>
               </>
             }
-            note="Five disciplines, one obsession: digital presence that pays for itself. Open a row to see exactly what ships."
+            note="Multiple disciplines, one obsession: digital presence that pays. Open a row to see what we deliver to our clients."
           />
           <ServicesAccordion />
         </div>

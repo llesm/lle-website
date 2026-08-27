@@ -12,15 +12,16 @@ import {
   CONTACT_PHONE,
   NAV_LINKS,
   SERVICES,
+  SOCIALS,
 } from "../lib/data";
-import { LOGO_SRC } from "../lib/theme";
+import { LOGO_CANDIDATES } from "../lib/theme";
 
 /* ------------------------------------------------------------------ */
-/* LogoMark — uploaded logo with a graceful fallback monogram          */
+/* LogoMark — uploaded logo (tries several paths), monogram fallback   */
 /* ------------------------------------------------------------------ */
 function LogoMark({ className }: { className?: string }) {
-  const [failed, setFailed] = useState(false);
-  if (failed) {
+  const [idx, setIdx] = useState(0);
+  if (idx >= LOGO_CANDIDATES.length) {
     return (
       <span
         className={`grid place-items-center rounded-lg bg-coral text-ink ${className ?? "h-10 w-10"}`}
@@ -31,9 +32,9 @@ function LogoMark({ className }: { className?: string }) {
   }
   return (
     <img
-      src={LOGO_SRC}
-      alt=""
-      onError={() => setFailed(true)}
+      src={LOGO_CANDIDATES[idx]}
+      alt="LLE Social Media logo"
+      onError={() => setIdx((i) => i + 1)}
       className={className}
     />
   );
@@ -391,13 +392,13 @@ export function Footer() {
             </span>
           </a>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-mist">
-            A digital growth studio crafting websites, stores, health content
-            and apps for brands that refuse to blend in.
+            We are a digital growth studio that builds websites, stores,
+            healthcare content and mobile apps for brands ready to stand out.
           </p>
           <div className="mt-6 space-y-1 font-mono text-xs text-paper/70">
             <p>{CONTACT_EMAIL}</p>
             <p>{CONTACT_PHONE}</p>
-            <p className="text-mist">New Delhi, India — serving worldwide</p>
+            <p className="text-mist">Chennai, Tamil Nadu — serving worldwide</p>
           </div>
         </div>
 
@@ -447,7 +448,7 @@ export function Footer() {
             Growth notes
           </p>
           <p className="mb-4 text-sm leading-relaxed text-mist">
-            One sharp email a month — tactics, teardowns and zero fluff.
+            Monthly insights. Tactics, teardowns and absolutely no fluff.
           </p>
           {subscribed ? (
             <p className="flex items-center gap-2 font-mono text-xs text-aqua">
@@ -483,16 +484,16 @@ export function Footer() {
             </form>
           )}
           <div className="mt-6 flex gap-3">
-            {(["instagram", "linkedin", "x", "behance"] as const).map((s) => (
+            {SOCIALS.map((s) => (
               <a
-                key={s}
-                href={`https://${s === "x" ? "x.com" : `${s}.com`}`}
+                key={s.name}
+                href={s.href}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={s}
+                aria-label={s.name}
                 className="grid h-10 w-10 place-items-center rounded-full border border-line text-paper/70 transition-all duration-300 hover:-translate-y-1 hover:border-coral hover:text-coral"
               >
-                <SocialIcon name={s} className="h-4.5 w-4.5" />
+                <SocialIcon name={s.icon} className="h-4.5 w-4.5" />
               </a>
             ))}
           </div>
@@ -505,7 +506,8 @@ export function Footer() {
             © 2026 LLE Social Media — All rights reserved.
           </p>
           <p className="font-mono text-[11px] tracking-wide text-mist">
-            Made with intent in New Delhi <span className="text-coral">✳</span>
+            Designed in Chennai, Tamil Nadu{" "}
+            <span className="text-coral">✳</span>
           </p>
           <button
             onClick={backToTop}
