@@ -239,7 +239,7 @@ export function SectionHeading({
   note,
   dark = false,
 }: {
-  index: string;
+  index?: string;
   kicker: string;
   title: ReactNode;
   note?: string;
@@ -251,7 +251,8 @@ export function SectionHeading({
         <Reveal>
           <p className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.28em] text-coral">
             <Asterisk className="h-3.5 w-3.5" />
-            ( {index} — {kicker} )
+            ( {index ? `${index} — ` : ""}
+            {kicker} )
           </p>
         </Reveal>
         <Reveal delay={0.08}>

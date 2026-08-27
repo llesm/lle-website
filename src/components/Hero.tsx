@@ -1,5 +1,11 @@
-import { Asterisk, CountUp, Marquee, Reveal, RotatingBadge, ScrambleWord } from "../lib/motion";
-import { BRANDS, IMG, STATS } from "../lib/data";
+import {
+  Asterisk,
+  CountUp,
+  Reveal,
+  RotatingBadge,
+  ScrambleWord,
+} from "../lib/motion";
+import { IMG, STATS } from "../lib/data";
 
 const WORDS = ["SELL.", "SCALE.", "CONVERT.", "LEAD."];
 
@@ -14,17 +20,10 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl px-5 pt-32 md:px-8 md:pt-40">
         {/* meta row */}
         <Reveal>
-          <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+          <div className="mb-10 flex flex-wrap items-center justify-start gap-4">
             <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-paper/70">
               <Asterisk className="h-4 w-4 text-coral" />
               Digital growth studio
-            </p>
-            <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-mist">
-              <span className="hidden sm:inline">New Delhi, IN → worldwide</span>
-              <span className="flex items-center gap-2 rounded-full border border-aqua/40 px-3 py-1.5 text-aqua">
-                <span className="animate-blink h-1.5 w-1.5 rounded-full bg-aqua" />
-                2 slots open for Q3
-              </span>
             </p>
           </div>
         </Reveal>
@@ -52,19 +51,19 @@ export default function Hero() {
 
             <Reveal delay={0.32}>
               <p className="mt-8 max-w-md text-base leading-relaxed text-mist md:text-lg">
-                LLE Social Media designs and engineers websites, e-commerce
-                and Shopify stores, medical content and mobile apps — built to
-                be measured, not just admired.
+                LLE Social Media designs and engineers Websites, E-commerce
+                and Shopify Stores, Medical Content and Mobile Apps — built to
+                be measured, and help grow businesses.
               </p>
             </Reveal>
 
             <Reveal delay={0.4}>
               <div className="mt-9 flex flex-wrap items-center gap-4">
                 <a
-                  href="#contact"
+                  href="#about"
                   className="group flex items-center gap-3 rounded-full bg-coral px-7 py-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-ink transition-all duration-300 hover:gap-5 hover:bg-paper"
                 >
-                  Start a project
+                  More on LLE Social Media
                   <svg
                     viewBox="0 0 16 16"
                     className="h-3.5 w-3.5"
@@ -80,7 +79,7 @@ export default function Hero() {
                   href="#work"
                   className="group flex items-center gap-3 rounded-full border border-line px-7 py-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-paper transition-all duration-300 hover:border-paper hover:bg-paper hover:text-ink"
                 >
-                  See the work
+                  See Our Works
                   <span className="transition-transform duration-300 group-hover:translate-y-0.5">
                     ↓
                   </span>
@@ -94,10 +93,10 @@ export default function Hero() {
             <Reveal delay={0.25} y={40}>
               <div className="group relative">
                 <div className="absolute -inset-3 rotate-2 rounded-lg border border-line transition-transform duration-700 group-hover:rotate-0" />
-                <div className="relative overflow-hidden rounded-lg">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
                   <img
                     src={IMG.hero}
-                    alt="Abstract 3D collage representing LLE Social Media's digital craft"
+                    alt="LLE Social Media — digital craft showcase"
                     className="h-full w-full object-cover transition-transform duration-[1.6s] ease-out group-hover:scale-[1.05]"
                     loading="eager"
                   />
@@ -105,8 +104,9 @@ export default function Hero() {
                 </div>
 
                 {/* floating chips */}
-                <div className="animate-floaty absolute -left-5 top-8 rounded-full border border-line bg-ink/90 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-aqua backdrop-blur-sm sm:-left-10">
-                  +212% avg. order value
+                <div className="animate-floaty absolute -left-4 top-8 flex items-center gap-2 rounded-full border border-line bg-ink/90 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-aqua backdrop-blur-sm sm:-left-10">
+                  <Asterisk className="h-3 w-3" />
+                  Medical Content Creation
                 </div>
                 <div className="animate-floaty-late absolute -right-3 bottom-24 rounded-full border border-line bg-ink/90 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-coral backdrop-blur-sm sm:-right-8">
                   Shopify · Woo · Native
@@ -129,11 +129,7 @@ export default function Hero() {
                 }`}
               >
                 <p className="font-display text-4xl font-semibold text-paper md:text-5xl">
-                  <CountUp
-                    to={s.value}
-                    suffix={s.suffix}
-                    decimals={s.decimals ?? 0}
-                  />
+                  <CountUp to={s.value} suffix={s.suffix} />
                 </p>
                 <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.2em] text-mist">
                   {s.label}
@@ -161,26 +157,6 @@ export default function Hero() {
             </svg>
           </span>
         </div>
-      </div>
-
-      {/* brand ticker */}
-      <div className="relative border-t border-line bg-ink-2 py-5">
-        <div className="mx-auto mb-3 max-w-7xl px-5 md:px-8">
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-mist">
-            Brands we've amplified
-          </p>
-        </div>
-        <Marquee speed={30}>
-          {BRANDS.map((b) => (
-            <span
-              key={b}
-              className="flex items-center gap-10 pr-10 font-display text-2xl font-semibold tracking-tight text-paper/45 transition-colors hover:text-paper"
-            >
-              {b}
-              <Asterisk className="h-4 w-4 text-coral/70" />
-            </span>
-          ))}
-        </Marquee>
       </div>
     </section>
   );
