@@ -1,3 +1,5 @@
+# Deploys the Vite site to GitHub Pages on every push to main.
+# Repo Settings → Pages → Source must be set to "GitHub Actions".
 name: Deploy to GitHub Pages
 
 on:
@@ -5,13 +7,15 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Grant the workflow permission to deploy to Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment
 concurrency:
-  group: pages
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -30,18 +34,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # --base=./ makes asset paths relative so the site works at
-      # https://<username>.github.io/<repo-name>/
+      # --base=./ makes asset URLs relative, required for GitHub Pages
       - name: Build
         run: npx vite build --base=./
 
-      - name: Disable Jekyll processing
-        run: touch dist/.nojekyll
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
