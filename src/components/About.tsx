@@ -234,7 +234,7 @@ export default function About() {
                   </svg>
                 </a>
                 <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-mist">
-                  — Team LLE, New Delhi
+                  — Team LLE, Chennai
                 </p>
               </div>
             </Reveal>

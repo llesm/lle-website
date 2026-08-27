@@ -359,7 +359,7 @@ export function SocialIcon({
   name,
   className,
 }: {
-  name: "instagram" | "linkedin" | "x" | "behance";
+  name: "instagram" | "linkedin" | "x" | "behance" | "facebook" | "youtube";
   className?: string;
 }) {
   const common = {
@@ -397,6 +397,19 @@ export function SocialIcon({
       return (
         <svg {...common} aria-hidden="true">
           <path d="M3.5 6.5h6a3 3 0 010 6h-6zM3.5 12.5h6.8a3.2 3.2 0 010 6.4H3.5zM14.5 13.5h8a4 4 0 10-8 .5zM15 8h6" />
+        </svg>
+      );
+    case "facebook":
+      return (
+        <svg {...common} aria-hidden="true">
+          <path d="M16.5 3.5h-2.7a4.3 4.3 0 00-4.3 4.3v2.7H7v3.6h2.5v6.4h3.6v-6.4h2.7l.7-3.6h-3.4V8.1c0-.7.6-1.3 1.3-1.3h2.1z" />
+        </svg>
+      );
+    case "youtube":
+      return (
+        <svg {...common} aria-hidden="true">
+          <rect x="2.5" y="5.5" width="19" height="13.5" rx="3.8" />
+          <path d="M10.2 9.3l4.6 2.95-4.6 2.95z" />
         </svg>
       );
     default:

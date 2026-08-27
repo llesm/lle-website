@@ -283,37 +283,34 @@ export const TESTIMONIALS = [
 
 export const FAQS = [
   {
-    q: "How long does a typical website take?",
-    a: "A focused business website ships in 3–5 weeks; e-commerce and Shopify builds usually run 5–8 weeks depending on catalogue size and integrations. You get a live staging link from the first week, so there are no big-bang reveals.",
-  },
-  {
-    q: "Do you work with early-stage startups?",
-    a: "Yes — roughly a third of our clients are pre-Series A. We offer scoped MVP packages for apps and lean launch stores for D2C brands, so you validate fast without over-building.",
+    q: "How long does it take to design a website?",
+    a: "A focused business website can be designed in 3–5 weeks. Shopify and e-commerce builds usually run 5 to 7 weeks depending on catalogue size and integrations. You get a live staging link from the first week, so there are no big-bang reveals.",
   },
   {
     q: "Is your medical content compliance-safe?",
-    a: "Every healthcare piece is drafted from clinician-reviewed briefs, checked against advertising norms for medical services, and approved by your team before publishing. We write to build trust, never to overclaim.",
+    a: "Every healthcare article we write begins with a doctor-reviewed brief. We check it against advertising norms for medical services, and your team approves it before we hit publish. Our goal is simple. Build trust, not make exaggerated claims. Because in healthcare, credibility matters more than clever words.",
   },
   {
-    q: "What does a project cost?",
-    a: "Websites start around ₹60k, Shopify builds around ₹90k, content retainers around ₹35k/month, and app MVPs around ₹4L. Every quote is fixed-scope — no surprise invoices, ever.",
+    q: "What does the Projects cost?",
+    a: "Our pricing is transparent and built around fixed-scope quotes — so what you see is exactly what you pay. Websites start around ₹5,000 and go up to ₹60,000. Shopify stores begin at ₹10,000 and can scale to ₹60,000. Content creation is offered as a monthly package, starting at ₹15,000/month and reaching ₹90,000 depending on video production requirements. For app development, MVPs typically start around ₹1,00,000, with SaaS-based pricing available for generic solutions. No surprises. No hidden costs. Just honest, straightforward pricing.",
   },
   {
     q: "Will you maintain the site after launch?",
-    a: "That's the plan. Growth care retainers cover hosting, updates, security, backups and a monthly experiment roadmap — because a website should appreciate, not depreciate.",
+    a: "That is the plan. Here is how we keep things running smoothly. Our Growth Care plans cover hosting, regular updates, security, backups, and a fresh experiment roadmap every month. Because your website is an asset and it should only get better with time.",
   },
   {
     q: "Can you take over a project another agency abandoned?",
-    a: "Happily, and often. We run a code-and-content audit first, give you an honest fix-vs-rebuild recommendation, and then take ownership of the roadmap.",
+    a: "Every project is different. We begin by auditing your code and content, then give you a straight answer — fix it or rebuild it. From there, we take charge of the roadmap. If your technology is outdated, we'll suggest a fresh start. If the code is tangled and confusing, rebuilding is the smarter choice.",
   },
 ];
 
 export const SOCIALS = [
+  { name: "Facebook", href: "https://facebook.com", icon: "facebook" },
   { name: "Instagram", href: "https://instagram.com", icon: "instagram" },
   { name: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
   { name: "X", href: "https://x.com", icon: "x" },
-  { name: "Behance", href: "https://behance.net", icon: "behance" },
+  { name: "YouTube", href: "https://youtube.com", icon: "youtube" },
 ] as const;
 
-export const CONTACT_EMAIL = "hello@llesocial.media";
-export const CONTACT_PHONE = "+91 98100 45210";
+export const CONTACT_EMAIL = "info@llesocialmedia.com";
+export const CONTACT_PHONE = "+91 8838396187";
