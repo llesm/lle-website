@@ -37,7 +37,7 @@ export const SERVICES: Service[] = [
     accent: "coral",
     icon: "web",
     description:
-      "Conversion-first websites engineered around your brand voice — from wireframe to launch. Every layout is built to load fast, rank well and turn visitors into enquiries, not just to look good in a screenshot.",
+      "Our websites are designed and engineered around your brand voice — from wireframe to launch. Every layout is built to load fast, rank well and turn visitors into enquiries. The motive is not just to look good in the screens.",
     deliverables: [
       "UI/UX & wireframes",
       "Custom front-end build",
@@ -55,7 +55,7 @@ export const SERVICES: Service[] = [
     accent: "aqua",
     icon: "cart",
     description:
-      "Full-stack online stores with payment gateways, inventory logic and checkout flows tuned for Indian and global buyers. We design carts people actually finish — then optimise them until the numbers sing.",
+      "WordPress online stores integrated with WooCommerce, Payment Gateways, Inventory Logic and Checkout Flows tuned for Indian and Global buyers. We design carts people actually finish and then optimise them until the numbers sing.",
     deliverables: [
       "WooCommerce / custom carts",
       "Payment gateway setup",
@@ -73,7 +73,7 @@ export const SERVICES: Service[] = [
     accent: "amber",
     icon: "store",
     description:
-      "Shopify stores built for scale — theme customisation, app stacks, migrations and headless builds. Whether you're launching your first product or replatforming a messy legacy store, we make Shopify work harder.",
+      "Shopify stores built for scale — theme customisation, app stacks, migrations and headless builds. Whether you are launching your first product, redoing a messy online store, or replatforming an existing brick and mortar store, we make Shopify work for you.",
     deliverables: [
       "Store setup & theme design",
       "Headless / Hydrogen builds",
@@ -91,12 +91,12 @@ export const SERVICES: Service[] = [
     accent: "aqua",
     icon: "pulse",
     description:
-      "Patient-first content for clinics, hospitals, pharma and health-tech — written with clinicians, checked for compliance and packaged for every channel. Authority-building content that ranks without fear-mongering.",
+      "Patient-first content for Doctors, Surgeons, Clinics, Hospitals, Pharma and Health-tech organizations — written with Qualified Medical content creators, checked for compliance and packaged for every channel. Authority-building content that ranks.",
     deliverables: [
       "Clinic & hospital websites",
       "Doctor-led social content",
       "Patient education articles",
-      "Compliance-aware copywriting",
+      "Compliance Confirming Copywriting",
       "Medical video scripts",
       "Local SEO for practices",
     ],
@@ -105,16 +105,16 @@ export const SERVICES: Service[] = [
     id: "app-development",
     num: "05",
     title: "App Development",
-    tag: "iOS + Android",
+    tag: "Android",
     accent: "coral",
     icon: "phone",
     description:
-      "Native and cross-platform apps that ship on time and survive real users. From MVP sprints to full product teams, we design, build and iterate apps people keep on their home screen.",
+      "Android apps that ship on time and survive real users. From MVP sprints to full product teams, we design, build and iterate apps clients love and serve their intended purposes.",
     deliverables: [
       "React Native / Flutter",
       "MVP in 6–10 weeks",
       "API & backend engineering",
-      "Play Store / App Store launch",
+      "Play Store launch",
       "Push & retention loops",
       "Post-launch care plans",
     ],
