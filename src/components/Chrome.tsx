@@ -13,6 +13,31 @@ import {
   NAV_LINKS,
   SERVICES,
 } from "../lib/data";
+import { LOGO_SRC } from "../lib/theme";
+
+/* ------------------------------------------------------------------ */
+/* LogoMark — uploaded logo with a graceful fallback monogram          */
+/* ------------------------------------------------------------------ */
+function LogoMark({ className }: { className?: string }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <span
+        className={`grid place-items-center rounded-lg bg-coral text-ink ${className ?? "h-10 w-10"}`}
+      >
+        <Asterisk className="h-1/2 w-1/2" />
+      </span>
+    );
+  }
+  return (
+    <img
+      src={LOGO_SRC}
+      alt=""
+      onError={() => setFailed(true)}
+      className={className}
+    />
+  );
+}
 
 /* ------------------------------------------------------------------ */
 /* Custom cursor — coral dot + lagging ring (fine pointers only)       */
@@ -93,6 +118,25 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onDoc = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMoreOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -130,15 +174,17 @@ export function Nav() {
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
           <a
             href="#top"
-            className="group flex items-center gap-2"
+            className="group flex items-center gap-3"
             aria-label="LLE Social Media — home"
           >
-            <span className="font-display text-2xl font-bold tracking-tight text-paper">
-              LLE
-              <Asterisk className="mb-1 ml-0.5 inline h-4 w-4 text-coral transition-transform duration-500 group-hover:rotate-180" />
-            </span>
-            <span className="mt-1 hidden font-mono text-[10px] uppercase tracking-[0.3em] text-mist sm:block">
-              Social Media
+            <LogoMark className="h-10 w-10 shrink-0 object-contain transition-transform duration-500 group-hover:scale-105" />
+            <span className="leading-none">
+              <span className="block font-display text-lg font-bold tracking-tight text-paper">
+                LLE <span className="text-coral">Social Media</span>
+              </span>
+              <span className="mt-1.5 block font-mono text-[9px] uppercase tracking-[0.32em] text-mist">
+                Digital Growth Studio
+              </span>
             </span>
           </a>
 
@@ -157,22 +203,68 @@ export function Nav() {
           </ul>
 
           <div className="flex items-center gap-3">
-            <a
-              href="#contact"
-              className="group hidden items-center gap-2 rounded-full border border-coral bg-coral px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.14em] text-ink transition-all duration-300 hover:bg-transparent hover:text-coral sm:flex"
-            >
-              Start a project
-              <svg
-                viewBox="0 0 16 16"
-                className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
+            {/* Explore More — page pulldown */}
+            <div className="relative hidden sm:block" ref={moreRef}>
+              <button
+                onClick={() => setMoreOpen((v) => !v)}
+                aria-expanded={moreOpen}
+                aria-haspopup="true"
+                className="group flex items-center gap-2 rounded-full border border-coral bg-coral px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.14em] text-ink transition-all duration-300 hover:bg-transparent hover:text-coral"
               >
-                <path d="M3 13L13 3M6 3h7v7" />
-              </svg>
-            </a>
+                Explore More
+                <svg
+                  viewBox="0 0 16 16"
+                  className={`h-3 w-3 transition-transform duration-300 ${
+                    moreOpen ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                >
+                  <path d="M3 6l5 5 5-5" />
+                </svg>
+              </button>
+              <AnimatePresence>
+                {moreOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute right-0 top-full z-[85] mt-3 w-64 overflow-hidden rounded-xl border border-line bg-ink-2 shadow-2xl shadow-black/60"
+                  >
+                    {[...NAV_LINKS, { label: "Contact", href: "#contact" }].map(
+                      (l, i) => (
+                        <a
+                          key={l.href}
+                          href={l.href}
+                          onClick={() => setMoreOpen(false)}
+                          className="group/item flex items-center justify-between px-5 py-3 text-sm text-paper/80 transition-colors hover:bg-ink-3 hover:text-paper"
+                        >
+                          <span className="flex items-center gap-3">
+                            <span className="font-mono text-[10px] text-coral">
+                              0{i + 1}
+                            </span>
+                            {l.label}
+                          </span>
+                          <svg
+                            viewBox="0 0 16 16"
+                            className="h-3 w-3 text-coral opacity-0 transition-all duration-300 group-hover/item:translate-x-0.5 group-hover/item:opacity-100"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          >
+                            <path d="M2 8h11M9 4l4 4-4 4" />
+                          </svg>
+                        </a>
+                      )
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
@@ -287,13 +379,15 @@ export function Footer() {
 
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-2 md:px-8 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <a href="#top" className="flex items-center gap-2">
-            <span className="font-display text-3xl font-bold tracking-tight">
-              LLE
-              <Asterisk className="mb-1 ml-1 inline h-5 w-5 text-coral" />
-            </span>
-            <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-mist">
-              Social Media
+          <a href="#top" className="flex items-center gap-3">
+            <LogoMark className="h-12 w-12 shrink-0 object-contain" />
+            <span className="leading-none">
+              <span className="block font-display text-xl font-bold tracking-tight text-paper">
+                LLE <span className="text-coral">Social Media</span>
+              </span>
+              <span className="mt-1.5 block font-mono text-[9px] uppercase tracking-[0.32em] text-mist">
+                Digital Growth Studio
+              </span>
             </span>
           </a>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-mist">

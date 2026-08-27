@@ -12,8 +12,8 @@ export const IMG = {
 export const NAV_LINKS = [
   { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
+  { label: "About", href: "#about" },
   { label: "Process", href: "#process" },
-  { label: "Studio", href: "#studio" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -202,17 +202,6 @@ export const WORKS: Work[] = [
   },
 ];
 
-export const BRANDS = [
-  "KOSKII",
-  "MEDILEAF",
-  "PULSEFIT",
-  "VERDANA SKIN",
-  "ATELIER NORTH",
-  "NIMBUS PAY",
-  "HALE & CO.",
-  "ORBITAL LABS",
-];
-
 export type Step = {
   num: string;
   title: string;
@@ -248,10 +237,10 @@ export const PROCESS: Step[] = [
 ];
 
 export const STATS = [
-  { value: 140, suffix: "+", label: "Projects shipped" },
-  { value: 97, suffix: "%", label: "Client retention" },
-  { value: 4.6, suffix: "×", decimals: 1, label: "Avg. return on spend" },
-  { value: 6, suffix: " yrs", label: "In the game" },
+  { value: 60, suffix: "+", label: "Projects Shipped" },
+  { value: 97, suffix: "%", label: "Client Retention" },
+  { value: 1200, suffix: "+", label: "Blogs Written" },
+  { value: 12, suffix: " yrs", label: "In the Game" },
 ];
 
 export const TESTIMONIALS = [
