@@ -1,11 +1,43 @@
 import { useEffect } from "react";
 
 /**
- * The company logo lives in `public/lle-LOGO2.png`.
- * A relative URL keeps it working both in dev and on GitHub Pages
- * (where the site is served from a sub-path).
+ * The company logo is expected at `public/lle-LOGO2.png`.
+ * Relative URLs keep it working both in dev and on GitHub Pages
+ * (where the site is served from a sub-path). We try a few common
+ * spellings / locations so a slightly-off upload still works.
  */
-export const LOGO_SRC = "./lle-LOGO2.png";
+export const LOGO_CANDIDATES = [
+  "./lle-LOGO2.png",
+  "./lle-logo2.png",
+  "./LLE-LOGO2.png",
+  "./logo.png",
+  "./images/lle-LOGO2.png",
+];
+
+export const LOGO_SRC = LOGO_CANDIDATES[0];
+
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+/** Resolves the first logo path that actually loads. */
+export async function resolveLogo(): Promise<string | null> {
+  for (const src of LOGO_CANDIDATES) {
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      await loadImage(src);
+      return src;
+    } catch {
+      /* try next candidate */
+    }
+  }
+  return null;
+}
 
 function rgbToHsl(r: number, g: number, b: number): [number, number, number] {
   r /= 255;
@@ -27,75 +59,89 @@ function rgbToHsl(r: number, g: number, b: number): [number, number, number] {
   return [h, s, l];
 }
 
+function sampleAndApply(img: HTMLImageElement) {
+  try {
+    const size = 64;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    if (!ctx) return;
+    ctx.drawImage(img, 0, 0, size, size);
+    const { data } = ctx.getImageData(0, 0, size, size);
+
+    const buckets = 30;
+    const weight = new Array<number>(buckets).fill(0);
+    const hSum = new Array<number>(buckets).fill(0);
+    const sSum = new Array<number>(buckets).fill(0);
+    const lSum = new Array<number>(buckets).fill(0);
+
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3] < 140) continue; // transparent
+      const [h, s, l] = rgbToHsl(data[i], data[i + 1], data[i + 2]);
+      if (s < 0.18 || l < 0.1 || l > 0.93) continue; // greys / extremes
+      const b = Math.min(buckets - 1, Math.floor(h / (360 / buckets)));
+      const w = s * (1.15 - Math.abs(l - 0.52));
+      weight[b] += w;
+      hSum[b] += h * w;
+      sSum[b] += s * w;
+      lSum[b] += l * w;
+    }
+
+    let best = -1;
+    let bestW = 0;
+    weight.forEach((w, i) => {
+      if (w > bestW) {
+        bestW = w;
+        best = i;
+      }
+    });
+    if (best < 0) return; // monochrome logo → keep default palette
+
+    const h = Math.round(hSum[best] / bestW);
+    const s = Math.max(0.72, Math.min(0.95, sSum[best] / bestW));
+    const l = Math.max(0.5, Math.min(0.62, lSum[best] / bestW));
+
+    const root = document.documentElement.style;
+    root.setProperty(
+      "--color-coral",
+      `hsl(${h} ${Math.round(s * 100)}% ${Math.round(l * 100)}%)`
+    );
+    root.setProperty(
+      "--color-aqua",
+      `hsl(${(h + 165) % 360} ${Math.round(Math.min(0.85, s + 0.05) * 100)}% 64%)`
+    );
+    root.setProperty(
+      "--color-amber",
+      `hsl(${(h + 52) % 360} 90% 62%)`
+    );
+  } catch {
+    /* canvas unavailable — keep default palette */
+  }
+}
+
 /**
- * useLogoTheme — samples the uploaded logo at runtime and retints the whole
- * site (primary / secondary / tertiary accents) to match the logo's own
- * colours. Falls back to the default palette for monochrome logos or if the
- * file is missing.
+ * useLogoTheme — finds the uploaded logo, samples its colours at runtime and
+ * retints the whole site (primary / secondary / tertiary accents) to match.
+ * Falls back to the default palette for monochrome logos or a missing file.
  */
 export function useLogoTheme() {
   useEffect(() => {
-    const img = new Image();
-    img.onload = () => {
-      try {
-        const size = 64;
-        const canvas = document.createElement("canvas");
-        canvas.width = size;
-        canvas.height = size;
-        const ctx = canvas.getContext("2d", { willReadFrequently: true });
-        if (!ctx) return;
-        ctx.drawImage(img, 0, 0, size, size);
-        const { data } = ctx.getImageData(0, 0, size, size);
-
-        const buckets = 30;
-        const weight = new Array<number>(buckets).fill(0);
-        const hSum = new Array<number>(buckets).fill(0);
-        const sSum = new Array<number>(buckets).fill(0);
-        const lSum = new Array<number>(buckets).fill(0);
-
-        for (let i = 0; i < data.length; i += 4) {
-          if (data[i + 3] < 140) continue; // transparent
-          const [h, s, l] = rgbToHsl(data[i], data[i + 1], data[i + 2]);
-          if (s < 0.18 || l < 0.1 || l > 0.93) continue; // greys / extremes
-          const b = Math.min(buckets - 1, Math.floor(h / (360 / buckets)));
-          const w = s * (1.15 - Math.abs(l - 0.52));
-          weight[b] += w;
-          hSum[b] += h * w;
-          sSum[b] += s * w;
-          lSum[b] += l * w;
+    let alive = true;
+    (async () => {
+      for (const src of LOGO_CANDIDATES) {
+        try {
+          // eslint-disable-next-line no-await-in-loop
+          const img = await loadImage(src);
+          if (alive) sampleAndApply(img);
+          break;
+        } catch {
+          /* try next candidate */
         }
-
-        let best = -1;
-        let bestW = 0;
-        weight.forEach((w, i) => {
-          if (w > bestW) {
-            bestW = w;
-            best = i;
-          }
-        });
-        if (best < 0) return; // monochrome logo → keep default palette
-
-        const h = Math.round(hSum[best] / bestW);
-        const s = Math.max(0.72, Math.min(0.95, sSum[best] / bestW));
-        const l = Math.max(0.5, Math.min(0.62, lSum[best] / bestW));
-
-        const root = document.documentElement.style;
-        root.setProperty(
-          "--color-coral",
-          `hsl(${h} ${Math.round(s * 100)}% ${Math.round(l * 100)}%)`
-        );
-        root.setProperty(
-          "--color-aqua",
-          `hsl(${(h + 165) % 360} ${Math.round(Math.min(0.85, s + 0.05) * 100)}% 64%)`
-        );
-        root.setProperty(
-          "--color-amber",
-          `hsl(${(h + 52) % 360} 90% 62%)`
-        );
-      } catch {
-        /* canvas unavailable — keep default palette */
       }
+    })();
+    return () => {
+      alive = false;
     };
-    img.src = LOGO_SRC;
   }, []);
 }

@@ -34,6 +34,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Auto-locate the uploaded company logo wherever it lives in the repo
+      # (root, assets/, images/ or public/) and stage it into public/ so the
+      # build always picks it up. The site theme also re-colours itself from
+      # this file at runtime.
+      - name: Stage company logo
+        run: |
+          mkdir -p public
+          for candidate in \
+            "lle-LOGO2.png" \
+            "lle-logo2.png" \
+            "LLE-LOGO2.png" \
+            "logo.png" \
+            "assets/lle-LOGO2.png" \
+            "images/lle-LOGO2.png" \
+            "public/images/lle-LOGO2.png"; do
+            if [ -f "$candidate" ] && [ ! -f "public/lle-LOGO2.png" ]; then
+              cp "$candidate" public/lle-LOGO2.png
+              echo "Staged logo from $candidate"
+            fi
+          done
+          if [ -f "public/lle-LOGO2.png" ]; then
+            echo "Logo found and staged for build."
+          else
+            echo "::warning::No lle-LOGO2.png found in the repo — the site will use the fallback monogram."
+          fi
+
       # --base=./ makes asset URLs relative, required for GitHub Pages
       - name: Build
         run: npx vite build --base=./

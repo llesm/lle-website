@@ -13,14 +13,14 @@ import {
   NAV_LINKS,
   SERVICES,
 } from "../lib/data";
-import { LOGO_SRC } from "../lib/theme";
+import { LOGO_CANDIDATES } from "../lib/theme";
 
 /* ------------------------------------------------------------------ */
-/* LogoMark — uploaded logo with a graceful fallback monogram          */
+/* LogoMark — uploaded logo (tries several paths), monogram fallback   */
 /* ------------------------------------------------------------------ */
 function LogoMark({ className }: { className?: string }) {
-  const [failed, setFailed] = useState(false);
-  if (failed) {
+  const [idx, setIdx] = useState(0);
+  if (idx >= LOGO_CANDIDATES.length) {
     return (
       <span
         className={`grid place-items-center rounded-lg bg-coral text-ink ${className ?? "h-10 w-10"}`}
@@ -31,9 +31,9 @@ function LogoMark({ className }: { className?: string }) {
   }
   return (
     <img
-      src={LOGO_SRC}
-      alt=""
-      onError={() => setFailed(true)}
+      src={LOGO_CANDIDATES[idx]}
+      alt="LLE Social Media logo"
+      onError={() => setIdx((i) => i + 1)}
       className={className}
     />
   );
