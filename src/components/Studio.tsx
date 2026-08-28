@@ -6,13 +6,13 @@ import { FAQS, PROCESS, STATS } from "../lib/data";
 /* ------------------------------------------------------------------ */
 /* Process — sticky two-column                                         */
 /* ------------------------------------------------------------------ */
-function Process() {
+export function Process() {
   return (
     <section id="process" className="relative bg-ink-2 py-24 md:py-32">
       <div className="mx-auto grid max-w-7xl gap-14 px-5 md:px-8 lg:grid-cols-2">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
-            index="04"
+            index="03"
             kicker="How we work"
             title={
               <>
@@ -26,7 +26,7 @@ function Process() {
             <p className="max-w-md text-base leading-relaxed text-mist">
               No black boxes, no "trust us" phases. You see the same staging
               link we see, the same metrics we read, and the same calendar we
-              work from — every single week.
+              work from - Every single week.
             </p>
           </Reveal>
           <Reveal delay={0.18}>
@@ -91,7 +91,7 @@ function Process() {
 /* ------------------------------------------------------------------ */
 /* Stats band                                                          */
 /* ------------------------------------------------------------------ */
-function StatsBand() {
+export function StatsBand() {
   return (
     <section className="relative overflow-hidden bg-coral py-16 text-ink">
       <Asterisk className="pointer-events-none absolute -right-10 -top-10 h-52 w-52 text-ink/10" />
@@ -120,7 +120,7 @@ function StatsBand() {
 /* ------------------------------------------------------------------ */
 /* FAQ                                                                 */
 /* ------------------------------------------------------------------ */
-function Faq() {
+export function Faq() {
   const [open, setOpen] = useState<number>(0);
   const prm = useReducedMotion();
 
@@ -206,15 +206,5 @@ function Faq() {
         </div>
       </div>
     </section>
-  );
-}
-
-export default function Studio() {
-  return (
-    <>
-      <Process />
-      <StatsBand />
-      <Faq />
-    </>
   );
 }
