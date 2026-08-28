@@ -15,6 +15,18 @@ import {
   SOCIALS,
 } from "../lib/data";
 import { LOGO_CANDIDATES } from "../lib/theme";
+import { goSection, goService } from "../lib/router";
+
+/**
+ * Anchor click handler for cross-route navigation: sub-page routes
+ * ("#/...") are left to the hash router; plain section anchors go
+ * through goSection so they also work from sub-pages.
+ */
+function navGo(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  if (href.startsWith("#/")) return;
+  e.preventDefault();
+  goSection(href.replace(/^#/, ""));
+}
 
 const ACCENT_TEXT: Record<string, string> = {
   coral: "text-coral",
@@ -136,16 +148,6 @@ export function Cursor() {
   );
 }
 
-function scrollToId(id: string) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.scrollIntoView({
-    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ? "auto"
-      : "smooth",
-  });
-}
-
 /* ------------------------------------------------------------------ */
 /* Nav — sticky bar, scroll progress, full-screen mobile menu          */
 /* ------------------------------------------------------------------ */
@@ -211,6 +213,7 @@ export function Nav() {
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
           <a
             href="#top"
+            onClick={(e) => navGo(e, "#top")}
             className="group flex items-center gap-3"
             aria-label="LLE Social Media — home"
           >
@@ -230,6 +233,7 @@ export function Nav() {
               <li key={l.href}>
                 <a
                   href={l.href}
+                  onClick={(e) => navGo(e, l.href)}
                   className="group relative font-mono text-xs uppercase tracking-[0.2em] text-paper/70 transition-colors hover:text-paper"
                 >
                   {l.label}
@@ -240,6 +244,7 @@ export function Nav() {
               <li>
                 <a
                   href="#contact"
+                  onClick={(e) => navGo(e, "#contact")}
                   className="group relative font-mono text-xs uppercase tracking-[0.2em] text-paper/70 transition-colors hover:text-paper"
                 >
                   Contact Us
@@ -404,13 +409,7 @@ export function Nav() {
                                             onClick={(e) => {
                                               e.preventDefault();
                                               setMoreOpen(false);
-                                              scrollToId(s.id);
-                                              window.dispatchEvent(
-                                                new CustomEvent(
-                                                  "lle:open-service",
-                                                  { detail: s.id }
-                                                )
-                                              );
+                                              goService(s.id);
                                             }}
                                             className="group/svc flex items-center gap-3 rounded-lg border border-line/60 bg-ink/60 px-3.5 py-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-coral/40 hover:bg-ink"
                                           >
@@ -447,7 +446,10 @@ export function Nav() {
                               >
                                 <a
                                   href={l.href}
-                                  onClick={() => setMoreOpen(false)}
+                                  onClick={(e) => {
+                                    navGo(e, l.href);
+                                    setMoreOpen(false);
+                                  }}
                                   className="group relative flex items-center gap-3 overflow-hidden rounded-lg px-3 py-2.5"
                                 >
                                   <span className="absolute inset-y-1.5 left-0 w-0.5 origin-top scale-y-0 rounded-full bg-coral transition-transform duration-300 group-hover:scale-y-100" />
@@ -477,7 +479,10 @@ export function Nav() {
                         {/* contact CTA */}
                         <motion.a
                           href="#contact"
-                          onClick={() => setMoreOpen(false)}
+                          onClick={(e) => {
+                            navGo(e, "#contact");
+                            setMoreOpen(false);
+                          }}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.32, duration: 0.35 }}
@@ -569,7 +574,10 @@ export function Nav() {
                 >
                   <a
                     href={l.href}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => {
+                      navGo(e, l.href);
+                      setOpen(false);
+                    }}
                     className="group flex items-baseline gap-4 py-2"
                   >
                     <span className="font-mono text-xs text-coral">
@@ -584,7 +592,10 @@ export function Nav() {
             </ul>
             <motion.a
               href="#contact"
-              onClick={() => setOpen(false)}
+              onClick={(e) => {
+                navGo(e, "#contact");
+                setOpen(false);
+              }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.5 }}
@@ -627,13 +638,7 @@ export function Footer() {
     }
   };
 
-  const backToTop = () =>
-    window.scrollTo({
-      top: 0,
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "auto"
-        : "smooth",
-    });
+  const backToTop = () => goSection("top");
 
   return (
     <footer className="relative border-t border-line bg-ink">
@@ -651,7 +656,11 @@ export function Footer() {
 
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-2 md:px-8 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <a href="#top" className="flex items-center gap-3">
+          <a
+            href="#top"
+            onClick={(e) => navGo(e, "#top")}
+            className="flex items-center gap-3"
+          >
             <LogoMark className="h-12 w-12 shrink-0 object-contain" />
             <span className="leading-none">
               <span className="block font-display text-xl font-bold leading-none tracking-tight text-paper">
@@ -682,6 +691,7 @@ export function Footer() {
               <li key={l.href}>
                 <a
                   href={l.href}
+                  onClick={(e) => navGo(e, l.href)}
                   className="group text-sm text-paper/80 transition-colors hover:text-coral"
                 >
                   <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-coral opacity-0 transition-opacity group-hover:opacity-100" />
@@ -700,7 +710,11 @@ export function Footer() {
             {SERVICES.map((s) => (
               <li key={s.id}>
                 <a
-                  href="#services"
+                  href={`#${s.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    goService(s.id);
+                  }}
                   className="group flex items-center gap-2.5 text-sm text-paper/80 transition-colors hover:text-coral"
                 >
                   <ServiceIcon

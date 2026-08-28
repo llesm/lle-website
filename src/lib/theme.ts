@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * The company logo is expected at `public/lle-LOGO2.png`.
@@ -25,6 +25,39 @@ export const LOGO_CANDIDATES = [
 ];
 
 export const LOGO_SRC = LOGO_CANDIDATES[0];
+
+/** Returns the first candidate that actually loads, else null. */
+export function useFirstImage(candidates: string[]): string | null {
+  const [src, setSrc] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    const tryAt = (i: number) => {
+      if (i >= candidates.length || cancelled) return;
+      const img = new Image();
+      img.onload = () => {
+        if (!cancelled) setSrc(candidates[i]);
+      };
+      img.onerror = () => tryAt(i + 1);
+      img.src = candidates[i];
+    };
+    tryAt(0);
+    return () => {
+      cancelled = true;
+    };
+  }, [candidates]);
+  return src;
+}
+
+/**
+ * About-page hero background — the user-supplied `about-us-bg-lleweb.png`,
+ * looked up locally first, then in the public GitHub repo via CDN.
+ */
+export const ABOUT_BG_CANDIDATES = [
+  "./about-us-bg-lleweb.png",
+  "https://cdn.jsdelivr.net/gh/llesm/lle-website@main/about-us-bg-lleweb.png",
+  "https://raw.githubusercontent.com/llesm/lle-website/main/about-us-bg-lleweb.png",
+  "./images/about-us-bg-lleweb.png",
+];
 
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
