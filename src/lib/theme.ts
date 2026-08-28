@@ -26,6 +26,17 @@ export const LOGO_CANDIDATES = [
 
 export const LOGO_SRC = LOGO_CANDIDATES[0];
 
+/**
+ * About-page hero background — the user-supplied `about-us-bg-lleweb.png`,
+ * looked up locally first, then in the public GitHub repo via CDN.
+ */
+export const ABOUT_BG_CANDIDATES = [
+  "./about-us-bg-lleweb.png",
+  "https://cdn.jsdelivr.net/gh/llesm/lle-website@main/about-us-bg-lleweb.png",
+  "https://raw.githubusercontent.com/llesm/lle-website/main/about-us-bg-lleweb.png",
+  "./images/about-us-bg-lleweb.png",
+];
+
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();

@@ -64,6 +64,22 @@ jobs:
             echo "::warning::No lle-LOGO2.png found in the repo — the site will use the fallback monogram."
           fi
 
+      # Stage the About-page hero background the same way.
+      - name: Stage about-page background
+        run: |
+          for candidate in \
+            "about-us-bg-lleweb.png" \
+            "assets/about-us-bg-lleweb.png" \
+            "images/about-us-bg-lleweb.png"; do
+            if [ -f "$candidate" ] && [ ! -f "public/about-us-bg-lleweb.png" ]; then
+              cp "$candidate" public/about-us-bg-lleweb.png
+              echo "Staged about background from $candidate"
+            fi
+          done
+          if [ ! -f "public/about-us-bg-lleweb.png" ]; then
+            echo "::warning::No about-us-bg-lleweb.png found — the About page hero will use the grid fallback."
+          fi
+
       # --base=./ makes asset URLs relative, required for GitHub Pages
       - name: Build
         run: npx vite build --base=./

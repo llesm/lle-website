@@ -9,6 +9,7 @@ import {
   ServiceIcon,
 } from "../lib/motion";
 import { SERVICES, WORKS, type Work } from "../lib/data";
+import { consumePendingService } from "../lib/router";
 
 const TICKER = [
   "Website Design",
@@ -65,14 +66,13 @@ function ServicesAccordion() {
   const [open, setOpen] = useState<number>(0);
   const prm = useReducedMotion();
 
+  // Opens the row when arriving via a cross-route service link
+  // (e.g. from the About page or the Explore More menu).
   useEffect(() => {
-    const onOpen = (e: Event) => {
-      const id = (e as CustomEvent<string>).detail;
-      const idx = SERVICES.findIndex((s) => s.id === id);
-      if (idx >= 0) setOpen(idx);
-    };
-    window.addEventListener("lle:open-service", onOpen);
-    return () => window.removeEventListener("lle:open-service", onOpen);
+    const id = consumePendingService();
+    if (!id) return;
+    const idx = SERVICES.findIndex((s) => s.id === id);
+    if (idx >= 0) setOpen(idx);
   }, []);
 
   return (
