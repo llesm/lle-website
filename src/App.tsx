@@ -7,6 +7,8 @@ import { Faq, Process, StatsBand } from "./components/Studio";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import AboutPage from "./components/AboutPage";
+import MedicalContentPage from "./components/MedicalContentPage";
+import WebsiteDesignPage from "./components/WebsiteDesignPage";
 import { consumePendingSection, useRoute } from "./lib/router";
 import { useLogoTheme } from "./lib/theme";
 
@@ -42,7 +44,17 @@ export default function App() {
       <Noise />
       <Cursor />
       <Nav />
-      <main>{route === "about-us" ? <AboutPage /> : <Home />}</main>
+      <main>
+        {route === "about-us" ? (
+          <AboutPage />
+        ) : route === "medical-content" ? (
+          <MedicalContentPage />
+        ) : route === "website-designing" ? (
+          <WebsiteDesignPage />
+        ) : (
+          <Home />
+        )}
+      </main>
       <Footer />
     </div>
   );

@@ -63,6 +63,27 @@ export const ABOUT_BG_CANDIDATES = [
   "./images/about-us-bg-lleweb.png",
 ];
 
+/** Medical Content Creation page hero background. */
+export const MEDICAL_BG_CANDIDATES = [
+  "https://cdn.jsdelivr.net/gh/llesm/lle-website@main/photos/medical-content-creation-bg-lleweb.png",
+  "./photos/medical-content-creation-bg-lleweb.png",
+  "https://raw.githubusercontent.com/llesm/lle-website/main/photos/medical-content-creation-bg-lleweb.png",
+];
+
+/** Website Designing page hero background. */
+export const WEBDESIGN_BG_CANDIDATES = [
+  "https://cdn.jsdelivr.net/gh/llesm/lle-website@main/photos/website-designing-bg-lleweb.png",
+  "./photos/website-designing-bg-lleweb.png",
+  "https://raw.githubusercontent.com/llesm/lle-website/main/photos/website-designing-bg-lleweb.png",
+];
+
+/** Base CDN URL for the public repo — used to resolve folder screenshots. */
+export const REPO_OWNER = "llesm";
+export const REPO_NAME = "lle-website";
+export const REPO_BRANCH = "main";
+export const repoFileUrl = (path: string) =>
+  `https://cdn.jsdelivr.net/gh/${REPO_OWNER}/${REPO_NAME}@${REPO_BRANCH}/${path}`;
+
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
