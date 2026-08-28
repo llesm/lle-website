@@ -8,8 +8,8 @@ import {
 import InteractiveHoverButton from "./InteractiveHoverButton";
 import Testimonials from "./Testimonials";
 import {
+  Asterisk,
   CountUp,
-  LogoGlyph,
   Reveal,
   SectionHeading,
   ServiceIcon,
@@ -223,7 +223,7 @@ function WhoWeAre() {
                   <span className="font-display text-xl font-medium tracking-tight text-paper/85 transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-paper">
                     {role}
                   </span>
-                  <LogoGlyph className="ml-auto h-3.5 w-3.5 opacity-30 transition-all duration-500 group-hover:rotate-180 group-hover:opacity-100" />
+                  <Asterisk className="ml-auto h-3.5 w-3.5 text-line transition-all duration-500 group-hover:rotate-180 group-hover:text-coral" />
                 </div>
               ))}
             </div>
@@ -241,7 +241,7 @@ function Mission() {
       <div className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
         <Reveal>
           <p className="mb-6 flex items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-coral">
-            <LogoGlyph className="h-3.5 w-3.5" />
+            <Asterisk className="h-3.5 w-3.5" />
             ( 02 — Our Mission )
           </p>
         </Reveal>
@@ -348,11 +348,11 @@ function WhatWeOffer() {
 function JourneyNumbers() {
   return (
     <section className="relative overflow-hidden bg-coral py-20 text-ink">
-      <LogoGlyph className="pointer-events-none absolute -left-12 -bottom-12 h-56 w-56 opacity-10" />
+      <Asterisk className="pointer-events-none absolute -left-12 -bottom-12 h-56 w-56 text-ink/10" />
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal>
           <p className="mb-3 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.28em] text-ink/70">
-            <LogoGlyph className="h-3.5 w-3.5" />
+            <Asterisk className="h-3.5 w-3.5" />
             ( 04 — Our journey in numbers )
           </p>
         </Reveal>
@@ -471,7 +471,7 @@ function OurProcess() {
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-mist">
                   {step.body}
                 </p>
-                <LogoGlyph className="mt-6 h-4 w-4 opacity-30 transition-all duration-500 group-hover:rotate-180 group-hover:opacity-100" />
+                <Asterisk className="mt-6 h-4 w-4 text-line transition-all duration-500 group-hover:rotate-180 group-hover:text-aqua" />
               </div>
             </Reveal>
           ))}
@@ -529,7 +529,7 @@ function Vision() {
       <div className="relative mx-auto max-w-5xl px-5 md:px-8">
         <Reveal>
           <p className="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-aqua">
-            <LogoGlyph className="h-3.5 w-3.5" />
+            <Asterisk className="h-3.5 w-3.5" />
             ( 08 — Where we are headed )
           </p>
         </Reveal>
@@ -561,7 +561,7 @@ function WorkTogether() {
       <div className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
         <Reveal>
           <p className="mb-6 flex items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-coral">
-            <LogoGlyph className="h-3.5 w-3.5" />
+            <Asterisk className="h-3.5 w-3.5" />
             ( 09 — Let us work together )
           </p>
         </Reveal>
