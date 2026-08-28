@@ -17,11 +17,14 @@ const INDUSTRIES = [
 
 export default function About() {
   return (
-    <section id="about" className="relative scroll-mt-24 overflow-hidden bg-ink">
+    <section
+      id="about"
+      className="relative scroll-mt-24 overflow-hidden border-t border-line bg-ink"
+    >
       <div className="grid-lines pointer-events-none absolute inset-0 opacity-60" />
       <div className="pointer-events-none absolute -right-40 top-40 h-[460px] w-[460px] rounded-full bg-amber/[0.05] blur-[120px]" />
 
-      <div className="relative mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+      <div className="relative mx-auto max-w-7xl px-5 pb-24 pt-14 md:px-8 md:pb-32 md:pt-16">
         <SectionHeading
           index="01"
           kicker="About"
