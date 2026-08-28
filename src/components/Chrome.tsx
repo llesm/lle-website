@@ -295,7 +295,16 @@ export function Nav() {
                       className="pointer-events-none absolute inset-0 z-0"
                     />
                     <div className="grid-lines pointer-events-none absolute inset-0 opacity-50" />
-                    <Asterisk className="pointer-events-none absolute -right-7 -top-7 h-40 w-40 rotate-12 text-coral/[0.05]" />
+                    {/* faint brand watermark from the uploaded logo */}
+                    <img
+                      src={LOGO_CANDIDATES[0]}
+                      alt=""
+                      aria-hidden="true"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                      className="pointer-events-none absolute -bottom-9 -right-9 h-44 w-44 -rotate-12 object-contain opacity-[0.06] grayscale select-none"
+                    />
 
                     {/* header strip */}
                     <div className="relative flex items-center justify-between border-b border-line px-5 py-3">
@@ -410,11 +419,6 @@ export function Nav() {
                                             </span>
                                             <span className="min-w-0 flex-1 truncate text-sm font-medium text-paper/85 transition-colors duration-300 group-hover/svc:text-paper">
                                               {s.title}
-                                            </span>
-                                            <span
-                                              className={`hidden shrink-0 font-mono text-[9px] uppercase tracking-[0.14em] md:block ${ACCENT_TEXT[s.accent]}`}
-                                            >
-                                              {s.tag}
                                             </span>
                                             <span className="relative flex h-2 w-2 shrink-0">
                                               <span
