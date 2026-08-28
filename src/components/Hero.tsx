@@ -17,8 +17,8 @@ export default function Hero() {
       <div className="pointer-events-none absolute -left-40 top-24 h-[480px] w-[480px] rounded-full bg-coral/[0.07] blur-[120px]" />
       <div className="pointer-events-none absolute -right-32 bottom-0 h-[420px] w-[420px] rounded-full bg-aqua/[0.06] blur-[110px]" />
 
-      <div className="relative mx-auto max-w-7xl px-5 pt-24 md:px-8 md:pt-32">
-        <div className="grid items-center gap-14 lg:grid-cols-12">
+      <div className="relative mx-auto max-w-7xl px-5 pt-20 md:px-8 md:pt-24">
+        <div className="grid items-start gap-14 lg:grid-cols-12">
           {/* headline */}
           <div className="lg:col-span-7">
             <h1 className="font-display font-bold uppercase leading-[0.92] tracking-tight">
