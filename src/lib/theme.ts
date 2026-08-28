@@ -10,6 +10,10 @@ export const LOGO_CANDIDATES = [
   "./lle-LOGO2.png",
   "./lle-logo2.png",
   "./LLE-LOGO2.png",
+  "./lle-logo.png",
+  "./lle_LOGO2.png",
+  "./llelogo2.png",
+  "./logo-lle.png",
   "./logo.png",
   "./images/lle-LOGO2.png",
 ];
