@@ -1,3 +1,4 @@
+import InteractiveHoverButton from "./InteractiveHoverButton";
 import {
   Asterisk,
   CountUp,
@@ -49,31 +50,24 @@ export default function Hero() {
 
             <Reveal delay={0.4}>
               <div className="mt-9 flex flex-wrap items-center gap-4">
-                <a
+                <InteractiveHoverButton
                   href="#about"
-                  className="group flex items-center gap-3 rounded-full bg-coral px-7 py-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-ink transition-all duration-300 hover:gap-5 hover:bg-paper"
+                  className="border-coral px-7 py-4"
+                  dotClass="bg-coral"
+                  textClass="text-coral"
+                  hoverTextClass="text-ink"
                 >
                   More on LLE Social Media
-                  <svg
-                    viewBox="0 0 16 16"
-                    className="h-3.5 w-3.5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  >
-                    <path d="M2 8h11M9 4l4 4-4 4" />
-                  </svg>
-                </a>
-                <a
+                </InteractiveHoverButton>
+                <InteractiveHoverButton
                   href="#work"
-                  className="group flex items-center gap-3 rounded-full border border-line px-7 py-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-paper transition-all duration-300 hover:border-paper hover:bg-paper hover:text-ink"
+                  className="border-line px-7 py-4"
+                  dotClass="bg-paper"
+                  textClass="text-paper"
+                  hoverTextClass="text-ink"
                 >
                   See Our Works
-                  <span className="transition-transform duration-300 group-hover:translate-y-0.5">
-                    ↓
-                  </span>
-                </a>
+                </InteractiveHoverButton>
               </div>
             </Reveal>
           </div>
