@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import InteractiveHoverButton from "./InteractiveHoverButton";
 import {
@@ -64,6 +64,16 @@ const ACCENT_BG: Record<string, string> = {
 function ServicesAccordion() {
   const [open, setOpen] = useState<number>(0);
   const prm = useReducedMotion();
+
+  useEffect(() => {
+    const onOpen = (e: Event) => {
+      const id = (e as CustomEvent<string>).detail;
+      const idx = SERVICES.findIndex((s) => s.id === id);
+      if (idx >= 0) setOpen(idx);
+    };
+    window.addEventListener("lle:open-service", onOpen);
+    return () => window.removeEventListener("lle:open-service", onOpen);
+  }, []);
 
   return (
     <div className="border-t border-line">

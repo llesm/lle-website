@@ -16,6 +16,17 @@ import {
 } from "../lib/data";
 import { LOGO_CANDIDATES } from "../lib/theme";
 
+const ACCENT_TEXT: Record<string, string> = {
+  coral: "text-coral",
+  aqua: "text-aqua",
+  amber: "text-amber",
+};
+const ACCENT_BG: Record<string, string> = {
+  coral: "bg-coral",
+  aqua: "bg-aqua",
+  amber: "bg-amber",
+};
+
 /* ------------------------------------------------------------------ */
 /* LogoMark — uploaded logo (tries several paths), monogram fallback   */
 /* ------------------------------------------------------------------ */
@@ -251,39 +262,145 @@ export function Nav() {
               <AnimatePresence>
                 {moreOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.97 }}
+                    initial={{ opacity: 0, y: 12, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute right-0 top-full z-[85] mt-3 w-64 overflow-hidden rounded-xl border border-line bg-ink-2 shadow-2xl shadow-black/60"
+                    exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                    transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute right-0 top-full z-[85] mt-3 w-[min(92vw,900px)] origin-top-right overflow-hidden rounded-lg border border-line bg-ink-2 shadow-[0_32px_90px_-18px_rgba(0,0,0,0.85)]"
                   >
-                    {[...NAV_LINKS, { label: "Contact", href: "#contact" }].map(
-                      (l, i) => (
-                        <a
-                          key={l.href}
-                          href={l.href}
-                          onClick={() => setMoreOpen(false)}
-                          className="group/item flex items-center justify-between px-5 py-3 text-sm text-paper/80 transition-colors hover:bg-ink-3 hover:text-paper"
-                        >
-                          <span className="flex items-center gap-3">
-                            <span className="font-mono text-[10px] text-coral">
-                              0{i + 1}
-                            </span>
-                            {l.label}
-                          </span>
-                          <svg
-                            viewBox="0 0 16 16"
-                            className="h-3 w-3 text-coral opacity-0 transition-all duration-300 group-hover/item:translate-x-0.5 group-hover/item:opacity-100"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
+                    <div className="grid-lines pointer-events-none absolute inset-0 opacity-60" />
+                    <Asterisk className="pointer-events-none absolute -right-7 -top-7 h-44 w-44 rotate-12 text-coral/[0.05]" />
+
+                    {/* header strip */}
+                    <div className="relative flex items-center justify-between border-b border-line px-6 py-3">
+                      <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-paper/60">
+                        <Asterisk className="h-3 w-3 text-coral" />
+                        Explore — LLE Social Media
+                      </p>
+                      <p className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-mist sm:block">
+                        Five crafts · One studio
+                      </p>
+                    </div>
+
+                    <div className="relative grid md:grid-cols-[300px_1fr]">
+                      {/* left — sitemap */}
+                      <nav className="border-b border-line p-5 md:border-b-0 md:border-r">
+                        <p className="mb-3 px-2 font-mono text-[10px] uppercase tracking-[0.26em] text-mist">
+                          The page
+                        </p>
+                        <ul className="space-y-0.5">
+                          {[
+                            ...NAV_LINKS,
+                            { label: "Testimonials", href: "#testimonials" },
+                            { label: "Contact Us", href: "#contact" },
+                          ].map((l, i) => (
+                            <motion.li
+                              key={l.href}
+                              initial={{ opacity: 0, x: -14 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.04 + i * 0.045, duration: 0.35 }}
+                            >
+                              <a
+                                href={l.href}
+                                onClick={() => setMoreOpen(false)}
+                                className="group/item flex items-center justify-between rounded-md px-2 py-2.5 text-paper/80 transition-all duration-300 hover:bg-ink-3 hover:pl-3 hover:text-paper"
+                              >
+                                <span className="flex items-baseline gap-3">
+                                  <span className="font-mono text-[10px] text-coral">
+                                    0{i + 1}
+                                  </span>
+                                  <span className="font-display text-base font-medium tracking-tight">
+                                    {l.label}
+                                  </span>
+                                </span>
+                                <svg
+                                  viewBox="0 0 16 16"
+                                  className="h-3.5 w-3.5 text-coral opacity-0 transition-all duration-300 group-hover/item:translate-x-0.5 group-hover/item:opacity-100"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                >
+                                  <path d="M2 8h11M9 4l4 4-4 4" />
+                                </svg>
+                              </a>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </nav>
+
+                      {/* right — the five services */}
+                      <nav className="p-5">
+                        <p className="mb-3 px-2 font-mono text-[10px] uppercase tracking-[0.26em] text-mist">
+                          What we do
+                        </p>
+                        <ul className="space-y-0.5">
+                          {SERVICES.map((s, i) => (
+                            <motion.li
+                              key={s.id}
+                              initial={{ opacity: 0, x: 14 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.06 + i * 0.05, duration: 0.35 }}
+                            >
+                              <a
+                                href={`#${s.id}`}
+                                onClick={() => {
+                                  setMoreOpen(false);
+                                  window.dispatchEvent(
+                                    new CustomEvent("lle:open-service", {
+                                      detail: s.id,
+                                    })
+                                  );
+                                }}
+                                className="group/svc flex items-center justify-between gap-3 rounded-md px-2 py-2.5 transition-all duration-300 hover:bg-ink-3 hover:pl-3"
+                              >
+                                <span className="flex min-w-0 items-center gap-3">
+                                  <span
+                                    className={`shrink-0 font-mono text-[10px] ${ACCENT_TEXT[s.accent]}`}
+                                  >
+                                    {s.num}
+                                  </span>
+                                  <span className="truncate font-display text-base font-medium tracking-tight text-paper/85 transition-colors group-hover/svc:text-paper">
+                                    {s.title}
+                                  </span>
+                                </span>
+                                <span className="flex shrink-0 items-center gap-3">
+                                  <span className="hidden rounded-full border border-line px-3 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-paper/50 transition-colors group-hover/svc:border-paper/40 group-hover/svc:text-paper/80 md:block">
+                                    {s.tag}
+                                  </span>
+                                  <span
+                                    className={`h-2 w-2 rounded-full ${ACCENT_BG[s.accent]} transition-transform duration-300 group-hover/svc:scale-150`}
+                                  />
+                                </span>
+                              </a>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </nav>
+                    </div>
+
+                    {/* footer strip */}
+                    <div className="relative flex flex-wrap items-center justify-between gap-3 border-t border-line bg-ink px-6 py-4">
+                      <p className="font-mono text-[11px] text-mist">
+                        <span className="text-paper/80">{CONTACT_EMAIL}</span>
+                        <span className="mx-2 text-line">·</span>
+                        {CONTACT_PHONE}
+                      </p>
+                      <div className="flex items-center gap-2">
+                        {SOCIALS.map((s) => (
+                          <a
+                            key={s.name}
+                            href={s.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={s.name}
+                            className="grid h-8 w-8 place-items-center rounded-full border border-line text-paper/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-coral hover:text-coral"
                           >
-                            <path d="M2 8h11M9 4l4 4-4 4" />
-                          </svg>
-                        </a>
-                      )
-                    )}
+                            <SocialIcon name={s.icon} className="h-3.5 w-3.5" />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
