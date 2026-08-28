@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { LOGO_CANDIDATES } from "./theme";
 
 /* ------------------------------------------------------------------ */
 /* Reveal — scroll-triggered rise + fade                               */
@@ -212,22 +211,21 @@ export function RotatingBadge({ className }: { className?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* LogoGlyph — the LLE brand mark, drawn from the uploaded logo image. */
-/* Walks the candidate paths and hides itself if none of them load.    */
+/* Asterisk — the LLE brand glyph                                      */
 /* ------------------------------------------------------------------ */
-export function LogoGlyph({ className }: { className?: string }) {
-  const [idx, setIdx] = useState(0);
-  if (idx >= LOGO_CANDIDATES.length) return null;
+export function Asterisk({ className }: { className?: string }) {
   return (
-    <img
-      src={LOGO_CANDIDATES[idx]}
-      alt=""
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.8"
+      strokeLinecap="round"
       aria-hidden="true"
-      onError={() => setIdx((i) => i + 1)}
-      className={`inline-block shrink-0 select-none object-contain align-middle ${
-        className ?? ""
-      }`}
-    />
+    >
+      <path d="M12 2.5v19M3.8 7.25l16.4 9.5M20.2 7.25l-16.4 9.5" />
+    </svg>
   );
 }
 
@@ -252,7 +250,7 @@ export function SectionHeading({
       <div className="md:col-span-8">
         <Reveal>
           <p className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.28em] text-coral">
-            <LogoGlyph className="h-3.5 w-3.5" />
+            <Asterisk className="h-3.5 w-3.5" />
             ( {index ? `${index} — ` : ""}
             {kicker} )
           </p>

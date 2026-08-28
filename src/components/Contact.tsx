@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import InteractiveHoverButton from "./InteractiveHoverButton";
-import { LogoGlyph, Reveal, SectionHeading, SocialIcon } from "../lib/motion";
+import { Asterisk, Reveal, SectionHeading, SocialIcon } from "../lib/motion";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -80,7 +80,7 @@ export default function Contact() {
               Got a project?
               <br />
               Let's make it <span className="text-coral">real.</span>
-              <LogoGlyph className="ml-3 inline h-8 w-8 md:h-12 md:w-12" />
+              <Asterisk className="ml-3 inline h-8 w-8 text-coral md:h-12 md:w-12" />
             </>
           }
           note="We would love to hear about your business and your goals. Drop us a message and we will reply within a day."
@@ -204,7 +204,7 @@ export default function Contact() {
                       noValidate
                     >
                       <p className="mb-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.26em] text-ink/60">
-                        <LogoGlyph className="h-3.5 w-3.5" />
+                        <Asterisk className="h-3.5 w-3.5 text-coral" />
                         Project brief — 60 seconds
                       </p>
 
