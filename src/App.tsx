@@ -1,8 +1,9 @@
 import { Cursor, Footer, Nav, Noise } from "./components/Chrome";
 import Hero from "./components/Hero";
-import Services from "./components/Services";
 import About from "./components/About";
-import Studio from "./components/Studio";
+import { ServicesSection, WorkSection } from "./components/Services";
+import { Faq, Process, StatsBand } from "./components/Studio";
+import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import { useLogoTheme } from "./lib/theme";
 
@@ -16,9 +17,13 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <Services />
         <About />
-        <Studio />
+        <ServicesSection />
+        <Process />
+        <StatsBand />
+        <WorkSection />
+        <Testimonials />
+        <Faq />
         <Contact />
       </main>
       <Footer />

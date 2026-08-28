@@ -199,7 +199,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
       delay={(index % 2) * 0.1}
       className={`group ${spanClass}`}
     >
-      <article className="flex h-full flex-col border border-ink/15 bg-paper transition-shadow duration-500 hover:shadow-[10px_10px_0_0_rgba(15,18,16,0.9)]">
+      <article className="flex h-full flex-col border border-ink/15 bg-paper transition-shadow duration-500 hover:shadow-[10px_10px_0_0_rgba(15,16,19,0.9)]">
         <div className="relative overflow-hidden">
           <img
             src={work.image}
@@ -273,9 +273,9 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Section shell                                                       */
+/* Services section — ticker + accordion                               */
 /* ------------------------------------------------------------------ */
-export default function Services() {
+export function ServicesSection() {
   return (
     <>
       <ServiceTicker />
@@ -283,7 +283,7 @@ export default function Services() {
       <section id="services" className="relative bg-ink py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <SectionHeading
-            index="01"
+            index="02"
             kicker="What we do"
             title={
               <>
@@ -297,44 +297,51 @@ export default function Services() {
           <ServicesAccordion />
         </div>
       </section>
-
-      <section id="work" className="relative bg-paper py-24 text-ink md:py-32">
-        <div className="grid-lines-dark pointer-events-none absolute inset-0" />
-        <div className="relative mx-auto max-w-7xl px-5 md:px-8">
-          <SectionHeading
-            dark
-            index="02"
-            kicker="Selected work"
-            title={
-              <>
-                Proof, not
-                <br />
-                <span className="relative inline-block">
-                  promises.
-                  <Asterisk className="absolute -right-7 -top-2 h-5 w-5 text-coral" />
-                </span>
-              </>
-            }
-            note="A slice of recent launches — every number below was measured on a real dashboard, not estimated in a deck."
-          />
-          <div className="grid gap-8 md:grid-cols-12">
-            {WORKS.map((w, i) => (
-              <WorkCard key={w.client} work={w} index={i} />
-            ))}
-          </div>
-          <Reveal className="mt-14 text-center">
-            <InteractiveHoverButton
-              href="#contact"
-              className="border-ink px-8 py-4"
-              dotClass="bg-ink"
-              textClass="text-ink"
-              hoverTextClass="text-paper"
-            >
-              Your project could be next
-            </InteractiveHoverButton>
-          </Reveal>
-        </div>
-      </section>
     </>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Work / portfolio section                                            */
+/* ------------------------------------------------------------------ */
+export function WorkSection() {
+  return (
+    <section id="work" className="relative bg-paper py-24 text-ink md:py-32">
+      <div className="grid-lines-dark pointer-events-none absolute inset-0" />
+      <div className="relative mx-auto max-w-7xl px-5 md:px-8">
+        <SectionHeading
+          dark
+          index="04"
+          kicker="Selected work"
+          title={
+            <>
+              Proof Over Promises —
+              <br />
+              <span className="relative inline-block">
+                See Our Portfolio.
+                <Asterisk className="absolute -right-7 -top-2 h-5 w-5 text-coral" />
+              </span>
+            </>
+          }
+          note="A slice of what we have built over years. Every number below was measured on a real dashboard, not estimated in a deck."
+        />
+        <div className="grid gap-8 md:grid-cols-12">
+          {WORKS.map((w, i) => (
+            <WorkCard key={w.client} work={w} index={i} />
+          ))}
+        </div>
+        <Reveal className="mt-14 text-center">
+          <InteractiveHoverButton
+            href="#contact"
+            className="border-ink px-8 py-4"
+            dotClass="bg-ink"
+            textClass="text-ink"
+            hoverTextClass="text-paper"
+          >
+            Your project could be next
+          </InteractiveHoverButton>
+        </Reveal>
+      </div>
+    </section>
   );
 }
