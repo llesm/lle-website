@@ -17,17 +17,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute -left-40 top-24 h-[480px] w-[480px] rounded-full bg-coral/[0.07] blur-[120px]" />
       <div className="pointer-events-none absolute -right-32 bottom-0 h-[420px] w-[420px] rounded-full bg-aqua/[0.06] blur-[110px]" />
 
-      <div className="relative mx-auto max-w-7xl px-5 pt-32 md:px-8 md:pt-40">
-        {/* meta row */}
-        <Reveal>
-          <div className="mb-10 flex flex-wrap items-center justify-start gap-4">
-            <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-paper/70">
-              <Asterisk className="h-4 w-4 text-coral" />
-              Digital growth studio
-            </p>
-          </div>
-        </Reveal>
-
+      <div className="relative mx-auto max-w-7xl px-5 pt-24 md:px-8 md:pt-32">
         <div className="grid items-center gap-14 lg:grid-cols-12">
           {/* headline */}
           <div className="lg:col-span-7">

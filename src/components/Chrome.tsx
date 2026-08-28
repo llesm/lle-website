@@ -183,8 +183,8 @@ export function Nav() {
               <span className="block font-display text-lg font-bold tracking-tight text-paper">
                 LLE <span className="text-coral">Social Media</span>
               </span>
-              <span className="mt-1.5 block font-mono text-[9px] uppercase tracking-[0.32em] text-mist">
-                Digital Growth Studio
+              <span className="mt-1.5 block font-mono text-[9px] uppercase tracking-[0.22em] text-mist">
+                Listen | Learn | Engage
               </span>
             </span>
           </a>
@@ -386,8 +386,8 @@ export function Footer() {
               <span className="block font-display text-xl font-bold tracking-tight text-paper">
                 LLE <span className="text-coral">Social Media</span>
               </span>
-              <span className="mt-1.5 block font-mono text-[9px] uppercase tracking-[0.32em] text-mist">
-                Digital Growth Studio
+              <span className="mt-1.5 block font-mono text-[9px] uppercase tracking-[0.22em] text-mist">
+                Listen | Learn | Engage
               </span>
             </span>
           </a>
