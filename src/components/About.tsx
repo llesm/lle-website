@@ -1,4 +1,4 @@
-import { Asterisk, CountUp, Reveal, SectionHeading } from "../lib/motion";
+import { CountUp, LogoGlyph, Reveal, SectionHeading } from "../lib/motion";
 import { ABOUT_PATH } from "../lib/router";
 
 const MINI_STATS = [
@@ -91,7 +91,7 @@ export default function About() {
             <Reveal delay={0.12}>
               <div className="rounded-lg border border-line bg-ink-2 p-7 md:p-8">
                 <p className="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.28em] text-aqua">
-                  <Asterisk className="h-3.5 w-3.5" />
+                  <LogoGlyph className="h-3.5 w-3.5" />
                   Our journey in numbers
                 </p>
                 <div className="grid grid-cols-2 gap-x-6 gap-y-7">

@@ -8,8 +8,8 @@ import {
 import InteractiveHoverButton from "./InteractiveHoverButton";
 import Testimonials from "./Testimonials";
 import {
-  Asterisk,
   CountUp,
+  LogoGlyph,
   Reveal,
   SectionHeading,
   ServiceIcon,
@@ -80,27 +80,38 @@ const BUSINESS_OFFERS = [
 /* ------------------------------------------------------------------ */
 /* Letter-by-letter masked reveal                                      */
 /* ------------------------------------------------------------------ */
-function MaskedTitle({ text, className }: { text: string; className?: string }) {
+type TitleSegment = { text: string; cls?: string };
+
+function MaskedTitle({
+  segments,
+  className,
+}: {
+  segments: TitleSegment[];
+  className?: string;
+}) {
   const prm = useReducedMotion();
+  let order = 0;
   return (
-    <span className={`flex flex-wrap justify-center ${className ?? ""}`}>
-      {text.split(" ").map((word, wi) => (
-        <span key={wi} className="mr-[0.28em] flex overflow-hidden last:mr-0">
-          {word.split("").map((ch, ci) => (
-            <motion.span
-              key={ci}
-              className="inline-block"
-              initial={prm ? { opacity: 0 } : { y: "112%" }}
-              animate={prm ? { opacity: 1 } : { y: "0%" }}
-              transition={{
-                delay: 0.25 + (wi * 6 + ci) * 0.04,
-                duration: 0.75,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              {ch}
-            </motion.span>
-          ))}
+    <span
+      className={`flex flex-wrap items-baseline justify-center gap-x-[0.24em] ${className ?? ""}`}
+    >
+      {segments.map((seg, si) => (
+        <span key={si} className={`flex overflow-hidden ${seg.cls ?? ""}`}>
+          {seg.text.split("").map((ch, ci) => {
+            const delay = 0.25 + order * 0.045;
+            order += 1;
+            return (
+              <motion.span
+                key={ci}
+                className="inline-block"
+                initial={prm ? { opacity: 0 } : { y: "112%" }}
+                animate={prm ? { opacity: 1 } : { y: "0%" }}
+                transition={{ delay, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {ch}
+              </motion.span>
+            );
+          })}
         </span>
       ))}
     </span>
@@ -137,68 +148,15 @@ function PageHero() {
         <div className="grid-lines absolute inset-0 opacity-70" />
       )}
 
-      <div className="relative mx-auto max-w-5xl px-5 py-32 text-center md:px-8">
-        <Reveal>
-          <p className="mb-6 flex items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.34em] text-paper/70">
-            <Asterisk className="h-4 w-4 text-coral" />
-            LLE Social Media — The Studio
-          </p>
-        </Reveal>
-
-        <h1 className="font-display text-[17vw] font-bold uppercase leading-[0.95] tracking-tight text-paper sm:text-8xl md:text-[7.5rem]">
-          <MaskedTitle text="About Us" />
+      <div className="relative mx-auto max-w-6xl px-5 text-center">
+        <h1 className="font-poster text-[22vw] uppercase leading-[0.92] tracking-[0.01em] drop-shadow-[0_12px_48px_rgba(0,0,0,0.55)] sm:text-9xl md:text-[11rem]">
+          <MaskedTitle
+            segments={[
+              { text: "About", cls: "text-paper" },
+              { text: "Us", cls: "text-stroke text-paper" },
+            ]}
+          />
         </h1>
-
-        <Reveal delay={0.55}>
-          <p className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-mist md:text-lg">
-            The team behind brands that refuse to blend in — strategy,
-            content, design and code under one roof, built to make your brand
-            impossible to ignore.
-          </p>
-        </Reveal>
-
-        <Reveal delay={0.7}>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <InteractiveHoverButton
-              onClick={() => goSection("contact")}
-              className="border-coral px-7 py-4"
-              dotClass="bg-coral"
-              textClass="text-coral"
-              hoverTextClass="text-ink"
-            >
-              Let Us Work Together
-            </InteractiveHoverButton>
-            <InteractiveHoverButton
-              onClick={() =>
-                document
-                  .getElementById("who-we-are")
-                  ?.scrollIntoView({ behavior: prm ? "auto" : "smooth" })
-              }
-              className="border-line px-7 py-4"
-              dotClass="bg-paper"
-              textClass="text-paper"
-              hoverTextClass="text-ink"
-            >
-              Read Our Story
-            </InteractiveHoverButton>
-          </div>
-        </Reveal>
-      </div>
-
-      {/* scroll cue */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <span className="animate-cue block text-coral">
-          <svg
-            viewBox="0 0 16 16"
-            className="h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          >
-            <path d="M8 2v11M3 9l5 5 5-5" />
-          </svg>
-        </span>
       </div>
     </section>
   );
@@ -265,7 +223,7 @@ function WhoWeAre() {
                   <span className="font-display text-xl font-medium tracking-tight text-paper/85 transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-paper">
                     {role}
                   </span>
-                  <Asterisk className="ml-auto h-3.5 w-3.5 text-line transition-all duration-500 group-hover:rotate-180 group-hover:text-coral" />
+                  <LogoGlyph className="ml-auto h-3.5 w-3.5 opacity-30 transition-all duration-500 group-hover:rotate-180 group-hover:opacity-100" />
                 </div>
               ))}
             </div>
@@ -283,7 +241,7 @@ function Mission() {
       <div className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
         <Reveal>
           <p className="mb-6 flex items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-coral">
-            <Asterisk className="h-3.5 w-3.5" />
+            <LogoGlyph className="h-3.5 w-3.5" />
             ( 02 — Our Mission )
           </p>
         </Reveal>
@@ -390,11 +348,11 @@ function WhatWeOffer() {
 function JourneyNumbers() {
   return (
     <section className="relative overflow-hidden bg-coral py-20 text-ink">
-      <Asterisk className="pointer-events-none absolute -left-12 -bottom-12 h-56 w-56 text-ink/10" />
+      <LogoGlyph className="pointer-events-none absolute -left-12 -bottom-12 h-56 w-56 opacity-10" />
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal>
           <p className="mb-3 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.28em] text-ink/70">
-            <Asterisk className="h-3.5 w-3.5" />
+            <LogoGlyph className="h-3.5 w-3.5" />
             ( 04 — Our journey in numbers )
           </p>
         </Reveal>
@@ -513,7 +471,7 @@ function OurProcess() {
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-mist">
                   {step.body}
                 </p>
-                <Asterisk className="mt-6 h-4 w-4 text-line transition-all duration-500 group-hover:rotate-180 group-hover:text-aqua" />
+                <LogoGlyph className="mt-6 h-4 w-4 opacity-30 transition-all duration-500 group-hover:rotate-180 group-hover:opacity-100" />
               </div>
             </Reveal>
           ))}
@@ -571,7 +529,7 @@ function Vision() {
       <div className="relative mx-auto max-w-5xl px-5 md:px-8">
         <Reveal>
           <p className="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-aqua">
-            <Asterisk className="h-3.5 w-3.5" />
+            <LogoGlyph className="h-3.5 w-3.5" />
             ( 08 — Where we are headed )
           </p>
         </Reveal>
@@ -603,7 +561,7 @@ function WorkTogether() {
       <div className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
         <Reveal>
           <p className="mb-6 flex items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-coral">
-            <Asterisk className="h-3.5 w-3.5" />
+            <LogoGlyph className="h-3.5 w-3.5" />
             ( 09 — Let us work together )
           </p>
         </Reveal>

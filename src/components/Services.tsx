@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import InteractiveHoverButton from "./InteractiveHoverButton";
 import {
-  Asterisk,
+  LogoGlyph,
   Marquee,
   Reveal,
   SectionHeading,
@@ -36,9 +36,9 @@ function ServiceTicker() {
             >
               {t}
             </span>
-            <Asterisk
+            <LogoGlyph
               className={`h-8 w-8 md:h-10 md:w-10 ${
-                i % 3 === 0 ? "text-coral" : i % 3 === 1 ? "text-aqua" : "text-amber"
+                i % 3 === 0 ? "opacity-90" : i % 3 === 1 ? "opacity-60" : "opacity-35"
               }`}
             />
           </span>
@@ -328,9 +328,8 @@ export function WorkSection() {
               Proof Over Promises —
               <br />
               <span className="relative inline-block">
-                See Our Portfolio.
-                <Asterisk className="absolute -right-7 -top-2 h-5 w-5 text-coral" />
-              </span>
+                  See Our Portfolio.
+                  <LogoGlyph className="absolute -right-8 -top-3 h-6 w-6" />              </span>
             </>
           }
           note="A slice of what we have built over years. Every number below was measured on a real dashboard, not estimated in a deck."

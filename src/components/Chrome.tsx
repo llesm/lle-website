@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
-  Asterisk,
+  LogoGlyph,
   Marquee,
   Reveal,
   ServiceIcon,
@@ -51,11 +51,8 @@ function LogoMark({ className }: { className?: string }) {
       <span
         className={`grid place-items-center overflow-hidden rounded-lg border border-coral/60 bg-ink-3 ${className ?? "h-10 w-10"}`}
       >
-        <span className="relative grid place-items-center">
-          <Asterisk className="absolute h-[130%] w-[130%] text-coral/15" />
-          <span className="font-display text-[13px] font-extrabold tracking-tight text-coral">
-            LLE
-          </span>
+        <span className="font-display text-[13px] font-extrabold tracking-tight text-coral">
+          LLE
         </span>
       </span>
     );
@@ -314,7 +311,7 @@ export function Nav() {
                     {/* header strip */}
                     <div className="relative flex items-center justify-between border-b border-line px-5 py-3">
                       <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-paper/70">
-                        <Asterisk className="h-3 w-3 text-coral" />
+                        <LogoGlyph className="h-3.5 w-3.5" />
                         Explore More
                       </p>
                       <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-mist">
@@ -649,7 +646,7 @@ export function Footer() {
             className="flex items-center gap-6 pr-6 font-display text-3xl font-semibold uppercase tracking-tight"
           >
             <span className="text-stroke-thin">Let's build something loud</span>
-            <Asterisk className="h-6 w-6 text-coral" />
+            <LogoGlyph className="h-6 w-6 opacity-80" />
           </span>
         ))}
       </Marquee>
@@ -737,7 +734,7 @@ export function Footer() {
           </p>
           {subscribed ? (
             <p className="flex items-center gap-2 font-mono text-xs text-aqua">
-              <Asterisk className="h-3.5 w-3.5" /> You're on the list. Talk
+              <LogoGlyph className="h-3.5 w-3.5" /> You're on the list. Talk
               soon.
             </p>
           ) : (
@@ -790,9 +787,9 @@ export function Footer() {
           <p className="font-mono text-[11px] tracking-wide text-mist">
             © 2026 LLE Social Media — All rights reserved.
           </p>
-          <p className="font-mono text-[11px] tracking-wide text-mist">
-            Designed in Chennai, Tamil Nadu{" "}
-            <span className="text-coral">✳</span>
+          <p className="flex items-center gap-1.5 font-mono text-[11px] tracking-wide text-mist">
+            Designed in Chennai, Tamil Nadu
+            <LogoGlyph className="h-3 w-3" />
           </p>
           <button
             onClick={backToTop}
