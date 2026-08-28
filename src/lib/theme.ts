@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * The company logo is expected at `public/lle-LOGO2.png`.
@@ -25,6 +25,28 @@ export const LOGO_CANDIDATES = [
 ];
 
 export const LOGO_SRC = LOGO_CANDIDATES[0];
+
+/** Returns the first candidate that actually loads, else null. */
+export function useFirstImage(candidates: string[]): string | null {
+  const [src, setSrc] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    const tryAt = (i: number) => {
+      if (i >= candidates.length || cancelled) return;
+      const img = new Image();
+      img.onload = () => {
+        if (!cancelled) setSrc(candidates[i]);
+      };
+      img.onerror = () => tryAt(i + 1);
+      img.src = candidates[i];
+    };
+    tryAt(0);
+    return () => {
+      cancelled = true;
+    };
+  }, [candidates]);
+  return src;
+}
 
 /**
  * About-page hero background — the user-supplied `about-us-bg-lleweb.png`,

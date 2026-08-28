@@ -64,6 +64,25 @@ jobs:
             echo "::warning::No lle-LOGO2.png found in the repo — the site will use the fallback monogram."
           fi
 
+      # Auto-locate the About-page hero background the same way.
+      - name: Stage About hero background
+        run: |
+          for candidate in \
+            "about-us-bg-lleweb.png" \
+            "assets/about-us-bg-lleweb.png" \
+            "images/about-us-bg-lleweb.png" \
+            "public/images/about-us-bg-lleweb.png"; do
+            if [ -f "$candidate" ] && [ ! -f "public/about-us-bg-lleweb.png" ]; then
+              cp "$candidate" public/about-us-bg-lleweb.png
+              echo "Staged About background from $candidate"
+            fi
+          done
+          if [ -f "public/about-us-bg-lleweb.png" ]; then
+            echo "About background found and staged for build."
+          else
+            echo "::warning::No about-us-bg-lleweb.png found — About hero will use the gradient fallback."
+          fi
+
       # Stage the About-page hero background the same way.
       - name: Stage about-page background
         run: |

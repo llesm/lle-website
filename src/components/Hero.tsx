@@ -51,7 +51,7 @@ export default function Hero() {
             <Reveal delay={0.4}>
               <div className="mt-9 flex flex-wrap items-center gap-4">
                 <InteractiveHoverButton
-                  href="#about"
+                  href="#/about-us"
                   className="border-coral px-7 py-4"
                   dotClass="bg-coral"
                   textClass="text-coral"
