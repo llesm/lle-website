@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Asterisk, CountUp, Reveal, SectionHeading } from "../lib/motion";
+import { CountUp, LogoGlyph, Reveal, SectionHeading } from "../lib/motion";
 import { FAQS, PROCESS, STATS } from "../lib/data";
 
 /* ------------------------------------------------------------------ */
@@ -62,7 +62,7 @@ export function Process() {
                       <h3 className="font-display text-3xl font-semibold tracking-tight text-paper transition-colors group-hover:text-aqua md:text-4xl">
                         {step.title}
                       </h3>
-                      <Asterisk className="h-5 w-5 shrink-0 text-line transition-all duration-500 group-hover:rotate-180 group-hover:text-aqua" />
+                      <LogoGlyph className="h-5 w-5 opacity-40 transition-all duration-500 group-hover:rotate-180 group-hover:opacity-100" />
                     </div>
                     <p className="mt-4 max-w-lg text-sm leading-relaxed text-mist">
                       {step.body}
@@ -94,7 +94,7 @@ export function Process() {
 export function StatsBand() {
   return (
     <section className="relative overflow-hidden bg-coral py-16 text-ink">
-      <Asterisk className="pointer-events-none absolute -right-10 -top-10 h-52 w-52 text-ink/10" />
+      <LogoGlyph className="pointer-events-none absolute -right-10 -top-10 h-52 w-52 opacity-10" />
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-10 px-5 md:px-8 lg:grid-cols-4">
         {STATS.map((s, i) => (
           <Reveal key={s.label} delay={i * 0.08}>

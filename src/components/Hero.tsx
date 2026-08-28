@@ -1,7 +1,7 @@
 import InteractiveHoverButton from "./InteractiveHoverButton";
 import {
-  Asterisk,
   CountUp,
+  LogoGlyph,
   Reveal,
   RotatingBadge,
   ScrambleWord,
@@ -89,7 +89,7 @@ export default function Hero() {
 
                 {/* floating chips */}
                 <div className="animate-floaty absolute -left-4 top-8 flex items-center gap-2 rounded-full border border-line bg-ink/90 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-aqua backdrop-blur-sm sm:-left-10">
-                  <Asterisk className="h-3 w-3" />
+                  <LogoGlyph className="h-3 w-3" />
                   Medical Content Creation
                 </div>
                 <div className="animate-floaty-late absolute -right-3 bottom-24 rounded-full border border-line bg-ink/90 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-coral backdrop-blur-sm sm:-right-8">
