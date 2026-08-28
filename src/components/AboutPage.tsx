@@ -153,7 +153,7 @@ function PageHero() {
           <MaskedTitle
             segments={[
               { text: "About", cls: "text-paper" },
-              { text: "Us", cls: "text-stroke text-paper" },
+              { text: "Us", cls: "text-coral" },
             ]}
           />
         </h1>
