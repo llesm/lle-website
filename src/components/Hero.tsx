@@ -23,7 +23,7 @@ export default function Hero() {
           <div className="lg:col-span-7">
             <h1 className="font-display font-bold uppercase leading-[0.92] tracking-tight">
               <Reveal delay={0.05}>
-                <span className="block text-[15vw] text-paper sm:text-7xl lg:text-[6.4rem]">
+                <span className="block translate-y-[0.1em] text-[15vw] text-paper sm:text-7xl lg:text-[6.4rem]">
                   We make
                 </span>
               </Reveal>

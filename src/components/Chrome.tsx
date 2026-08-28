@@ -193,10 +193,10 @@ export function Nav() {
           >
             <LogoMark className="h-10 w-10 shrink-0 object-contain transition-transform duration-500 group-hover:scale-105" />
             <span className="leading-none">
-              <span className="block font-display text-lg font-bold tracking-tight text-paper">
+              <span className="block font-display text-xl font-bold leading-none tracking-tight text-paper">
                 LLE <span className="text-coral">Social Media</span>
               </span>
-              <span className="mt-1.5 block font-mono text-[9px] uppercase tracking-[0.22em] text-mist">
+              <span className="mt-1 block -mr-[0.22em] font-mono text-[8px] uppercase leading-none tracking-[0.22em] text-mist">
                 Listen | Learn | Engage
               </span>
             </span>
@@ -396,10 +396,10 @@ export function Footer() {
           <a href="#top" className="flex items-center gap-3">
             <LogoMark className="h-12 w-12 shrink-0 object-contain" />
             <span className="leading-none">
-              <span className="block font-display text-xl font-bold tracking-tight text-paper">
+              <span className="block font-display text-xl font-bold leading-none tracking-tight text-paper">
                 LLE <span className="text-coral">Social Media</span>
               </span>
-              <span className="mt-1.5 block font-mono text-[9px] uppercase tracking-[0.22em] text-mist">
+              <span className="mt-1 block -mr-[0.22em] font-mono text-[8px] uppercase leading-none tracking-[0.22em] text-mist">
                 Listen | Learn | Engage
               </span>
             </span>
