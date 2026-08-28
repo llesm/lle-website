@@ -217,19 +217,10 @@ export function Nav() {
               <li>
                 <a
                   href="#contact"
-                  className="group ml-2 inline-flex items-center gap-2 rounded-full border border-coral px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.16em] text-coral transition-all duration-300 hover:bg-coral hover:text-ink"
+                  className="group relative font-mono text-xs uppercase tracking-[0.2em] text-paper/70 transition-colors hover:text-paper"
                 >
                   Contact Us
-                  <svg
-                    viewBox="0 0 16 16"
-                    className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  >
-                    <path d="M3 13L13 3M6 3h7v7" />
-                  </svg>
+                  <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-coral transition-all duration-300 group-hover:w-full" />
                 </a>
               </li>
           </ul>
