@@ -13,6 +13,7 @@ export const NAV_LINKS = [
   { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
+  { label: "Testimonials", href: "#testimonials" },
   { label: "Process", href: "#process" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -243,40 +244,40 @@ export const STATS = [
   { value: 12, suffix: " yrs", label: "In the Game" },
 ];
 
-export const TESTIMONIALS = [
+export const TESTIMONIALS: {
+  quote: string;
+  name: string;
+  role?: string;
+  accent: string;
+}[] = [
   {
     quote:
-      "LLE rebuilt our Shopify store and quietly tripled our conversion rate in two months. They talk in numbers, not jargon — it felt like hiring an in-house team overnight.",
-    name: "Ananya Verma",
-    role: "Founder, Verdana Skin",
+      "Medical content has to be accurate, compliant and trustworthy. At LLE Social Media, they worked directly with me and produced content that are helpful for patients of all age.",
+    name: "Dr Maran",
     accent: "coral",
   },
   {
     quote:
-      "Medical content is a minefield of compliance and trust. Their writers worked directly with our doctors and produced content patients actually thank us for.",
-    name: "Dr. Rohan Mehta",
-    role: "Director, MediLeaf Clinics",
+      "Our new website made a tremendous impact on the ecommerce volume. The business volume nearly doubled and growing.",
+    name: "Laura Nelson",
     accent: "aqua",
   },
   {
     quote:
-      "From Figma to both app stores in nine weeks, with a staging build on my phone every Friday. I've worked with four agencies — none came close to this cadence.",
-    name: "Kabir Anand",
-    role: "CEO, PulseFit",
+      "LLE rebuilt our Shopify store and quietly tripled our conversion rate in two months. They talk in numbers, not jargon — it felt like hiring an in-house team overnight.",
+    name: "Betty & Barnie Hill",
     accent: "amber",
   },
   {
     quote:
-      "Our new website made a six-person studio look like a sixty-person one. Enquiry volume nearly doubled, and the leads are bigger, better-fit projects.",
-    name: "Sara Kulkarni",
-    role: "Partner, Atelier North",
+      "We went from Figma designs to a live Android app in under nine weeks, with a new staging build hitting my phone every single Friday. The entire process was a shared learning curve and LLE Social Media stood with us at every turn. Their dedication was remarkable, both professional and heartfelt.",
+    name: "Mohan Kumar",
     accent: "coral",
   },
   {
     quote:
-      "They don't just hand over a website and vanish. The monthly growth reviews are where the real money gets made — every suggestion is backed by data.",
-    name: "Vikram Shah",
-    role: "CMO, Nimbus Pay",
+      "At LLE Social Media, they understood exactly what we needed, a website that feels as reassuring as our practice itself. From the initial wireframes to the final launch, every step was handled with precision and genuine care. They didn't just design a site; they created a digital space where our patients feel welcomed and informed. Working with the team at LLE was an absolute pleasure.",
+    name: "Dr Sravanthi",
     accent: "aqua",
   },
 ];

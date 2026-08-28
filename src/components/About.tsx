@@ -48,7 +48,8 @@ function Testimonials() {
 
   return (
     <div
-      className="border-t border-line bg-paper py-24 text-ink md:py-28"
+      id="testimonials"
+      className="scroll-mt-24 border-t border-line bg-paper py-24 text-ink md:py-28"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -87,15 +88,18 @@ function Testimonials() {
                     >
                       {t.name
                         .split(" ")
+                        .filter((w) => /[a-zA-Z]/.test(w))
                         .map((w) => w[0])
                         .slice(0, 2)
                         .join("")}
                     </span>
                     <span>
                       <span className="block font-semibold">{t.name}</span>
-                      <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink/55">
-                        {t.role}
-                      </span>
+                      {t.role ? (
+                        <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink/55">
+                          {t.role}
+                        </span>
+                      ) : null}
                     </span>
                   </figcaption>
                 </motion.figure>
