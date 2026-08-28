@@ -37,13 +37,19 @@ function LogoMark({ className }: { className?: string }) {
       </span>
     );
   }
+  // Mounted on a light tile so the logo reads on the dark header whether
+  // it ships with a white background or transparent artwork.
   return (
-    <img
-      src={LOGO_CANDIDATES[idx]}
-      alt="LLE Social Media logo"
-      onError={() => setIdx((i) => i + 1)}
-      className={className}
-    />
+    <span
+      className={`grid shrink-0 place-items-center rounded-md bg-paper/95 p-1 shadow-[0_0_0_1px_rgba(244,243,238,0.12)] ${className ?? "h-10 w-10"}`}
+    >
+      <img
+        src={LOGO_CANDIDATES[idx]}
+        alt="LLE Social Media logo"
+        onError={() => setIdx((i) => i + 1)}
+        className="h-full w-full object-contain"
+      />
+    </span>
   );
 }
 
