@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import InteractiveHoverButton from "./InteractiveHoverButton";
 import {
   Asterisk,
   Marquee,
@@ -322,13 +323,15 @@ export default function Services() {
             ))}
           </div>
           <Reveal className="mt-14 text-center">
-            <a
+            <InteractiveHoverButton
               href="#contact"
-              className="group inline-flex items-center gap-3 rounded-full border border-ink px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-ink transition-all duration-300 hover:bg-ink hover:text-paper"
+              className="border-ink px-8 py-4"
+              dotClass="bg-ink"
+              textClass="text-ink"
+              hoverTextClass="text-paper"
             >
               Your project could be next
-              <Asterisk className="h-3.5 w-3.5 text-coral transition-transform duration-500 group-hover:rotate-180" />
-            </a>
+            </InteractiveHoverButton>
           </Reveal>
         </div>
       </section>

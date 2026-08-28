@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import InteractiveHoverButton from "./InteractiveHoverButton";
 import { Asterisk, Reveal, SectionHeading, SocialIcon } from "../lib/motion";
 import {
   CONTACT_EMAIL,
@@ -332,32 +333,17 @@ export default function Contact() {
                       </div>
 
                       <div className="mt-9 flex flex-wrap items-center justify-between gap-5">
-                        <button
+                        <InteractiveHoverButton
                           type="submit"
-                          disabled={status === "sending"}
-                          className="group flex items-center gap-3 rounded-full bg-ink px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-paper transition-all duration-300 hover:bg-coral hover:text-ink disabled:opacity-60"
+                          busy={status === "sending"}
+                          busyLabel="Sending…"
+                          className="border-ink px-8 py-4"
+                          dotClass="bg-ink"
+                          textClass="text-ink"
+                          hoverTextClass="text-paper"
                         >
-                          {status === "sending" ? (
-                            <>
-                              <span className="animate-blink h-2 w-2 rounded-full bg-paper" />
-                              Sending…
-                            </>
-                          ) : (
-                            <>
-                              Send the brief
-                              <svg
-                                viewBox="0 0 16 16"
-                                className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                              >
-                                <path d="M2 8h11M9 4l4 4-4 4" />
-                              </svg>
-                            </>
-                          )}
-                        </button>
+                          Send the brief
+                        </InteractiveHoverButton>
                         <p className="font-mono text-[11px] text-ink/50">
                           No spam, no retainers-push. Just a plan.
                         </p>
