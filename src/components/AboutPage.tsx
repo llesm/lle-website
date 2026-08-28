@@ -130,14 +130,12 @@ function PageHero() {
             alt=""
             aria-hidden="true"
             onError={() => setBgIdx((i) => i + 1)}
-            className="h-full w-full scale-125 object-cover opacity-40 blur-3xl saturate-[0.85]"
+            className="h-full w-full scale-110 object-cover blur-md"
           />
         </motion.div>
       ) : (
         <div className="grid-lines absolute inset-0 opacity-70" />
       )}
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/40 to-ink" />
-      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-coral/[0.08] blur-[130px]" />
 
       <div className="relative mx-auto max-w-5xl px-5 py-32 text-center md:px-8">
         <Reveal>
