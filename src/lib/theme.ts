@@ -53,6 +53,10 @@ export function useFirstImage(candidates: string[]): string | null {
  * looked up locally first, then in the public GitHub repo via CDN.
  */
 export const ABOUT_BG_CANDIDATES = [
+  // lives in the repo's `photos/` folder — CDN copy of the public repo first
+  "https://cdn.jsdelivr.net/gh/llesm/lle-website@main/photos/about-us-bg-lleweb.png",
+  "./photos/about-us-bg-lleweb.png",
+  "https://raw.githubusercontent.com/llesm/lle-website/main/photos/about-us-bg-lleweb.png",
   "./about-us-bg-lleweb.png",
   "https://cdn.jsdelivr.net/gh/llesm/lle-website@main/about-us-bg-lleweb.png",
   "https://raw.githubusercontent.com/llesm/lle-website/main/about-us-bg-lleweb.png",
