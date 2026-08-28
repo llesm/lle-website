@@ -7,6 +7,12 @@ import { useEffect } from "react";
  * spellings / locations so a slightly-off upload still works.
  */
 export const LOGO_CANDIDATES = [
+  // The logo lives in the public GitHub repo — load it straight from the
+  // jsDelivr GitHub CDN (fast, cached, CORS-enabled so the theme sampler
+  // can read its pixels). Falls back to raw.githubusercontent, then to a
+  // file staged locally in public/.
+  "https://cdn.jsdelivr.net/gh/llesm/lle-website@main/lle-LOGO2.png",
+  "https://raw.githubusercontent.com/llesm/lle-website/main/lle-LOGO2.png",
   "./lle-LOGO2.png",
   "./lle-logo2.png",
   "./LLE-LOGO2.png",
@@ -23,6 +29,8 @@ export const LOGO_SRC = LOGO_CANDIDATES[0];
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
+    // Required so canvas pixel-sampling isn't tainted on cross-origin URLs
+    img.crossOrigin = "anonymous";
     img.onload = () => resolve(img);
     img.onerror = reject;
     img.src = src;
