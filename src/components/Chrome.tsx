@@ -136,6 +136,16 @@ export function Cursor() {
   );
 }
 
+function scrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth",
+  });
+}
+
 /* ------------------------------------------------------------------ */
 /* Nav — sticky bar, scroll progress, full-screen mobile menu          */
 /* ------------------------------------------------------------------ */
@@ -144,7 +154,9 @@ export function Nav() {
   const [progress, setProgress] = useState(0);
   const [open, setOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [svcOpen, setSvcOpen] = useState(true);
   const moreRef = useRef<HTMLDivElement>(null);
+  const spotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
@@ -266,127 +278,234 @@ export function Nav() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.98 }}
                     transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute right-0 top-full z-[85] mt-3 w-[min(92vw,900px)] origin-top-right overflow-hidden rounded-lg border border-line bg-ink-2 shadow-[0_32px_90px_-18px_rgba(0,0,0,0.85)]"
+                    onMouseMove={(e) => {
+                      const spot = spotRef.current;
+                      if (!spot) return;
+                      const r = e.currentTarget.getBoundingClientRect();
+                      spot.style.background = `radial-gradient(300px circle at ${
+                        e.clientX - r.left
+                      }px ${
+                        e.clientY - r.top
+                      }px, color-mix(in srgb, var(--color-coral) 9%, transparent), transparent 65%)`;
+                    }}
+                    className="absolute right-0 top-full z-[85] mt-3 w-[min(92vw,400px)] origin-top-right overflow-hidden rounded-lg border border-line bg-ink-2 shadow-[0_32px_90px_-18px_rgba(0,0,0,0.85)]"
                   >
-                    <div className="grid-lines pointer-events-none absolute inset-0 opacity-60" />
-                    <Asterisk className="pointer-events-none absolute -right-7 -top-7 h-44 w-44 rotate-12 text-coral/[0.05]" />
+                    <div
+                      ref={spotRef}
+                      className="pointer-events-none absolute inset-0 z-0"
+                    />
+                    <div className="grid-lines pointer-events-none absolute inset-0 opacity-50" />
+                    <Asterisk className="pointer-events-none absolute -right-7 -top-7 h-40 w-40 rotate-12 text-coral/[0.05]" />
 
                     {/* header strip */}
-                    <div className="relative flex items-center justify-between border-b border-line px-6 py-3">
-                      <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-paper/60">
+                    <div className="relative flex items-center justify-between border-b border-line px-5 py-3">
+                      <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-paper/70">
                         <Asterisk className="h-3 w-3 text-coral" />
-                        Explore — LLE Social Media
+                        Explore More
                       </p>
-                      <p className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-mist sm:block">
-                        Five crafts · One studio
+                      <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-mist">
+                        LLE · Menu
                       </p>
                     </div>
 
-                    <div className="relative grid md:grid-cols-[300px_1fr]">
-                      {/* left — sitemap */}
-                      <nav className="border-b border-line p-5 md:border-b-0 md:border-r">
-                        <p className="mb-3 px-2 font-mono text-[10px] uppercase tracking-[0.26em] text-mist">
-                          The page
-                        </p>
+                    <div className="relative">
+                      <nav className="max-h-[min(70vh,540px)] overflow-y-auto p-3">
                         <ul className="space-y-0.5">
-                          {[
-                            ...NAV_LINKS,
-                            { label: "Testimonials", href: "#testimonials" },
-                            { label: "Contact Us", href: "#contact" },
-                          ].map((l, i) => (
-                            <motion.li
-                              key={l.href}
-                              initial={{ opacity: 0, x: -14 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.04 + i * 0.045, duration: 0.35 }}
-                            >
-                              <a
-                                href={l.href}
-                                onClick={() => setMoreOpen(false)}
-                                className="group/item flex items-center justify-between rounded-md px-2 py-2.5 text-paper/80 transition-all duration-300 hover:bg-ink-3 hover:pl-3 hover:text-paper"
+                          {NAV_LINKS.map((l, i) =>
+                            l.label === "Services" ? (
+                              <motion.li
+                                key={l.href}
+                                initial={{ opacity: 0, x: -14 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{
+                                  delay: 0.04 + i * 0.045,
+                                  duration: 0.35,
+                                }}
                               >
-                                <span className="flex items-baseline gap-3">
-                                  <span className="font-mono text-[10px] text-coral">
-                                    0{i + 1}
+                                <button
+                                  onClick={() => setSvcOpen((v) => !v)}
+                                  aria-expanded={svcOpen}
+                                  className="group relative flex w-full items-center gap-3 overflow-hidden rounded-lg px-3 py-2.5 text-left"
+                                >
+                                  <span className="absolute inset-y-1.5 left-0 w-0.5 origin-top scale-y-0 rounded-full bg-coral transition-transform duration-300 group-hover:scale-y-100" />
+                                  <span className="absolute inset-0 -translate-x-full rounded-lg bg-ink-3/70 transition-transform duration-300 ease-out group-hover:translate-x-0" />
+                                  <span
+                                    className={`relative font-mono text-[10px] transition-colors duration-300 ${
+                                      svcOpen
+                                        ? "text-coral"
+                                        : "text-mist group-hover:text-coral"
+                                    }`}
+                                  >
+                                    {String(i + 1).padStart(2, "0")}
                                   </span>
-                                  <span className="font-display text-base font-medium tracking-tight">
+                                  <span
+                                    className={`relative flex-1 font-display text-base font-semibold tracking-tight transition-all duration-300 group-hover:translate-x-1 ${
+                                      svcOpen
+                                        ? "text-coral"
+                                        : "text-paper/85 group-hover:text-paper"
+                                    }`}
+                                  >
                                     {l.label}
                                   </span>
-                                </span>
-                                <svg
-                                  viewBox="0 0 16 16"
-                                  className="h-3.5 w-3.5 text-coral opacity-0 transition-all duration-300 group-hover/item:translate-x-0.5 group-hover/item:opacity-100"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                >
-                                  <path d="M2 8h11M9 4l4 4-4 4" />
-                                </svg>
-                              </a>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </nav>
-
-                      {/* right — the five services */}
-                      <nav className="p-5">
-                        <p className="mb-3 px-2 font-mono text-[10px] uppercase tracking-[0.26em] text-mist">
-                          What we do
-                        </p>
-                        <ul className="space-y-0.5">
-                          {SERVICES.map((s, i) => (
-                            <motion.li
-                              key={s.id}
-                              initial={{ opacity: 0, x: 14 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.06 + i * 0.05, duration: 0.35 }}
-                            >
-                              <a
-                                href={`#${s.id}`}
-                                onClick={() => {
-                                  setMoreOpen(false);
-                                  window.dispatchEvent(
-                                    new CustomEvent("lle:open-service", {
-                                      detail: s.id,
-                                    })
-                                  );
-                                }}
-                                className="group/svc flex items-center justify-between gap-3 rounded-md px-2 py-2.5 transition-all duration-300 hover:bg-ink-3 hover:pl-3"
-                              >
-                                <span className="flex min-w-0 items-center gap-3">
                                   <span
-                                    className={`shrink-0 font-mono text-[10px] ${ACCENT_TEXT[s.accent]}`}
+                                    className={`relative grid h-6 w-6 shrink-0 place-items-center rounded-full border transition-all duration-300 ${
+                                      svcOpen
+                                        ? "rotate-90 border-coral bg-coral text-ink"
+                                        : "border-line text-paper/60 group-hover:border-coral group-hover:text-coral"
+                                    }`}
                                   >
-                                    {s.num}
+                                    <svg
+                                      viewBox="0 0 16 16"
+                                      className="h-3 w-3"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth="2"
+                                      strokeLinecap="round"
+                                    >
+                                      <path d="M6 3l5 5-5 5" />
+                                    </svg>
                                   </span>
-                                  <span className="truncate font-display text-base font-medium tracking-tight text-paper/85 transition-colors group-hover/svc:text-paper">
-                                    {s.title}
+                                </button>
+
+                                {/* services sub-menu */}
+                                <AnimatePresence initial={false}>
+                                  {svcOpen && (
+                                    <motion.div
+                                      key="svc-sub"
+                                      initial={{ height: 0, opacity: 0 }}
+                                      animate={{ height: "auto", opacity: 1 }}
+                                      exit={{ height: 0, opacity: 0 }}
+                                      transition={{
+                                        duration: 0.35,
+                                        ease: [0.22, 1, 0.36, 1],
+                                      }}
+                                      className="overflow-hidden"
+                                    >
+                                      <div className="ml-[26px] mt-1 space-y-1.5 border-l border-line/70 pb-1 pl-4">
+                                        {SERVICES.map((s, si) => (
+                                          <motion.a
+                                            key={s.id}
+                                            href={`#${s.id}`}
+                                            initial={{ opacity: 0, x: -12 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{
+                                              delay: 0.06 + si * 0.045,
+                                              duration: 0.3,
+                                            }}
+                                            onClick={(e) => {
+                                              e.preventDefault();
+                                              setMoreOpen(false);
+                                              scrollToId(s.id);
+                                              window.dispatchEvent(
+                                                new CustomEvent(
+                                                  "lle:open-service",
+                                                  { detail: s.id }
+                                                )
+                                              );
+                                            }}
+                                            className="group/svc flex items-center gap-3 rounded-lg border border-line/60 bg-ink/60 px-3.5 py-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-coral/40 hover:bg-ink"
+                                          >
+                                            <span className="shrink-0 rounded bg-ink-3 px-1.5 py-0.5 font-mono text-[10px] text-mist transition-colors duration-300 group-hover/svc:bg-coral group-hover/svc:text-ink">
+                                              {s.num}
+                                            </span>
+                                            <span className="min-w-0 flex-1 truncate text-sm font-medium text-paper/85 transition-colors duration-300 group-hover/svc:text-paper">
+                                              {s.title}
+                                            </span>
+                                            <span
+                                              className={`hidden shrink-0 font-mono text-[9px] uppercase tracking-[0.14em] md:block ${ACCENT_TEXT[s.accent]}`}
+                                            >
+                                              {s.tag}
+                                            </span>
+                                            <span className="relative flex h-2 w-2 shrink-0">
+                                              <span
+                                                className={`absolute inline-flex h-full w-full rounded-full opacity-0 motion-safe:group-hover/svc:animate-ping motion-safe:group-hover/svc:opacity-70 ${ACCENT_BG[s.accent]}`}
+                                              />
+                                              <span
+                                                className={`relative inline-flex h-2 w-2 rounded-full ${ACCENT_BG[s.accent]}`}
+                                              />
+                                            </span>
+                                          </motion.a>
+                                        ))}
+                                      </div>
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
+                              </motion.li>
+                            ) : (
+                              <motion.li
+                                key={l.href}
+                                initial={{ opacity: 0, x: -14 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{
+                                  delay: 0.04 + i * 0.045,
+                                  duration: 0.35,
+                                }}
+                              >
+                                <a
+                                  href={l.href}
+                                  onClick={() => setMoreOpen(false)}
+                                  className="group relative flex items-center gap-3 overflow-hidden rounded-lg px-3 py-2.5"
+                                >
+                                  <span className="absolute inset-y-1.5 left-0 w-0.5 origin-top scale-y-0 rounded-full bg-coral transition-transform duration-300 group-hover:scale-y-100" />
+                                  <span className="absolute inset-0 -translate-x-full rounded-lg bg-ink-3/70 transition-transform duration-300 ease-out group-hover:translate-x-0" />
+                                  <span className="relative font-mono text-[10px] text-mist transition-colors duration-300 group-hover:text-coral">
+                                    {String(i + 1).padStart(2, "0")}
                                   </span>
-                                </span>
-                                <span className="flex shrink-0 items-center gap-3">
-                                  <span className="hidden rounded-full border border-line px-3 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-paper/50 transition-colors group-hover/svc:border-paper/40 group-hover/svc:text-paper/80 md:block">
-                                    {s.tag}
+                                  <span className="relative flex-1 font-display text-base font-medium tracking-tight text-paper/85 transition-all duration-300 group-hover:translate-x-1 group-hover:text-paper">
+                                    {l.label}
                                   </span>
-                                  <span
-                                    className={`h-2 w-2 rounded-full ${ACCENT_BG[s.accent]} transition-transform duration-300 group-hover/svc:scale-150`}
-                                  />
-                                </span>
-                              </a>
-                            </motion.li>
-                          ))}
+                                  <svg
+                                    viewBox="0 0 16 16"
+                                    className="relative h-3.5 w-3.5 -translate-x-2 text-coral opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                  >
+                                    <path d="M2 8h11M9 4l4 4-4 4" />
+                                  </svg>
+                                </a>
+                              </motion.li>
+                            )
+                          )}
                         </ul>
+
+                        {/* contact CTA */}
+                        <motion.a
+                          href="#contact"
+                          onClick={() => setMoreOpen(false)}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.32, duration: 0.35 }}
+                          className="group relative mt-2.5 flex items-center justify-between overflow-hidden rounded-lg border border-coral/50 px-4 py-3"
+                        >
+                          <span className="absolute inset-0 origin-left scale-x-0 bg-coral transition-transform duration-300 ease-out group-hover:scale-x-100" />
+                          <span className="relative font-display text-base font-semibold tracking-tight text-coral transition-colors duration-300 group-hover:text-ink">
+                            Contact Us
+                          </span>
+                          <svg
+                            viewBox="0 0 16 16"
+                            className="relative h-4 w-4 text-coral transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1 group-hover:text-ink"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          >
+                            <path d="M3 13L13 3M6 3h7v7" />
+                          </svg>
+                        </motion.a>
                       </nav>
                     </div>
 
                     {/* footer strip */}
-                    <div className="relative flex flex-wrap items-center justify-between gap-3 border-t border-line bg-ink px-6 py-4">
-                      <p className="font-mono text-[11px] text-mist">
-                        <span className="text-paper/80">{CONTACT_EMAIL}</span>
-                        <span className="mx-2 text-line">·</span>
+                    <div className="relative flex items-center justify-between gap-3 border-t border-line bg-ink px-5 py-3.5">
+                      <p className="min-w-0 font-mono text-[10px] leading-relaxed text-mist">
+                        <span className="block truncate text-paper/80">
+                          {CONTACT_EMAIL}
+                        </span>
                         {CONTACT_PHONE}
                       </p>
-                      <div className="flex items-center gap-2">
+                      <div className="flex shrink-0 items-center gap-1.5">
                         {SOCIALS.map((s) => (
                           <a
                             key={s.name}
@@ -394,7 +513,7 @@ export function Nav() {
                             target="_blank"
                             rel="noreferrer"
                             aria-label={s.name}
-                            className="grid h-8 w-8 place-items-center rounded-full border border-line text-paper/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-coral hover:text-coral"
+                            className="grid h-8 w-8 place-items-center rounded-full border border-line text-paper/60 transition-all duration-300 hover:-translate-y-1 hover:border-coral hover:bg-coral hover:text-ink"
                           >
                             <SocialIcon name={s.icon} className="h-3.5 w-3.5" />
                           </a>
