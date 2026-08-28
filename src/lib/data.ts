@@ -10,7 +10,7 @@ export const IMG = {
 };
 
 export const NAV_LINKS = [
-  { label: "About", href: "#about" },
+  { label: "About Us", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
   { label: "Work", href: "#work" },

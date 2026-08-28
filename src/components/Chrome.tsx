@@ -214,6 +214,24 @@ export function Nav() {
                 </a>
               </li>
             ))}
+              <li>
+                <a
+                  href="#contact"
+                  className="group ml-2 inline-flex items-center gap-2 rounded-full border border-coral px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.16em] text-coral transition-all duration-300 hover:bg-coral hover:text-ink"
+                >
+                  Contact Us
+                  <svg
+                    viewBox="0 0 16 16"
+                    className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  >
+                    <path d="M3 13L13 3M6 3h7v7" />
+                  </svg>
+                </a>
+              </li>
           </ul>
 
           <div className="flex items-center gap-3">
@@ -339,10 +357,19 @@ export function Nav() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.5 }}
-              className="relative mt-10 inline-flex w-max items-center gap-3 rounded-full bg-coral px-7 py-3.5 font-mono text-sm font-bold uppercase tracking-[0.14em] text-ink"
+              className="group relative mt-10 inline-flex w-max items-center gap-3 rounded-full bg-coral px-7 py-3.5 font-mono text-sm font-bold uppercase tracking-[0.14em] text-ink"
             >
-              Start a project
-              <Asterisk className="h-4 w-4" />
+              Contact Us
+              <svg
+                viewBox="0 0 16 16"
+                className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              >
+                <path d="M3 13L13 3M6 3h7v7" />
+              </svg>
             </motion.a>
             <p className="relative mt-12 font-mono text-[11px] uppercase tracking-[0.24em] text-mist">
               {CONTACT_EMAIL}
