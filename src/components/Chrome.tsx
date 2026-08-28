@@ -22,11 +22,18 @@ import { LOGO_CANDIDATES } from "../lib/theme";
 function LogoMark({ className }: { className?: string }) {
   const [idx, setIdx] = useState(0);
   if (idx >= LOGO_CANDIDATES.length) {
+    // Fallback monogram — shown only until lle-LOGO2.png is placed in
+    // the public/ folder. Deliberately designed, not a broken-image icon.
     return (
       <span
-        className={`grid place-items-center rounded-lg bg-coral text-ink ${className ?? "h-10 w-10"}`}
+        className={`grid place-items-center overflow-hidden rounded-lg border border-coral/60 bg-ink-3 ${className ?? "h-10 w-10"}`}
       >
-        <Asterisk className="h-1/2 w-1/2" />
+        <span className="relative grid place-items-center">
+          <Asterisk className="absolute h-[130%] w-[130%] text-coral/15" />
+          <span className="font-display text-[13px] font-extrabold tracking-tight text-coral">
+            LLE
+          </span>
+        </span>
       </span>
     );
   }
