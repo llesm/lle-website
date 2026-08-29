@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LLE Social Media — redirecting…</title>
+    <meta name="robots" content="noindex" />
+    <script>
+      // SPA fallback for static hosts (GitHub Pages).
+      // A request for /medical-content lands here; bounce it to the
+      // equivalent hash route so the app can render it.
+      (function () {
+        var routes = ["about-us", "medical-content", "website-designing"];
+        var path = window.location.pathname;
+        var base = path.slice(0, path.lastIndexOf("/") + 1);
+        var seg = path.slice(base.length).replace(/\/+$/, "");
+        var known = routes.indexOf(seg) >= 0;
+        if (window.location.search.indexOf("nr=1") >= 0) return; // no loop
+        window.location.replace(
+          base + (known ? "?nr=1#/" + seg : "?nr=1#/")
+        );
+      })();
+    </script>
+  </head>
+  <body style="background: #0f1013"></body>
+</html>

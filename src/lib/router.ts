@@ -19,12 +19,25 @@ export const ROUTE_PATHS: Record<Exclude<Route, "home">, string> = {
 };
 export const ABOUT_PATH = ROUTE_PATHS["about-us"];
 
+/** Reads the route from the hash, or from a clean path URL
+ *  (e.g. /medical-content) so direct visits and refreshes work on
+ *  hosts that rewrite all paths to index.html (Vercel, Netlify…). */
 export function getRoute(): Route {
   const h = window.location.hash;
   if (h.startsWith("#/about-us")) return "about-us";
   if (h.startsWith("#/medical-content")) return "medical-content";
   if (h.startsWith("#/website-designing")) return "website-designing";
+
+  const p = window.location.pathname.replace(/\/+$/, "");
+  if (p.endsWith("/about-us")) return "about-us";
+  if (p.endsWith("/medical-content")) return "medical-content";
+  if (p.endsWith("/website-designing")) return "website-designing";
   return "home";
+}
+
+/** True when the current URL is a clean-path route (no hash). */
+function isPathEntry(): boolean {
+  return !window.location.hash && getRoute() !== "home";
 }
 
 const reducedMotion = () =>
@@ -35,7 +48,13 @@ export function useRoute(): Route {
   const [route, setRoute] = useState<Route>(() => getRoute());
 
   useEffect(() => {
-    const onHash = () => {
+    // Arrived via a clean path (/medical-content)? Canonicalise the URL
+    // to the hash form so refresh, back and share all behave the same.
+    if (isPathEntry()) {
+      window.history.replaceState(null, "", `/#/${getRoute()}`);
+    }
+
+    const onChange = () => {
       const next = getRoute();
       setRoute((prev) => {
         // Jumping between distinct pages should land at the top.
@@ -45,8 +64,12 @@ export function useRoute(): Route {
         return next;
       });
     };
-    window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
+    window.addEventListener("hashchange", onChange);
+    window.addEventListener("popstate", onChange);
+    return () => {
+      window.removeEventListener("hashchange", onChange);
+      window.removeEventListener("popstate", onChange);
+    };
   }, []);
 
   return route;
