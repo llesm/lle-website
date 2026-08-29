@@ -9,7 +9,7 @@ import {
   ServiceIcon,
 } from "../lib/motion";
 import { SERVICES, WORKS, type Work } from "../lib/data";
-import { consumePendingService, SERVICE_ROUTES, serviceHref } from "../lib/router";
+import { consumePendingService, SERVICE_ROUTES } from "../lib/router";
 
 const TICKER = [
   "Website Design",
@@ -60,6 +60,11 @@ const ACCENT_BG: Record<string, string> = {
   coral: "bg-coral",
   aqua: "bg-aqua",
   amber: "bg-amber",
+};
+const ACCENT_BORDER: Record<string, string> = {
+  coral: "border-coral",
+  aqua: "border-aqua",
+  amber: "border-amber",
 };
 
 function ServicesAccordion() {
@@ -145,28 +150,15 @@ function ServicesAccordion() {
                       <p className="max-w-xl text-justify text-base leading-relaxed text-mist hyphens-auto">
                         {s.description}
                       </p>
-                      <a
-                        href={serviceHref(s.id)}
-                        onClick={(e) => {
-                          if (!SERVICE_ROUTES[s.id]) {
-                            e.preventDefault();
-                            setOpen(i);
-                          }
-                        }}
-                        className={`group/link mt-6 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] ${ACCENT_TEXT[s.accent]}`}
+                      <InteractiveHoverButton
+                        href={SERVICE_ROUTES[s.id] ?? "#contact"}
+                        className={`mt-6 border px-6 py-3 ${ACCENT_BORDER[s.accent]}`}
+                        dotClass={ACCENT_BG[s.accent]}
+                        textClass={ACCENT_TEXT[s.accent]}
+                        hoverTextClass="text-ink"
                       >
                         Learn More
-                        <svg
-                          viewBox="0 0 16 16"
-                          className="h-3 w-3 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-0.5"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        >
-                          <path d="M3 13L13 3M6 3h7v7" />
-                        </svg>
-                      </a>
+                      </InteractiveHoverButton>
                     </div>
                     <div className="md:col-span-4">
                       <div className="flex flex-wrap gap-2">

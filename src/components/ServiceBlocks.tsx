@@ -206,7 +206,7 @@ export function ServiceHero({
   meta,
   accent = "coral",
   titleClass = "text-[16vw] sm:text-7xl md:text-[8rem]",
-  blurClass = "blur-[16px]",
+  blurClass = "blur-[10px]",
 }: {
   bgCandidates: string[];
   kicker: string;
@@ -238,9 +238,7 @@ export function ServiceHero({
       ) : (
         <div className="grid-lines absolute inset-0 opacity-70" />
       )}
-      <div className="absolute inset-0 bg-ink/50" />
-      <div className="grid-lines absolute inset-0 opacity-30" />
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-transparent to-ink" />
+      <div className="grid-lines absolute inset-0 opacity-25" />
       <div
         className={`pointer-events-none absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 rounded-full blur-[130px] ${ACCENT_GLOW[accent]}`}
       />
@@ -441,7 +439,7 @@ export function FolderCarousel({
                 key={images[index]}
                 src={images[index]}
                 alt={`${label} — screenshot ${index + 1} of ${count}`}
-                className="kenburns absolute inset-0 h-full w-full object-cover"
+                className="kenburns absolute inset-0 h-full w-full bg-ink-2 object-contain"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
