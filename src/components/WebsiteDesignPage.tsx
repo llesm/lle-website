@@ -84,7 +84,7 @@ export default function WebsiteDesignPage() {
         tagline="Build Your Digital Identity."
         meta="WordPress · HTML · React"
         accent="coral"
-        blurClass="blur-[12px]"
+        blurClass="blur-[6px]"
       />
 
       {/* Why it matters */}

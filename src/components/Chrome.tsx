@@ -445,9 +445,14 @@ export function Nav() {
                                 }}
                               >
                                 <a
-                                  href={l.href}
+                                  href={
+                                    l.label === "About Us" ? "#/about-us" : l.href
+                                  }
                                   onClick={(e) => {
-                                    navGo(e, l.href);
+                                    navGo(
+                                      e,
+                                      l.label === "About Us" ? "#/about-us" : l.href
+                                    );
                                     setMoreOpen(false);
                                   }}
                                   className="group relative flex items-center gap-3 overflow-hidden rounded-lg px-3 py-2.5"
