@@ -15,7 +15,7 @@ import {
   SOCIALS,
 } from "../lib/data";
 import { LOGO_CANDIDATES } from "../lib/theme";
-import { goSection, goService } from "../lib/router";
+import { goSection, goServiceNav } from "../lib/router";
 
 /**
  * Anchor click handler for cross-route navigation: sub-page routes
@@ -409,7 +409,7 @@ export function Nav() {
                                             onClick={(e) => {
                                               e.preventDefault();
                                               setMoreOpen(false);
-                                              goService(s.id);
+                                              goServiceNav(s.id);
                                             }}
                                             className="group/svc flex items-center gap-3 rounded-lg border border-line/60 bg-ink/60 px-3.5 py-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-coral/40 hover:bg-ink"
                                           >
@@ -713,7 +713,7 @@ export function Footer() {
                   href={`#${s.id}`}
                   onClick={(e) => {
                     e.preventDefault();
-                    goService(s.id);
+                    goServiceNav(s.id);
                   }}
                   className="group flex items-center gap-2.5 text-sm text-paper/80 transition-colors hover:text-coral"
                 >

@@ -9,7 +9,7 @@ import {
   ServiceIcon,
 } from "../lib/motion";
 import { SERVICES, WORKS, type Work } from "../lib/data";
-import { consumePendingService } from "../lib/router";
+import { consumePendingService, SERVICE_ROUTES, serviceHref } from "../lib/router";
 
 const TICKER = [
   "Website Design",
@@ -146,8 +146,13 @@ function ServicesAccordion() {
                         {s.description}
                       </p>
                       <a
-                        href={`#${s.id}`}
-                        onClick={() => setOpen(i)}
+                        href={serviceHref(s.id)}
+                        onClick={(e) => {
+                          if (!SERVICE_ROUTES[s.id]) {
+                            e.preventDefault();
+                            setOpen(i);
+                          }
+                        }}
                         className={`group/link mt-6 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] ${ACCENT_TEXT[s.accent]}`}
                       >
                         Learn More

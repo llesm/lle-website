@@ -133,6 +133,39 @@ body {
   }
 }
 
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07);
+  }
+}
+
+.kenburns {
+  animation: kenburns 5.5s ease-out forwards;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-ink-2) 25%,
+    var(--color-ink-3) 50%,
+    var(--color-ink-2) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
 .marquee-track {
   animation: marquee-x var(--marquee-speed, 32s) linear infinite;
 }
@@ -174,7 +207,9 @@ body {
   .animate-blink,
   .animate-floaty,
   .animate-floaty-late,
-  .animate-cue {
+  .animate-cue,
+  .kenburns,
+  .shimmer {
     animation: none !important;
   }
   *,
