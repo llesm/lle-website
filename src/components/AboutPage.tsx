@@ -280,7 +280,7 @@ function WhatWeOffer() {
               <span className="text-aqua">every discipline covered.</span>
             </>
           }
-          note="A comprehensive suite of digital services, tailored to meet diverse needs — from scroll-stopping creatives to result-driven strategies."
+          note="A comprehensive suite of digital services, tailored to meet diverse needs, from scroll-stopping creatives to result-driven strategies."
         />
         <div className="grid gap-8 lg:grid-cols-12">
           {/* Healthcare */}
