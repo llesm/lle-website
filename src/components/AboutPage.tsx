@@ -193,7 +193,7 @@ function WhoWeAre() {
               With over 10+ years of experience in digital content creation
               and website designing, we have built a reputation for excellence
               across industries. We specialize in serving medical
-              professionals and the healthcare industry — crafting
+              professionals and the healthcare industry. We craft
               high-impact medical content, patient-centric posts and engaging
               videos for Facebook, Instagram, and YouTube.
             </p>
