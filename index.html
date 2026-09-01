@@ -23,6 +23,29 @@
         background-color: #0f1013;
       }
     </style>
+    <script>
+      /* Runs before React: canonicalises the URL so the app always boots
+         on a clean, SEO-friendly path.
+         1) GitHub Pages bounce:  /?p=about-us  →  /about-us
+         2) Legacy hash shares:   #/about-us    →  about-us (relative)   */
+      (function () {
+        var routes = ["about-us", "medical-content", "website-designing"];
+        var loc = window.location;
+        var q = new URLSearchParams(loc.search);
+        var p = q.get("p");
+        if (p && routes.indexOf(p) !== -1) {
+          q.delete("p");
+          var search = q.toString() ? "?" + q.toString() : "";
+          var base = loc.pathname.replace(/\/?$/, "/");
+          window.history.replaceState(null, "", base + p + search);
+          return;
+        }
+        var seg = loc.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0];
+        if (routes.indexOf(seg) !== -1) {
+          window.history.replaceState(null, "", seg);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
