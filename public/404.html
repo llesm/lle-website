@@ -11,7 +11,14 @@
          decodes it back into a clean /about-us path via replaceState.
          Works at a domain root and under a repo sub-path. */
       (function () {
-        var routes = ["about-us", "medical-content", "website-designing"];
+        var routes = [
+          "about-us",
+          "medical-content",
+          "website-designing",
+          "app-development",
+          "ecommerce",
+          "shopify",
+        ];
         var path = window.location.pathname;
         var clean = path.replace(/\/+$/, "");
         var seg = clean.split("/").pop() || "";

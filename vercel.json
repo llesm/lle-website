@@ -6,6 +6,12 @@
     { "source": "/medical-content", "destination": "/index.html" },
     { "source": "/medical-content/", "destination": "/index.html" },
     { "source": "/website-designing", "destination": "/index.html" },
-    { "source": "/website-designing/", "destination": "/index.html" }
+    { "source": "/website-designing/", "destination": "/index.html" },
+    { "source": "/app-development", "destination": "/index.html" },
+    { "source": "/app-development/", "destination": "/index.html" },
+    { "source": "/ecommerce", "destination": "/index.html" },
+    { "source": "/ecommerce/", "destination": "/index.html" },
+    { "source": "/shopify", "destination": "/index.html" },
+    { "source": "/shopify/", "destination": "/index.html" }
   ]
 }

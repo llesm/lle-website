@@ -29,7 +29,14 @@
          1) GitHub Pages bounce:  /?p=about-us  →  /about-us
          2) Legacy hash shares:   #/about-us    →  about-us (relative)   */
       (function () {
-        var routes = ["about-us", "medical-content", "website-designing"];
+        var routes = [
+          "about-us",
+          "medical-content",
+          "website-designing",
+          "app-development",
+          "ecommerce",
+          "shopify",
+        ];
         var loc = window.location;
         var q = new URLSearchParams(loc.search);
         var p = q.get("p");
