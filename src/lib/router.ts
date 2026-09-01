@@ -15,18 +15,31 @@ import { useEffect, useState } from "react";
  * Legacy "#/about-us" hash shares still resolve and are canonicalised
  * to the clean path on boot (see index.html).
  */
-export type Route = "home" | "about-us" | "medical-content" | "website-designing";
+export type Route =
+  | "home"
+  | "about-us"
+  | "medical-content"
+  | "website-designing"
+  | "app-development"
+  | "ecommerce"
+  | "shopify";
 
 export const SUB_ROUTES: Exclude<Route, "home">[] = [
   "about-us",
   "medical-content",
   "website-designing",
+  "app-development",
+  "ecommerce",
+  "shopify",
 ];
 
 export const ROUTE_PATHS: Record<Exclude<Route, "home">, string> = {
   "about-us": "about-us",
   "medical-content": "medical-content",
   "website-designing": "website-designing",
+  "app-development": "app-development",
+  ecommerce: "ecommerce",
+  shopify: "shopify",
 };
 export const ABOUT_PATH = ROUTE_PATHS["about-us"];
 
@@ -53,11 +66,17 @@ export function getRoute(): Route {
   if (h.startsWith("#/about-us")) return "about-us";
   if (h.startsWith("#/medical-content")) return "medical-content";
   if (h.startsWith("#/website-designing")) return "website-designing";
+  if (h.startsWith("#/app-development")) return "app-development";
+  if (h.startsWith("#/ecommerce")) return "ecommerce";
+  if (h.startsWith("#/shopify")) return "shopify";
 
   const p = window.location.pathname.replace(/\/+$/, "");
   if (p.endsWith("/about-us")) return "about-us";
   if (p.endsWith("/medical-content")) return "medical-content";
   if (p.endsWith("/website-designing")) return "website-designing";
+  if (p.endsWith("/app-development")) return "app-development";
+  if (p.endsWith("/ecommerce")) return "ecommerce";
+  if (p.endsWith("/shopify")) return "shopify";
   return "home";
 }
 
@@ -115,6 +134,9 @@ export function goRouteHref(href: string) {
 export const SERVICE_ROUTES: Record<string, Exclude<Route, "home">> = {
   "medical-content": "medical-content",
   "website-designing": "website-designing",
+  "app-development": "app-development",
+  ecommerce: "ecommerce",
+  shopify: "shopify",
 };
 
 /** Correct href for a service's "Learn More" link (page or in-page anchor). */

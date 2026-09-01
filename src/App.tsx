@@ -7,6 +7,9 @@ import { Faq, Process, StatsBand } from "./components/Studio";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import AboutPage from "./components/AboutPage";
+import AppDevelopmentPage from "./components/AppDevelopmentPage";
+import EcommercePage from "./components/EcommercePage";
+import ShopifyPage from "./components/ShopifyPage";
 import MedicalContentPage from "./components/MedicalContentPage";
 import WebsiteDesignPage from "./components/WebsiteDesignPage";
 import { consumePendingSection, useRoute } from "./lib/router";
@@ -51,6 +54,12 @@ export default function App() {
           <MedicalContentPage />
         ) : route === "website-designing" ? (
           <WebsiteDesignPage />
+        ) : route === "app-development" ? (
+          <AppDevelopmentPage />
+        ) : route === "ecommerce" ? (
+          <EcommercePage />
+        ) : route === "shopify" ? (
+          <ShopifyPage />
         ) : (
           <Home />
         )}

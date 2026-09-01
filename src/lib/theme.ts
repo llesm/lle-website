@@ -84,6 +84,24 @@ export const REPO_BRANCH = "main";
 export const repoFileUrl = (path: string) =>
   `https://cdn.jsdelivr.net/gh/${REPO_OWNER}/${REPO_NAME}@${REPO_BRANCH}/${path}`;
 
+/**
+ * Service-page hero backgrounds. Same resolution strategy as the About
+ * page: CDN copy of the public repo first, then local staged copies.
+ * Drop the matching file into the repo's photos/ folder and it appears.
+ */
+function bgCandidates(name: string): string[] {
+  return [
+    `https://cdn.jsdelivr.net/gh/llesm/lle-website@main/photos/${name}`,
+    `./photos/${name}`,
+    `https://raw.githubusercontent.com/llesm/lle-website/main/photos/${name}`,
+    `./${name}`,
+  ];
+}
+
+export const APPDEV_BG_CANDIDATES = bgCandidates("app-development-bg-lleweb.png");
+export const ECOMMERCE_BG_CANDIDATES = bgCandidates("ecommerce-bg-lleweb.png");
+export const SHOPIFY_BG_CANDIDATES = bgCandidates("shopify-bg-lleweb.png");
+
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
