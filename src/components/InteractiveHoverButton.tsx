@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { goRouteHref, isRouteHref } from "../lib/router";
 
 /**
  * InteractiveHoverButton — Magic UI "interactive-hover-button" pattern,
@@ -92,14 +93,20 @@ export default function InteractiveHoverButton({
   );
 
   if (href && !disabled && !busy) {
+    // Sub-page hrefs (about-us, medical-content, website-designing) are
+    // always handed to the SPA router — the clean href stays in the DOM
+    // for SEO/crawlers, but the browser never navigates natively, so a
+    // "#/..." hash or a full reload can never end up in the address bar.
+    const anchorClick =
+      onClick ?? (isRouteHref(href) ? () => goRouteHref(href) : undefined);
     return (
       <a
         href={href}
         onClick={
-          onClick
+          anchorClick
             ? (e) => {
                 e.preventDefault();
-                onClick(e);
+                anchorClick(e);
               }
             : undefined
         }

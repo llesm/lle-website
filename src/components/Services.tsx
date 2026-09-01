@@ -9,7 +9,7 @@ import {
   ServiceIcon,
 } from "../lib/motion";
 import { SERVICES, WORKS, type Work } from "../lib/data";
-import { consumePendingService, SERVICE_ROUTES } from "../lib/router";
+import { consumePendingService, goRoute, goSection, SERVICE_ROUTES } from "../lib/router";
 
 const TICKER = [
   "Website Design",
@@ -152,6 +152,11 @@ function ServicesAccordion() {
                       </p>
                       <InteractiveHoverButton
                         href={SERVICE_ROUTES[s.id] ?? "#contact"}
+                        onClick={() => {
+                          const r = SERVICE_ROUTES[s.id];
+                          if (r) goRoute(r);
+                          else goSection("contact");
+                        }}
                         className={`mt-6 border px-6 py-3 ${ACCENT_BORDER[s.accent]}`}
                         dotClass={ACCENT_BG[s.accent]}
                         textClass={ACCENT_TEXT[s.accent]}
