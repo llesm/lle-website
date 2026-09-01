@@ -15,15 +15,20 @@ import {
   SOCIALS,
 } from "../lib/data";
 import { LOGO_CANDIDATES } from "../lib/theme";
-import { goSection, goServiceNav } from "../lib/router";
+import { goRouteHref, goSection, goServiceNav, isRouteHref } from "../lib/router";
 
 /**
- * Anchor click handler for cross-route navigation: sub-page routes
- * ("#/...") are left to the hash router; plain section anchors go
- * through goSection so they also work from sub-pages.
+ * Anchor click handler for SPA navigation: sub-page paths (about-us,
+ * medical-content, website-designing) are taken over by the router —
+ * the href stays clean in the DOM for SEO; section anchors (#work…)
+ * go through goSection so they also work from sub-pages.
  */
 function navGo(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
-  if (href.startsWith("#/")) return;
+  if (isRouteHref(href)) {
+    e.preventDefault();
+    goRouteHref(href);
+    return;
+  }
   e.preventDefault();
   goSection(href.replace(/^#/, ""));
 }
@@ -446,12 +451,12 @@ export function Nav() {
                               >
                                 <a
                                   href={
-                                    l.label === "About Us" ? "#/about-us" : l.href
+                                    l.label === "About Us" ? "about-us" : l.href
                                   }
                                   onClick={(e) => {
                                     navGo(
                                       e,
-                                      l.label === "About Us" ? "#/about-us" : l.href
+                                      l.label === "About Us" ? "about-us" : l.href
                                     );
                                     setMoreOpen(false);
                                   }}

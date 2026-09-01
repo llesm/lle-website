@@ -1,5 +1,5 @@
 import { Asterisk, CountUp, Reveal, SectionHeading } from "../lib/motion";
-import { ABOUT_PATH } from "../lib/router";
+import { ABOUT_PATH, goRoute } from "../lib/router";
 
 const MINI_STATS = [
   { value: 10, suffix: "+", label: "Years of experience" },
@@ -65,6 +65,10 @@ export default function About() {
               <div className="mt-9 flex flex-wrap items-center gap-6">
                 <a
                   href={ABOUT_PATH}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    goRoute("about-us");
+                  }}
                   className="group flex items-center gap-3 rounded-full bg-coral px-7 py-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-ink transition-all duration-300 hover:gap-5 hover:bg-paper"
                 >
                   Read our full story

@@ -1,28 +1,54 @@
 import { useEffect, useState } from "react";
 
 /**
- * Featherweight hash router.
- *  - "#/about-us"            → the About Us sub-page
- *  - "#/medical-content"     → the Medical Content Creation sub-page
- *  - "#/website-designing"   → the Website Designing sub-page
- *  - "#/" (or a plain anchor like "#services") → the home page
- * Plain anchors still work for in-page scrolling; goSection() handles
- * jumping to a home-page section even when a sub-page is open.
+ * Featherweight path router (History API) — clean, SEO-friendly URLs:
+ *  - /about-us            → the About Us sub-page
+ *  - /medical-content     → the Medical Content Creation sub-page
+ *  - /website-designing   → the Website Designing sub-page
+ *  - / (plus #section anchors) → the home page
+ *
+ * URLs are written *relative* so the site works both at a domain root
+ * (Vercel) and under a repo sub-path (GitHub Pages). Hosts must serve
+ * index.html for the three paths: vercel.json does this via rewrites,
+ * GitHub Pages via the public/404.html bounce + index.html boot script.
+ *
+ * Legacy "#/about-us" hash shares still resolve and are canonicalised
+ * to the clean path on boot (see index.html).
  */
 export type Route = "home" | "about-us" | "medical-content" | "website-designing";
 
-export const HOME_PATH = "#/";
+export const SUB_ROUTES: Exclude<Route, "home">[] = [
+  "about-us",
+  "medical-content",
+  "website-designing",
+];
+
 export const ROUTE_PATHS: Record<Exclude<Route, "home">, string> = {
-  "about-us": "#/about-us",
-  "medical-content": "#/medical-content",
-  "website-designing": "#/website-designing",
+  "about-us": "about-us",
+  "medical-content": "medical-content",
+  "website-designing": "website-designing",
 };
 export const ABOUT_PATH = ROUTE_PATHS["about-us"];
 
-/** Reads the route from the hash, or from a clean path URL
- *  (e.g. /medical-content) so direct visits and refreshes work on
- *  hosts that rewrite all paths to index.html (Vercel, Netlify…). */
+const ROUTE_EVENT = "lle:route-change";
+const emitRouteChange = () => window.dispatchEvent(new Event(ROUTE_EVENT));
+
+/** True when an href points at one of the sub-pages (relative form). */
+export function isRouteHref(href: string): boolean {
+  const clean = href.replace(/^\.\//, "").replace(/^\/+/, "").replace(/\/+$/, "");
+  return (SUB_ROUTES as string[]).includes(clean);
+}
+
+function normalize(href: string): Exclude<Route, "home"> {
+  return href.replace(/^\.\//, "").replace(/^\/+/, "").replace(/\/+$/, "") as Exclude<
+    Route,
+    "home"
+  >;
+}
+
 export function getRoute(): Route {
+  // Legacy hash shares (#/about-us) — the boot script rewrites these to
+  // clean paths, but resolve them anyway so nothing ever breaks.
   const h = window.location.hash;
   if (h.startsWith("#/about-us")) return "about-us";
   if (h.startsWith("#/medical-content")) return "medical-content";
@@ -35,11 +61,6 @@ export function getRoute(): Route {
   return "home";
 }
 
-/** True when the current URL is a clean-path route (no hash). */
-function isPathEntry(): boolean {
-  return !window.location.hash && getRoute() !== "home";
-}
-
 const reducedMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -48,31 +69,42 @@ export function useRoute(): Route {
   const [route, setRoute] = useState<Route>(() => getRoute());
 
   useEffect(() => {
-    // Arrived via a clean path (/medical-content)? Canonicalise the URL
-    // to the hash form so refresh, back and share all behave the same.
-    if (isPathEntry()) {
-      window.history.replaceState(null, "", `/#/${getRoute()}`);
-    }
-
-    const onChange = () => {
+    const sync = () => {
       const next = getRoute();
       setRoute((prev) => {
-        // Jumping between distinct pages should land at the top.
-        if (next !== "home" && prev !== next) {
+        // Landing on a fresh page should start at the top.
+        if (next !== prev && next !== "home") {
           window.scrollTo({ top: 0, behavior: "auto" });
         }
         return next;
       });
     };
-    window.addEventListener("hashchange", onChange);
-    window.addEventListener("popstate", onChange);
+    window.addEventListener(ROUTE_EVENT, sync);
+    window.addEventListener("popstate", sync);
     return () => {
-      window.removeEventListener("hashchange", onChange);
-      window.removeEventListener("popstate", onChange);
+      window.removeEventListener(ROUTE_EVENT, sync);
+      window.removeEventListener("popstate", sync);
     };
   }, []);
 
   return route;
+}
+
+/* ------------------------------------------------------------------ */
+/* Navigation                                                          */
+/* ------------------------------------------------------------------ */
+
+export function goRoute(route: Exclude<Route, "home">) {
+  if (getRoute() === route) {
+    window.scrollTo({ top: 0, behavior: reducedMotion() ? "auto" : "smooth" });
+    return;
+  }
+  window.history.pushState(null, "", ROUTE_PATHS[route]);
+  emitRouteChange();
+}
+
+export function goRouteHref(href: string) {
+  if (isRouteHref(href)) goRoute(normalize(href));
 }
 
 /* ------------------------------------------------------------------ */
@@ -91,10 +123,6 @@ export function serviceHref(id: string): string {
   return route ? ROUTE_PATHS[route] : `#${id}`;
 }
 
-export function goRoute(route: Exclude<Route, "home">) {
-  window.location.hash = ROUTE_PATHS[route];
-}
-
 /* ------------------------------------------------------------------ */
 /* Cross-route section navigation                                      */
 /* ------------------------------------------------------------------ */
@@ -111,26 +139,22 @@ export function scrollToSection(id: string) {
 export function goSection(id: string) {
   if (getRoute() !== "home") {
     pendingSection = id;
-    window.location.hash = HOME_PATH;
+    window.history.pushState(null, "", "./");
+    emitRouteChange();
   } else {
     scrollToSection(id);
   }
 }
 
-/** Same as goSection but also auto-expands the matching service row. */
-export function goService(id: string) {
-  pendingService = id;
-  goSection(id);
-}
-
-/**
- * Navigate to a service's dedicated page when it has one; otherwise fall
- * back to scrolling to (and expanding) its accordion row on the home page.
- */
+/** Same as goSection, but opens the dedicated page when one exists. */
 export function goServiceNav(id: string) {
   const route = SERVICE_ROUTES[id];
-  if (route) goRoute(route);
-  else goService(id);
+  if (route) {
+    goRoute(route);
+    return;
+  }
+  pendingService = id;
+  goSection(id);
 }
 
 /** Called by the home view once mounted. */

@@ -31,7 +31,9 @@ type Props = {
   /** Renders as an anchor when provided. */
   href?: string;
   type?: "button" | "submit";
-  onClick?: () => void;
+  /** When present on an anchor, the default navigation is prevented so
+   *  the SPA router can take over (the href stays in the DOM for SEO). */
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   disabled?: boolean;
   /** Busy (sending) state — swaps the choreography for a pulsing dot. */
   busy?: boolean;
@@ -91,7 +93,18 @@ export default function InteractiveHoverButton({
 
   if (href && !disabled && !busy) {
     return (
-      <a href={href} onClick={onClick} className={rootClass}>
+      <a
+        href={href}
+        onClick={
+          onClick
+            ? (e) => {
+                e.preventDefault();
+                onClick(e);
+              }
+            : undefined
+        }
+        className={rootClass}
+      >
         {content}
       </a>
     );
