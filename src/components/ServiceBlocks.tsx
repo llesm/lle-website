@@ -348,16 +348,35 @@ async function fetchFolderImages(folder: string): Promise<string[]> {
   }
 }
 
+/** Minimal phone device chrome used by the carousel's phone stage. */
+function PhoneFrame({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative h-full aspect-[9/19]">
+      <div className="absolute inset-0 rounded-[1.7rem] border border-line bg-ink p-[6px]">
+        <div className="relative h-full w-full overflow-hidden rounded-[1.3rem] bg-ink-2">
+          {src ? (
+            <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function FolderCarousel({
   folder,
   label,
   accent = "coral",
   aspect = "aspect-[16/10]",
+  frame = "screen",
 }: {
   folder: string;
   label: string;
   accent?: Accent;
   aspect?: string;
+  /** "screen" — full-bleed landscape frame (websites/blogs).
+   *  "phone" — portrait device mockup stage for mobile screenshots. */
+  frame?: "screen" | "phone";
 }) {
   const [images, setImages] = useState<string[]>([]);
   const [status, setStatus] = useState<"loading" | "ready" | "empty">(
@@ -367,6 +386,7 @@ export function FolderCarousel({
   const [paused, setPaused] = useState(false);
   const prm = useReducedMotion();
   const touchX = useRef<number | null>(null);
+  const isPhone = frame === "phone";
 
   useEffect(() => {
     let alive = true;
@@ -394,7 +414,9 @@ export function FolderCarousel({
     <div>
       {/* viewport */}
       <div
-        className={`group/car relative ${aspect} overflow-hidden rounded-lg border border-line bg-ink-2`}
+        className={`group/car relative ${
+          isPhone ? "aspect-[4/5] sm:aspect-[16/10]" : aspect
+        } overflow-hidden rounded-lg border border-line bg-ink-2`}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onPointerDown={(e) => {
@@ -434,18 +456,83 @@ export function FolderCarousel({
 
         {status === "ready" && (
           <>
-            <AnimatePresence initial={false}>
-              <motion.img
-                key={images[index]}
-                src={images[index]}
-                alt={`${label} — screenshot ${index + 1} of ${count}`}
-                className="kenburns absolute inset-0 h-full w-full bg-ink-2 object-contain"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-              />
-            </AnimatePresence>
+            {isPhone ? (
+              /* ---- phone stage ---- */
+              <div className="absolute inset-0">
+                {/* stage atmosphere */}
+                <div className="grid-lines absolute inset-0 opacity-40" />
+                <div
+                  className={`absolute left-1/2 top-1/2 h-[70%] w-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl ${ACCENT_GLOW[accent]}`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-2 via-transparent to-ink-2/60" />
+
+                {/* ghost devices (prev / next) */}
+                {count > 1 && (
+                  <>
+                    <div className="absolute left-[4%] top-1/2 hidden h-[230px] -translate-y-1/2 -rotate-6 opacity-25 blur-[1px] sm:block lg:h-[270px] lg:left-[8%]">
+                      <PhoneFrame
+                        src={images[(index - 1 + count) % count]}
+                        alt=""
+                      />
+                    </div>
+                    <div className="absolute right-[4%] top-1/2 hidden h-[230px] -translate-y-1/2 rotate-6 opacity-25 blur-[1px] sm:block lg:h-[270px] lg:right-[8%]">
+                      <PhoneFrame
+                        src={images[(index + 1) % count]}
+                        alt=""
+                      />
+                    </div>
+                  </>
+                )}
+
+                {/* hero device */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="animate-floaty relative z-10 h-[300px] sm:h-[380px] lg:h-[440px]">
+                    <div className="absolute -inset-x-10 -bottom-8 h-12 rounded-[100%] bg-black/60 blur-2xl" />
+                    <div
+                      className={`absolute -inset-6 rounded-[3rem] blur-2xl ${ACCENT_GLOW[accent]}`}
+                    />
+                    <div className="relative h-full aspect-[9/19]">
+                      {/* hardware buttons */}
+                      <span className="absolute -right-[3px] top-[22%] h-12 w-[3px] rounded-r-md bg-ink-3" />
+                      <span className="absolute -right-[3px] top-[36%] h-8 w-[3px] rounded-r-md bg-ink-3" />
+                      <span className="absolute -left-[3px] top-[28%] h-9 w-[3px] rounded-l-md bg-ink-3" />
+                      {/* bezel */}
+                      <div className="absolute inset-0 rounded-[2.4rem] border border-paper/10 bg-gradient-to-b from-ink-3 to-ink p-[9px] shadow-[0_36px_90px_-24px_rgba(0,0,0,0.95)]">
+                        <div className="relative h-full w-full overflow-hidden rounded-[1.8rem] bg-ink">
+                          <span className="absolute left-1/2 top-2 z-20 h-[9px] w-14 -translate-x-1/2 rounded-full bg-ink-3" />
+                          <AnimatePresence initial={false}>
+                            <motion.img
+                              key={images[index]}
+                              src={images[index]}
+                              alt={`${label} — screenshot ${index + 1} of ${count}`}
+                              className="kenburns absolute inset-0 h-full w-full object-cover"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.6, ease: "easeOut" }}
+                            />
+                          </AnimatePresence>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* ---- full-bleed screen ---- */
+              <AnimatePresence initial={false}>
+                <motion.img
+                  key={images[index]}
+                  src={images[index]}
+                  alt={`${label} — screenshot ${index + 1} of ${count}`}
+                  className="kenburns absolute inset-0 h-full w-full bg-ink-2 object-contain"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                />
+              </AnimatePresence>
+            )}
 
             {/* top meta */}
             <div className="absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-ink/80 to-transparent px-4 pb-6 pt-3">
@@ -506,7 +593,9 @@ export function FolderCarousel({
               key={src}
               onClick={() => setIndex(i)}
               aria-label={`Go to screenshot ${i + 1}`}
-              className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-md border transition-all duration-300 ${
+              className={`relative shrink-0 overflow-hidden rounded-md border transition-all duration-300 ${
+                isPhone ? "h-24 w-12" : "h-14 w-20"
+              } ${
                 i === index
                   ? `${ACCENT_BORDER[accent]} opacity-100`
                   : "border-line opacity-50 hover:opacity-90"
