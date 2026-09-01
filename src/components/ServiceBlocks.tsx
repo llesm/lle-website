@@ -324,25 +324,54 @@ export function ServiceHero({
 /* FolderCarousel — automated, interactive screenshot carousel fed by  */
 /* a folder in the public repo.                                        */
 /* ------------------------------------------------------------------ */
+const IMG_EXT = /\.(png|jpe?g|webp|gif|svg)$/i;
+const sortByName = (a: string, b: string) =>
+  a.localeCompare(b, undefined, { numeric: true });
+
+/** List image files in a repo folder. Tries the GitHub contents API first,
+ *  then falls back to the jsDelivr flat-tree API — which has no tight rate
+ *  limit — so carousels never go dark when the GitHub API is throttled. */
 async function fetchFolderImages(folder: string): Promise<string[]> {
+  const prefix = folder.replace(/^\/+|\/+$/g, "") + "/";
+
+  // Source 1 — GitHub contents API
   try {
     const res = await fetch(
-      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${folder}?ref=${REPO_BRANCH}`,
+      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${prefix}?ref=${REPO_BRANCH}`,
       { headers: { Accept: "application/vnd.github+json" } }
+    );
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length) {
+        return data
+          .filter((f) => f.type === "file" && IMG_EXT.test(f.name))
+          .sort((a, b) => sortByName(a.name, b.name))
+          .map((f) => repoFileUrl(f.path));
+      }
+    }
+  } catch {
+    /* fall through to jsDelivr */
+  }
+
+  // Source 2 — jsDelivr flat package tree
+  try {
+    const res = await fetch(
+      `https://data.jsdelivr.com/v1/packages/gh/${REPO_OWNER}/${REPO_NAME}@${REPO_BRANCH}/flat`
     );
     if (!res.ok) return [];
     const data = await res.json();
-    if (!Array.isArray(data)) return [];
-    return data
-      .filter(
-        (f) =>
-          f.type === "file" &&
-          /\.(png|jpe?g|webp|gif|svg)$/i.test(f.name)
-      )
-      .sort((a, b) =>
-        a.name.localeCompare(b.name, undefined, { numeric: true })
-      )
-      .map((f) => repoFileUrl(f.path));
+    const files: { name: string }[] = Array.isArray(data?.files)
+      ? data.files
+      : [];
+    return files
+      .map((f) => f.name)
+      .filter((name) => {
+        if (!name.startsWith(prefix) || !IMG_EXT.test(name)) return false;
+        // direct children only — no deeper nesting
+        return !name.slice(prefix.length).includes("/");
+      })
+      .sort(sortByName)
+      .map((name) => repoFileUrl(name));
   } catch {
     return [];
   }
@@ -683,6 +712,7 @@ export function CaseStudy({
   folder,
   accent = "coral",
   reverse = false,
+  frame = "screen",
 }: {
   num: string;
   client: string;
@@ -693,6 +723,8 @@ export function CaseStudy({
   folder: string;
   accent?: Accent;
   reverse?: boolean;
+  /** "screen" for website/blog shots, "phone" for mobile screenshots. */
+  frame?: "screen" | "phone";
 }) {
   return (
     <Reveal>
@@ -754,7 +786,12 @@ export function CaseStudy({
         </div>
 
         <div className={`lg:col-span-7 ${reverse ? "lg:order-1" : ""}`}>
-          <FolderCarousel folder={folder} label={client} accent={accent} />
+          <FolderCarousel
+            folder={folder}
+            label={client}
+            accent={accent}
+            frame={frame}
+          />
         </div>
       </article>
     </Reveal>

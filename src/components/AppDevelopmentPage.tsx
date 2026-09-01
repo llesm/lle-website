@@ -254,7 +254,8 @@ export default function AppDevelopmentPage() {
               },
             ]}
             result="Currently in production — used in real time by over 10 doctors across their daily practice."
-            folder="needil/app"
+            folder="photos/needil/app"
+            frame="phone"
             accent="coral"
           />
         </div>
