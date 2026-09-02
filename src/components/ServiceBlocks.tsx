@@ -474,7 +474,7 @@ export function FolderCarousel({
       {/* viewport */}
       <div
         className={`group/car relative ${
-          isPhone ? "aspect-square sm:aspect-[16/10]" : aspect
+          isPhone ? "aspect-[4/5] sm:aspect-[16/11]" : aspect
         } overflow-hidden rounded-lg border border-line bg-ink-2`}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
@@ -544,7 +544,7 @@ export function FolderCarousel({
                         isCenter ? undefined : `View screenshot ${i + 1}`
                       }
                       tabIndex={isCenter ? -1 : 0}
-                      className={`absolute left-1/2 top-1/2 aspect-[9/19] h-[86%] outline-none ${
+                      className={`absolute left-1/2 top-1/2 aspect-[9/19] h-[88%] outline-none ${
                         isCenter
                           ? "cursor-default"
                           : "cursor-pointer opacity-90 transition-opacity hover:opacity-100 focus-visible:opacity-100"
@@ -555,9 +555,9 @@ export function FolderCarousel({
                         prm
                           ? { x: "-50%", y: "-50%", scale: 1, opacity: isCenter ? 1 : 0 }
                           : {
-                              x: `calc(-50% + ${rel * 158}%)`,
-                              y: "-50%",
-                              scale: isCenter ? 1 : Math.abs(rel) === 1 ? 0.82 : 0.68,
+                              x: `calc(-50% + ${rel * 172}%)`,
+                              y: "calc(-50% + 2%)",
+                              scale: isCenter ? 1 : Math.abs(rel) === 1 ? 0.8 : 0.66,
                               opacity: isCenter ? 1 : Math.abs(rel) === 1 ? 0.4 : 0.15,
                             }
                       }
