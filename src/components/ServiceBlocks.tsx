@@ -39,6 +39,16 @@ const ACCENT_HOVER_TEXT: Record<Accent, string> = {
   aqua: "group-hover:text-aqua",
   amber: "group-hover:text-amber",
 };
+const ACCENT_HOVER_TEXT_PLAIN: Record<Accent, string> = {
+  coral: "hover:text-coral",
+  aqua: "hover:text-aqua",
+  amber: "hover:text-amber",
+};
+const ACCENT_HOVER_BORDER: Record<Accent, string> = {
+  coral: "hover:border-coral",
+  aqua: "hover:border-aqua",
+  amber: "hover:border-amber",
+};
 
 /* ------------------------------------------------------------------ */
 /* Glyph icons                                                         */
@@ -377,14 +387,26 @@ async function fetchFolderImages(folder: string): Promise<string[]> {
   }
 }
 
-/** Minimal phone device chrome used by the carousel's phone stage. */
+/** Phone device chrome used by the carousel's phone stage. */
 function PhoneFrame({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="relative h-full aspect-[9/19]">
-      <div className="absolute inset-0 rounded-[1.7rem] border border-line bg-ink p-[6px]">
-        <div className="relative h-full w-full overflow-hidden rounded-[1.3rem] bg-ink-2">
+      {/* hardware buttons */}
+      <span className="absolute -right-[2.5px] top-[21%] h-[11%] w-[3px] rounded-r-sm bg-ink-3" />
+      <span className="absolute -right-[2.5px] top-[34%] h-[7%] w-[3px] rounded-r-sm bg-ink-3" />
+      <span className="absolute -left-[2.5px] top-[26%] h-[8%] w-[3px] rounded-l-sm bg-ink-3" />
+      {/* bezel */}
+      <div className="absolute inset-0 rounded-[2rem] border border-paper/[0.14] bg-gradient-to-b from-ink-3 via-ink to-ink p-[7px] shadow-[0_44px_90px_-28px_rgba(0,0,0,0.95),0_10px_28px_-12px_rgba(0,0,0,0.8)]">
+        <div className="relative h-full w-full overflow-hidden rounded-[1.55rem] bg-ink-2">
+          {/* punch-hole camera */}
+          <span className="absolute left-1/2 top-[7px] z-20 h-[8px] w-[26%] -translate-x-1/2 rounded-full bg-ink" />
           {src ? (
-            <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+            <img
+              src={src}
+              alt={alt}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
           ) : null}
         </div>
       </div>
@@ -439,6 +461,14 @@ export function FolderCarousel({
 
   const go = (d: number) => setIndex((i) => (i + d + count) % count);
 
+  /** Signed distance from the current slide, wrapped for the loop. */
+  const relFor = (i: number) => {
+    let rel = i - index;
+    if (rel > count / 2) rel -= count;
+    if (rel < -count / 2) rel += count;
+    return rel;
+  };
+
   return (
     <div>
       {/* viewport */}
@@ -486,66 +516,64 @@ export function FolderCarousel({
         {status === "ready" && (
           <>
             {isPhone ? (
-              /* ---- phone stage ---- */
-              <div className="absolute inset-0">
-                {/* stage atmosphere */}
-                <div className="grid-lines absolute inset-0 opacity-40" />
+              /* ---- phone stage: coverflow track ---- */
+              <div className="absolute inset-0 overflow-hidden">
+                {/* quiet stage atmosphere */}
                 <div
-                  className={`absolute left-1/2 top-1/2 h-[70%] w-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl ${ACCENT_GLOW[accent]}`}
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(70% 65% at 50% 42%, rgba(244,243,238,0.045), transparent 72%)",
+                  }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink-2 via-transparent to-ink-2/60" />
+                <div
+                  className={`absolute left-1/2 top-[46%] h-[52%] w-[46%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl ${ACCENT_GLOW[accent]}`}
+                />
+                {/* floor line */}
+                <div className="absolute inset-x-[12%] bottom-[9%] h-px bg-paper/[0.07]" />
 
-                {/* ghost devices (prev / next) */}
-                {count > 1 && (
-                  <>
-                    <div className="absolute left-[4%] top-1/2 hidden h-[230px] -translate-y-1/2 -rotate-6 opacity-25 blur-[1px] sm:block lg:h-[270px] lg:left-[8%]">
+                {images.map((src, i) => {
+                  const rel = relFor(i);
+                  if (Math.abs(rel) > 2) return null;
+                  const isCenter = rel === 0;
+                  return (
+                    <motion.button
+                      key={src}
+                      onClick={() => !isCenter && setIndex(i)}
+                      aria-label={
+                        isCenter ? undefined : `View screenshot ${i + 1}`
+                      }
+                      tabIndex={isCenter ? -1 : 0}
+                      className={`absolute left-1/2 top-1/2 aspect-[9/19] h-[74%] outline-none ${
+                        isCenter
+                          ? "cursor-default"
+                          : "cursor-pointer opacity-90 transition-opacity hover:opacity-100 focus-visible:opacity-100"
+                      }`}
+                      style={{ zIndex: 30 - Math.abs(rel) }}
+                      initial={false}
+                      animate={
+                        prm
+                          ? { x: "-50%", y: "-50%", scale: 1, opacity: isCenter ? 1 : 0 }
+                          : {
+                              x: `calc(-50% + ${rel * 162}%)`,
+                              y: "-50%",
+                              scale: isCenter ? 1 : Math.abs(rel) === 1 ? 0.84 : 0.7,
+                              opacity: isCenter ? 1 : Math.abs(rel) === 1 ? 0.42 : 0.16,
+                            }
+                      }
+                      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                    >
                       <PhoneFrame
-                        src={images[(index - 1 + count) % count]}
-                        alt=""
+                        src={src}
+                        alt={
+                          isCenter
+                            ? `${label} — screenshot ${i + 1} of ${count}`
+                            : ""
+                        }
                       />
-                    </div>
-                    <div className="absolute right-[4%] top-1/2 hidden h-[230px] -translate-y-1/2 rotate-6 opacity-25 blur-[1px] sm:block lg:h-[270px] lg:right-[8%]">
-                      <PhoneFrame
-                        src={images[(index + 1) % count]}
-                        alt=""
-                      />
-                    </div>
-                  </>
-                )}
-
-                {/* hero device */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="animate-floaty relative z-10 h-[300px] sm:h-[380px] lg:h-[440px]">
-                    <div className="absolute -inset-x-10 -bottom-8 h-12 rounded-[100%] bg-black/60 blur-2xl" />
-                    <div
-                      className={`absolute -inset-6 rounded-[3rem] blur-2xl ${ACCENT_GLOW[accent]}`}
-                    />
-                    <div className="relative h-full aspect-[9/19]">
-                      {/* hardware buttons */}
-                      <span className="absolute -right-[3px] top-[22%] h-12 w-[3px] rounded-r-md bg-ink-3" />
-                      <span className="absolute -right-[3px] top-[36%] h-8 w-[3px] rounded-r-md bg-ink-3" />
-                      <span className="absolute -left-[3px] top-[28%] h-9 w-[3px] rounded-l-md bg-ink-3" />
-                      {/* bezel */}
-                      <div className="absolute inset-0 rounded-[2.4rem] border border-paper/10 bg-gradient-to-b from-ink-3 to-ink p-[9px] shadow-[0_36px_90px_-24px_rgba(0,0,0,0.95)]">
-                        <div className="relative h-full w-full overflow-hidden rounded-[1.8rem] bg-ink">
-                          <span className="absolute left-1/2 top-2 z-20 h-[9px] w-14 -translate-x-1/2 rounded-full bg-ink-3" />
-                          <AnimatePresence initial={false}>
-                            <motion.img
-                              key={images[index]}
-                              src={images[index]}
-                              alt={`${label} — screenshot ${index + 1} of ${count}`}
-                              className="kenburns absolute inset-0 h-full w-full object-cover"
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}
-                              transition={{ duration: 0.6, ease: "easeOut" }}
-                            />
-                          </AnimatePresence>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    </motion.button>
+                  );
+                })}
               </div>
             ) : (
               /* ---- full-bleed screen ---- */
@@ -574,8 +602,8 @@ export function FolderCarousel({
               </p>
             </div>
 
-            {/* arrows */}
-            {count > 1 && (
+            {/* arrows (screen mode — phone mode uses the control bar) */}
+            {!isPhone && count > 1 && (
               <>
                 <button
                   onClick={() => go(-1)}
@@ -598,8 +626,8 @@ export function FolderCarousel({
               </>
             )}
 
-            {/* progress bar */}
-            {count > 1 && (
+            {/* progress bar (screen mode) */}
+            {!isPhone && count > 1 && (
               <div className="absolute inset-x-0 bottom-0 h-[3px] bg-ink/60">
                 <motion.div
                   key={index}
@@ -614,17 +642,53 @@ export function FolderCarousel({
         )}
       </div>
 
-      {/* thumbnails */}
-      {status === "ready" && count > 1 && (
+      {/* control bar — phone mode */}
+      {isPhone && status === "ready" && count > 1 && (
+        <div className="mt-5 flex items-center justify-center gap-7">
+          <button
+            onClick={() => go(-1)}
+            aria-label="Previous screenshot"
+            className={`grid h-10 w-10 place-items-center rounded-full border border-line text-paper/70 transition-all duration-300 ${ACCENT_HOVER_BORDER[accent]} ${ACCENT_HOVER_TEXT_PLAIN[accent]}`}
+          >
+            <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M14 8H3M7 4L3 8l4 4" />
+            </svg>
+          </button>
+          <div className="flex items-center gap-2">
+            {images.map((src, i) => (
+              <button
+                key={src}
+                onClick={() => setIndex(i)}
+                aria-label={`Go to screenshot ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-400 ${
+                  i === index
+                    ? `w-7 ${ACCENT_BG[accent]}`
+                    : "w-1.5 bg-paper/20 hover:bg-paper/45"
+                }`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={() => go(1)}
+            aria-label="Next screenshot"
+            className={`grid h-10 w-10 place-items-center rounded-full border border-line text-paper/70 transition-all duration-300 ${ACCENT_HOVER_BORDER[accent]} ${ACCENT_HOVER_TEXT_PLAIN[accent]}`}
+          >
+            <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M2 8h11M9 4l4 4-4 4" />
+            </svg>
+          </button>
+        </div>
+      )}
+
+      {/* thumbnails — screen mode */}
+      {!isPhone && status === "ready" && count > 1 && (
         <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
           {images.map((src, i) => (
             <button
               key={src}
               onClick={() => setIndex(i)}
               aria-label={`Go to screenshot ${i + 1}`}
-              className={`relative shrink-0 overflow-hidden rounded-md border transition-all duration-300 ${
-                isPhone ? "h-24 w-12" : "h-14 w-20"
-              } ${
+              className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-md border transition-all duration-300 ${
                 i === index
                   ? `${ACCENT_BORDER[accent]} opacity-100`
                   : "border-line opacity-50 hover:opacity-90"
