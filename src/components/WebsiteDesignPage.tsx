@@ -31,7 +31,7 @@ const WHY_REASONS = [
   {
     icon: "shield" as const,
     title: "Cross-industry dedication",
-    body: "Healthcare, retail or any sector — the same dedication and expertise on every project.",
+    body: "Healthcare, retail or any sector gets the same dedication and expertise on every project.",
   },
 ];
 
@@ -59,7 +59,7 @@ const FAQS = [
   },
   {
     q: "Can you redesign my existing website?",
-    a: "Absolutely — we can revamp your current website with a fresh, modern design and improved functionality.",
+    a: "Absolutely. We can revamp your current website with a fresh, modern design and improved functionality.",
   },
   {
     q: "Is my website mobile-friendly?",
@@ -69,7 +69,7 @@ const FAQS = [
 
 export default function WebsiteDesignPage() {
   useEffect(() => {
-    document.title = "Website Designing — LLE Social Media";
+    document.title = "Website Designing | LLE Social Media";
   }, []);
 
   return (
@@ -100,13 +100,13 @@ export default function WebsiteDesignPage() {
                 <span className="text-coral">digital face.</span>
               </>
             }
-            note="A professional website is no longer optional — it is essential."
+            note="A professional website is no longer optional. It is essential."
           />
           <div className="grid gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
               <p className="font-display text-2xl font-medium leading-snug tracking-tight text-paper md:text-[1.7rem]">
                 Patients and customers judge your reliability by how your
-                website looks and functions — often before they ever meet you.
+                website looks and functions, often before they ever meet you.
               </p>
             </Reveal>
             <Reveal delay={0.12} className="lg:col-span-7">
@@ -119,7 +119,7 @@ export default function WebsiteDesignPage() {
               </p>
               <p className="mt-5 text-base leading-relaxed text-mist">
                 We design websites that are visually stunning, easy to navigate
-                and optimized for performance — for healthcare professionals
+                and optimized for performance, for healthcare professionals
                 and businesses alike.
               </p>
             </Reveal>
@@ -148,7 +148,7 @@ export default function WebsiteDesignPage() {
               accent="coral"
               tag="Brand, Goals & Audience"
               title="Understanding Your Brand"
-              body="Every great website begins with a deep understanding of your brand, goals and audience. We run discovery sessions to learn your mission, services and unique selling points, analyze competitors and study your audience's behavior — so every design decision aligns with your vision."
+              body="Every great website begins with a deep understanding of your brand, goals and audience. We run discovery sessions to learn your mission, services and unique selling points, analyze competitors and study your audience's behavior, so every design decision aligns with your vision."
             />
             <EditorialRow
               num="02"
@@ -156,7 +156,7 @@ export default function WebsiteDesignPage() {
               accent="coral"
               tag="A Roadmap for Success"
               title="Creating a Roadmap"
-              body="We create a detailed sitemap for logical structure and easy navigation, and plan the user journey from landing to action. Our strategy covers content planning, SEO and technical requirements — presented for your feedback and approval before any design work begins."
+              body="We create a detailed sitemap for logical structure and easy navigation, and plan the user journey from landing to action. Our strategy covers content planning, SEO and technical requirements, presented for your feedback and approval before any design work begins."
             />
           </div>
         </div>
@@ -183,7 +183,7 @@ export default function WebsiteDesignPage() {
               accent="coral"
               tag="Flexible, Scalable, User-Friendly"
               title="WordPress"
-              body="One of the world's most popular content management systems, and for good reason. We build powerful, scalable WordPress websites that are easy to manage — fully customizable with themes and plugins, fast, responsive and SEO-ready, from a simple blog to a complex multi-page platform."
+              body="One of the world's most popular content management systems, and for good reason. We build powerful, scalable WordPress websites that are easy to manage, fully customizable with themes and plugins, fast, responsive and SEO-ready, from a simple blog to a complex multi-page platform."
             />
             <EditorialRow
               num="04"
@@ -191,7 +191,7 @@ export default function WebsiteDesignPage() {
               accent="coral"
               tag="Lightweight, Fast, Custom-Coded"
               title="HTML"
-              body="For clients who want complete control over code and performance. HTML websites are lightweight, fast-loading and highly secure. We write clean, semantic code that's easy to maintain, fully responsive and enhanced with CSS and JavaScript — a unique site unconstrained by third-party themes or plugins."
+              body="For clients who want complete control over code and performance. HTML websites are lightweight, fast-loading and highly secure. We write clean, semantic code that's easy to maintain, fully responsive and enhanced with CSS and JavaScript, giving you a unique site unconstrained by third-party themes or plugins."
             />
             <EditorialRow
               num="05"
@@ -199,7 +199,7 @@ export default function WebsiteDesignPage() {
               accent="coral"
               tag="Dynamic, Interactive, Modern"
               title="React"
-              body="A powerful JavaScript library for dynamic, interactive interfaces. We build modern single-page applications with smooth, app-like experiences — fast, capable of real-time updates and complex interactions, with reusable components that keep your entire site consistent and efficient."
+              body="A powerful JavaScript library for dynamic, interactive interfaces. We build modern single-page applications with smooth, app-like experiences that are fast, capable of real-time updates and complex interactions, with reusable components that keep your entire site consistent and efficient."
             />
           </div>
         </div>
@@ -226,7 +226,7 @@ export default function WebsiteDesignPage() {
               accent="coral"
               tag="Bringing Your Vision to Life"
               title="Design & Development"
-              body="Our designers craft stunning visual mockups reflecting your brand — typography, color, imagery and layout. Once approved, our developers write clean, efficient code with scalability and performance in mind, keeping you in the loop with open communication throughout."
+              body="Our designers craft stunning visual mockups reflecting your brand: typography, color, imagery and layout. Once approved, our developers write clean, efficient code with scalability and performance in mind, keeping you in the loop with open communication throughout."
             />
             <EditorialRow
               num="07"
@@ -234,7 +234,7 @@ export default function WebsiteDesignPage() {
               accent="coral"
               tag="Ensuring Flawless Performance"
               title="Rigorous Testing"
-              body="Before launch we test for cross-browser compatibility on Chrome, Firefox, Safari and Edge, and across desktops, tablets and smartphones. We check every link, form, image and interactive element, and run performance tests — so your website is polished, professional and ready."
+              body="Before launch we test for cross-browser compatibility on Chrome, Firefox, Safari and Edge, and across desktops, tablets and smartphones. We check every link, form, image and interactive element, and run performance tests, so your website is polished, professional and ready."
             />
             <EditorialRow
               num="08"
@@ -242,7 +242,7 @@ export default function WebsiteDesignPage() {
               accent="coral"
               tag="Going Live with Confidence"
               title="Launch & Support"
-              body="We handle the entire deployment — transferring files, configuring servers and domain settings — for a smooth transition with minimal downtime. Post-launch we provide training and documentation, and remain available for ongoing maintenance and updates."
+              body="We handle the entire deployment, from transferring files to configuring servers and domain settings, for a smooth transition with minimal downtime. Post-launch we provide training and documentation, and remain available for ongoing maintenance and updates."
             />
           </div>
         </div>
@@ -326,7 +326,7 @@ export default function WebsiteDesignPage() {
                 <span className="text-coral">website design?</span>
               </>
             }
-            note="10+ years of website design and development — we understand what makes a website truly effective."
+            note="10+ years of website design and development. We understand what makes a website truly effective."
           />
           <div className="grid gap-12 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
@@ -395,7 +395,7 @@ export default function WebsiteDesignPage() {
         accent="coral"
         title="Ready to build"
         highlight="your digital identity?"
-        body="Your website is the cornerstone of your digital presence — and it deserves the best. Whether you need WordPress, custom HTML or a dynamic React application, let's bring your vision to life."
+        body="Your website is the cornerstone of your digital presence, and it deserves the best. Whether you need WordPress, custom HTML or a dynamic React application, let's bring your vision to life."
         buttonLabel="Get a quote"
       />
     </>

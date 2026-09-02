@@ -15,46 +15,46 @@ import {
 const PILLAR_ROWS = [
   {
     icon: "pen" as const,
-    title: "Theme Customization — Make Your Brand Stand Out",
+    title: "Theme Customization: Make Your Brand Stand Out",
     tag: "Beyond the template",
-    body: "We customize layouts, typography, color and imagery into a cohesive, memorable experience — optimized for usability, mobile responsiveness and speed, with custom sections tailored to your products and customers.",
+    body: "We customize layouts, typography, color and imagery into a cohesive, memorable experience, optimized for usability, mobile responsiveness and speed, with custom sections tailored to your products and customers.",
   },
   {
     icon: "layers" as const,
-    title: "App Stack Integration — Extend Functionality",
+    title: "App Stack Integration: Extend Functionality",
     tag: "Marketing · SEO · Reviews · Loyalty",
-    body: "We curate and integrate the right apps — then make sure they work seamlessly together and with your theme, so your store becomes a powerful, feature-rich engine without slowing down.",
+    body: "We curate and integrate the right apps, then make sure they work seamlessly together and with your theme, so your store becomes a powerful, feature-rich engine without slowing down.",
   },
   {
     icon: "share" as const,
-    title: "Store Migrations — Move to Shopify with Ease",
+    title: "Store Migrations: Move to Shopify with Ease",
     tag: "WooCommerce · Magento · BigCommerce",
-    body: "End-to-end migrations of products, customers, order history and content — with data integrity and minimal downtime, then thorough post-migration testing so you transition confidently.",
+    body: "End-to-end migrations of products, customers, order history and content, with data integrity and minimal downtime, then thorough post-migration testing so you transition confidently.",
   },
   {
     icon: "code" as const,
-    title: "Headless Shopify — Ultimate Flexibility",
+    title: "Headless Shopify: Ultimate Flexibility",
     tag: "React · Next.js · Vue",
-    body: "We separate the frontend from the commerce backend for blazing-fast load times and complete creative freedom — a truly differentiated storefront with seamless CMS and third-party integration.",
+    body: "We separate the frontend from the commerce backend for blazing-fast load times and complete creative freedom, giving you a truly differentiated storefront with seamless CMS and third-party integration.",
   },
 ];
 
 const STEPS = [
   {
     title: "Understand",
-    body: "Discovery into your catalog, customers and market — a customer-centric foundation.",
+    body: "Discovery into your catalog, customers and market builds a customer-centric foundation.",
   },
   {
     title: "Roadmap",
-    body: "Store structure, theme, apps, SEO and performance — scalable as you grow.",
+    body: "Store structure, theme, apps, SEO and performance, all scalable as you grow.",
   },
   {
     title: "Build",
-    body: "Theme customization, app stack, payments and checkout — engineered to convert.",
+    body: "Theme customization, app stack, payments and checkout, engineered to convert.",
   },
   {
     title: "Optimize",
-    body: "Speed, caching, analytics and A/B testing — we optimize until the numbers sing.",
+    body: "Speed, caching, analytics and A/B testing. We optimize until the numbers sing.",
   },
   {
     title: "Launch",
@@ -74,7 +74,7 @@ const SNAPSHOT = [
 const FAQS = [
   {
     q: "Is Shopify suitable for small businesses?",
-    a: "Yes — Shopify suits businesses of all sizes, from startups to large enterprises, with scalable plans and features.",
+    a: "Yes. Shopify suits businesses of all sizes, from startups to large enterprises, with scalable plans and features.",
   },
   {
     q: "What payment gateways do you integrate with Shopify?",
@@ -82,11 +82,11 @@ const FAQS = [
   },
   {
     q: "Can I migrate my existing store to Shopify?",
-    a: "Yes — we handle end-to-end migrations from WooCommerce, Magento, BigCommerce and other platforms.",
+    a: "Yes. We handle end-to-end migrations from WooCommerce, Magento, BigCommerce and other platforms.",
   },
   {
     q: "What is headless Shopify and is it right for me?",
-    a: "Headless Shopify offers maximum flexibility and performance — ideal for businesses needing custom, high-performance storefronts.",
+    a: "Headless Shopify offers maximum flexibility and performance, ideal for businesses needing custom, high-performance storefronts.",
   },
   {
     q: "How long does it take to build a Shopify store?",
@@ -98,7 +98,7 @@ const WHY = [
   {
     icon: "rocket" as const,
     title: "Scalable, revenue-generating stores",
-    body: "We don't just build stores — we build platforms that drive sales and grow your business.",
+    body: "We don't just build stores. We build platforms that drive sales and grow your business.",
   },
   {
     icon: "globe" as const,
@@ -108,7 +108,7 @@ const WHY = [
   {
     icon: "share" as const,
     title: "Client-centric",
-    body: "First product, messy-store redo or full replatform — tailored to your goals.",
+    body: "First product, messy-store redo or full replatform, everything is tailored to your goals.",
   },
   {
     icon: "shield" as const,
@@ -119,7 +119,7 @@ const WHY = [
 
 export default function ShopifyPage() {
   useEffect(() => {
-    document.title = "Shopify Website Design — LLE Social Media";
+    document.title = "Shopify Website Design | LLE Social Media";
   }, []);
 
   return (
@@ -131,7 +131,7 @@ export default function ShopifyPage() {
           { text: "Built for", cls: "text-paper" },
           { text: "Scale", cls: "text-amber" },
         ]}
-        tagline="Your Shopify store should grow with your business — and scale effortlessly."
+        tagline="Your Shopify store should grow with your business, and scale effortlessly."
         meta="Themes · Apps · Migrations · Headless"
         accent="amber"
       />
@@ -155,7 +155,7 @@ export default function ShopifyPage() {
             <Reveal className="lg:col-span-5">
               <p className="font-display text-2xl font-medium leading-snug tracking-tight text-paper md:text-[1.7rem]">
                 Whether you're launching your first product, redoing a messy
-                store, or replatforming a brick-and-mortar business — Shopify
+                store, or replatforming a brick-and-mortar business, Shopify
                 gives you the flexibility and scalability you need.
               </p>
             </Reveal>
@@ -236,13 +236,13 @@ export default function ShopifyPage() {
                 <span className="text-amber">on the way.</span>
               </>
             }
-            note="Shopify case studies and screenshots are being added soon — check back shortly."
+            note="Shopify case studies and screenshots are being added soon. Check back shortly."
           />
           <CaseStudy
             num="01"
             client="Your store could be next"
             sector="Shopify · Coming soon"
-            description="We're preparing a showcase of Shopify stores we've customized, migrated and launched — with screenshots, revenue results and the strategy behind each build. Until then, this space is reserved for the numbers that matter."
+            description="We're preparing a showcase of Shopify stores we've customized, migrated and launched, with screenshots, revenue results and the strategy behind each build. Until then, this space is reserved for the numbers that matter."
             did={[
               {
                 lead: "Live store walkthroughs",
@@ -319,7 +319,7 @@ export default function ShopifyPage() {
       <ServiceCta
         title="Ready to build"
         highlight="your Shopify store?"
-        body="First product, messy-store redo or full replatform — we have the expertise to deliver. Secure, scalable and optimized for conversions. Get in touch and take the first step toward e-commerce success."
+        body="First product, messy-store redo or full replatform, we have the expertise to deliver. Secure, scalable and optimized for conversions. Get in touch and take the first step toward e-commerce success."
         buttonLabel="Start your store"
         accent="amber"
       />

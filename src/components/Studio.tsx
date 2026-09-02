@@ -141,7 +141,7 @@ export function Faq() {
           />
           <Reveal delay={0.1}>
             <p className="max-w-xs text-sm leading-relaxed text-mist">
-              Still curious? Write to us — a human replies within one business
+              Still curious? Write to us. A human replies within one business
               day, not a chatbot.
             </p>
           </Reveal>

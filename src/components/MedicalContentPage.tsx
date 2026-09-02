@@ -17,7 +17,7 @@ const WHY_REASONS = [
   {
     icon: "pen" as const,
     title: "Research, verify, tailor",
-    body: "We don't just write — we research and tailor every piece to your specialty and audience.",
+    body: "We don't just write. We research and tailor every piece to your specialty and audience.",
   },
   {
     icon: "globe" as const,
@@ -92,7 +92,7 @@ const FAQS = [
 
 export default function MedicalContentPage() {
   useEffect(() => {
-    document.title = "Medical Content Creation — LLE Social Media";
+    document.title = "Medical Content Creation | LLE Social Media";
   }, []);
 
   return (
@@ -143,7 +143,7 @@ export default function MedicalContentPage() {
               </p>
               <p className="mt-5 text-base leading-relaxed text-mist">
                 That's why we create medical content that balances clinical
-                accuracy with compassionate communication — helping you connect
+                accuracy with compassionate communication, helping you connect
                 with patients on a human level while maintaining the
                 professionalism your practice demands.
               </p>
@@ -173,7 +173,7 @@ export default function MedicalContentPage() {
               accent="aqua"
               tag="Inform. Educate. Inspire."
               title="Medical Blog Writing"
-              body="Medical blogs are one of the most powerful tools to establish your expertise and improve your search rankings. We write well-researched, SEO-optimized posts — from common symptoms and treatment options to preventive care and post-surgery recovery. Our team understands medical terminology, ethical guidelines and patient psychology, so every piece is accurate and accessible. We don't just write for search engines; we write for people seeking answers."
+              body="Medical blogs are one of the most powerful tools to establish your expertise and improve your search rankings. We write well-researched, SEO-optimized posts, from common symptoms and treatment options to preventive care and post-surgery recovery. Our team understands medical terminology, ethical guidelines and patient psychology, so every piece is accurate and accessible. We don't just write for search engines; we write for people seeking answers."
             />
             <EditorialRow
               num="02"
@@ -181,7 +181,7 @@ export default function MedicalContentPage() {
               accent="aqua"
               tag="Connect & Convert"
               title="Social Media Content"
-              body="Facebook and Instagram humanize your practice and let you engage patients personally. We create scroll-stopping content — carousels, infographics, patient-education cards and interactive posts — that simplify complex medical information into digestible visuals. Our copy is professional yet warm, celebrating patient stories and health tips while staying strictly compliant with healthcare advertising guidelines."
+              body="Facebook and Instagram humanize your practice and let you engage patients personally. We create scroll-stopping content like carousels, infographics, patient-education cards and interactive posts that simplify complex medical information into digestible visuals. Our copy is professional yet warm, celebrating patient stories and health tips while staying strictly compliant with healthcare advertising guidelines."
             />
             <EditorialRow
               num="03"
@@ -189,7 +189,7 @@ export default function MedicalContentPage() {
               accent="aqua"
               tag="From Script to Screen"
               title="Video Creation"
-              body="Video is the most engaging form of content today — and in healthcare, a game-changer. We offer end-to-end production: conceptualization, scriptwriting, shooting and post-production. Whether it's a doctor's introduction, patient testimonial or treatment explainer, we bring your vision to life with cinematic quality, optimized for Instagram Reels, YouTube and Facebook."
+              body="Video is the most engaging form of content today, and in healthcare it is a game-changer. We offer end-to-end production: conceptualization, scriptwriting, shooting and post-production. Whether it's a doctor's introduction, patient testimonial or treatment explainer, we bring your vision to life with cinematic quality, optimized for Instagram Reels, YouTube and Facebook."
             />
           </div>
         </div>
@@ -219,7 +219,7 @@ export default function MedicalContentPage() {
               did={[
                 {
                   lead: "Medical Blog Writing",
-                  body: "50+ SEO-optimized posts covering wellness topics, treatment options and preventive healthcare — helping them rank higher and attract more patients.",
+                  body: "50+ SEO-optimized posts covering wellness topics, treatment options and preventive healthcare, helping them rank higher and attract more patients.",
                 },
                 {
                   lead: "Social Media Management",
@@ -273,13 +273,13 @@ export default function MedicalContentPage() {
                 <span className="text-aqua">medical content?</span>
               </>
             }
-            note="10+ years of healthcare content creation — we understand what sets medical professionals apart."
+            note="10+ years of healthcare content creation. We understand what sets medical professionals apart."
           />
           <div className="grid gap-12 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
               <p className="font-display text-2xl font-medium leading-snug tracking-tight text-paper md:text-[1.7rem]">
                 When you choose us, you choose a partner committed to your
-                success — and your patients' well-being.
+                success and your patients' well-being.
               </p>
             </Reveal>
             <Reveal delay={0.12} className="lg:col-span-7">
@@ -302,7 +302,7 @@ export default function MedicalContentPage() {
                 <span className="text-aqua">step by step.</span>
               </>
             }
-            note="Simple, transparent and results-driven — from start to finish we keep you involved and informed."
+            note="Simple, transparent and results-driven. From start to finish we keep you involved and informed."
           />
           <StepStrip steps={PROCESS} accent="aqua" />
         </div>
@@ -327,7 +327,7 @@ export default function MedicalContentPage() {
               <Snapshot
                 items={SERVICES}
                 accent="aqua"
-                note="All services are customized to your specialty — whether you are a cardiologist, dermatologist, surgeon or hospital network."
+                note="All services are customized to your specialty, whether you are a cardiologist, dermatologist, surgeon or hospital network."
               />
             </Reveal>
             <Reveal delay={0.12} className="lg:col-span-5">
@@ -336,7 +336,7 @@ export default function MedicalContentPage() {
                   Not sure where to start?
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-mist">
-                  Tell us about your practice and goals — we'll recommend the
+                  Tell us about your practice and goals. We'll recommend the
                   right mix of blogs, social and video to get you noticed.
                 </p>
                 <button
@@ -376,7 +376,7 @@ export default function MedicalContentPage() {
         accent="aqua"
         title="Ready to elevate"
         highlight="your medical brand?"
-        body="Your content is the voice of your practice — make it count. Whether you need blogs, social posts or professional videos, let's create medical content that truly makes a difference."
+        body="Your content is the voice of your practice, so make it count. Whether you need blogs, social posts or professional videos, let's create medical content that truly makes a difference."
         buttonLabel="Get in touch"
       />
     </>

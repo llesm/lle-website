@@ -567,7 +567,7 @@ export function FolderCarousel({
                         src={src}
                         alt={
                           isCenter
-                            ? `${label} — screenshot ${i + 1} of ${count}`
+                            ? `${label}, screenshot ${i + 1} of ${count}`
                             : ""
                         }
                       />
@@ -581,7 +581,7 @@ export function FolderCarousel({
                 <motion.img
                   key={images[index]}
                   src={images[index]}
-                  alt={`${label} — screenshot ${index + 1} of ${count}`}
+                  alt={`${label}, screenshot ${index + 1} of ${count}`}
                   className="kenburns absolute inset-0 h-full w-full bg-ink-2 object-contain"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -954,7 +954,7 @@ export function Snapshot({
             />
             <p className="text-sm leading-relaxed text-mist md:text-base">
               <strong className="font-semibold text-paper">{it.lead}</strong>
-              {" — "}
+              {" · "}
               {it.body}
             </p>
           </div>

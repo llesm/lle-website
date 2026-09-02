@@ -44,7 +44,7 @@ export default function Hero() {
             <Reveal delay={0.32}>
               <p className="mt-8 max-w-md text-base leading-relaxed text-mist md:text-lg">
                 LLE Social Media designs and engineers Websites, E-commerce
-                and Shopify Stores, Medical Content and Mobile Apps — built to
+                and Shopify Stores, Medical Content and Mobile Apps, built to
                 be measured, and help grow businesses.
               </p>
             </Reveal>
@@ -82,7 +82,7 @@ export default function Hero() {
                 <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
                   <img
                     src={IMG.hero}
-                    alt="LLE Social Media — digital craft showcase"
+                    alt="LLE Social Media, digital craft showcase"
                     className="h-full w-full object-cover transition-transform duration-[1.6s] ease-out group-hover:scale-[1.05]"
                     loading="eager"
                   />
@@ -128,7 +128,7 @@ export default function Hero() {
         {/* scroll cue */}
         <div className="flex items-center justify-between pb-10 pt-4">
           <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-mist">
-            Scroll — the good stuff is below
+            Scroll. The good stuff is below
           </p>
           <span className="animate-cue text-coral">
             <svg

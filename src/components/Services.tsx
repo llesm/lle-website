@@ -327,7 +327,7 @@ export function WorkSection() {
           kicker="Selected work"
           title={
             <>
-              Proof Over Promises —
+              Proof Over Promises.
               <br />
               <span className="relative inline-block">
                   See Our Portfolio.

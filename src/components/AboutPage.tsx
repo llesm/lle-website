@@ -24,7 +24,7 @@ const JOURNEY = [
   { value: 10, suffix: "+", label: "Years of experience in digital content & web design" },
   { value: 60, suffix: "+", label: "Successful projects delivered" },
   { value: 1200, suffix: "+", label: "Blogs written across healthcare & business niches" },
-  { value: 100, suffix: "%", label: "Client satisfaction — we measure success by your growth" },
+  { value: 100, suffix: "%", label: "Client satisfaction. We measure success by your growth" },
 ];
 
 const TEAM = [
@@ -53,7 +53,7 @@ const PROCESS_STEPS = [
   { num: "02", title: "Strategize", body: "A clear plan built around measurable outcomes." },
   { num: "03", title: "Create", body: "Content, design and code crafted with precision." },
   { num: "04", title: "Execute", body: "We launch on time, with zero guesswork." },
-  { num: "05", title: "Engage", body: "We stay with you — engaging audiences, compounding results." },
+  { num: "05", title: "Engage", body: "We stay with you, engaging audiences and compounding results." },
 ];
 
 const VALUES = [
@@ -71,7 +71,7 @@ const HEALTHCARE_OFFERS = [
 ];
 
 const BUSINESS_OFFERS = [
-  "Stunning responsive websites — WordPress, Shopify & custom HTML",
+  "Stunning responsive websites on WordPress, Shopify & custom HTML",
   "Fully functional e-commerce stores",
   "Powerful mobile apps that elevate your brand",
   "Scroll-stopping creatives & result-driven strategies",
@@ -193,7 +193,7 @@ function WhoWeAre() {
               With over 10+ years of experience in digital content creation
               and website designing, we have built a reputation for excellence
               across industries. We specialize in serving medical
-              professionals and the healthcare industry — crafting
+              professionals and the healthcare industry, crafting
               high-impact medical content, patient-centric posts and engaging
               videos for Facebook, Instagram, and YouTube.
             </p>
@@ -242,7 +242,7 @@ function Mission() {
         <Reveal>
           <p className="mb-6 flex items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-coral">
             <Asterisk className="h-3.5 w-3.5" />
-            ( 02 — Our Mission )
+            ( 02 · Our Mission )
           </p>
         </Reveal>
         <Reveal delay={0.1}>
@@ -280,7 +280,7 @@ function WhatWeOffer() {
               <span className="text-aqua">every discipline covered.</span>
             </>
           }
-          note="A comprehensive suite of digital services, tailored to meet diverse needs — from scroll-stopping creatives to result-driven strategies."
+          note="A comprehensive suite of digital services, tailored to meet diverse needs, from scroll-stopping creatives to result-driven strategies."
         />
         <div className="grid gap-8 lg:grid-cols-12">
           {/* Healthcare */}
@@ -353,13 +353,13 @@ function JourneyNumbers() {
         <Reveal>
           <p className="mb-3 flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.28em] text-ink/70">
             <Asterisk className="h-3.5 w-3.5" />
-            ( 04 — Our journey in numbers )
+            ( 04 · Our journey in numbers )
           </p>
         </Reveal>
         <Reveal delay={0.08}>
           <p className="mb-12 max-w-2xl font-display text-2xl font-semibold leading-snug tracking-tight md:text-3xl">
             Behind every number is a story of collaboration, creativity and
-            measurable impact — real partnerships and brands that transformed
+            measurable impact: real partnerships and brands that transformed
             their digital presence.
           </p>
         </Reveal>
@@ -400,7 +400,7 @@ function Team() {
               <span className="text-coral">your growth.</span>
             </>
           }
-          note="Behind every successful project at LLE Social Media is a passionate team dedicated to your growth — diverse talents, one shared commitment to excellence."
+          note="Behind every successful project at LLE Social Media is a passionate team dedicated to your growth. Diverse talents, one shared commitment to excellence."
         />
         <div className="grid gap-10 md:grid-cols-2">
           {TEAM.map((m, i) => (
@@ -490,7 +490,7 @@ function CoreValues() {
           kicker="Our core values"
           title={
             <>
-              What we stand for —
+              What we stand for.
               <br />
               <span className="text-amber">non-negotiables.</span>
             </>
@@ -530,21 +530,21 @@ function Vision() {
         <Reveal>
           <p className="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-aqua">
             <Asterisk className="h-3.5 w-3.5" />
-            ( 08 — Where we are headed )
+            ( 08 · Where we are headed )
           </p>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="font-display text-3xl font-semibold leading-tight tracking-tight text-paper md:text-5xl">
             We envision a future where{" "}
-            <span className="text-stroke">every brand</span> — regardless of
-            size or industry — has the tools and strategies to{" "}
+            <span className="text-stroke">every brand</span>, regardless of
+            size or industry, has the tools and strategies to{" "}
             <span className="text-aqua">thrive in the digital world.</span>
           </p>
         </Reveal>
         <Reveal delay={0.2}>
           <p className="mt-8 max-w-2xl text-base leading-relaxed text-mist">
             We are constantly evolving, learning and innovating to bring you
-            the best solutions. Our journey is just beginning — and we're
+            the best solutions. Our journey is just beginning, and we're
             excited to grow with you.
           </p>
         </Reveal>
@@ -562,7 +562,7 @@ function WorkTogether() {
         <Reveal>
           <p className="mb-6 flex items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-coral">
             <Asterisk className="h-3.5 w-3.5" />
-            ( 09 — Let us work together )
+            ( 09 · Let us work together )
           </p>
         </Reveal>
         <Reveal delay={0.08}>
@@ -575,7 +575,7 @@ function WorkTogether() {
         <Reveal delay={0.16}>
           <p className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-mist md:text-lg">
             Ready to grow your brand and achieve digital dominance? Let us get
-            started today — we would love to hear your story.
+            started today. We would love to hear your story.
           </p>
         </Reveal>
         <Reveal delay={0.24}>
@@ -587,7 +587,7 @@ function WorkTogether() {
               textClass="text-coral"
               hoverTextClass="text-ink"
             >
-              Reach Out — Let's Get Started
+              Reach Out · Let's Get Started
             </InteractiveHoverButton>
           </div>
         </Reveal>
