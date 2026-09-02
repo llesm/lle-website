@@ -15,19 +15,19 @@ import {
 const TECH_ROWS = [
   {
     icon: "rocket" as const,
-    title: "Android — Reach the Largest Mobile Audience",
+    title: "Android: Reach the Largest Mobile Audience",
     tag: "Native · Java / Kotlin",
-    body: "Android powers over 70% of the world's smartphones. We develop robust, feature-rich Android applications using native technologies that deliver exceptional performance, adhering to Google's design guidelines and optimized across screen sizes and device configurations — from simple utilities to complex enterprise solutions.",
+    body: "Android powers over 70% of the world's smartphones. We develop robust, feature-rich Android applications using native technologies that deliver exceptional performance, adhering to Google's design guidelines and optimized across screen sizes and device configurations, from simple utilities to complex enterprise solutions.",
   },
   {
     icon: "layers" as const,
-    title: "Flutter — Beautiful, Fast, Cross-Platform",
+    title: "Flutter: Beautiful, Fast, Cross-Platform",
     tag: "Single codebase · Android + iOS",
-    body: "Google's UI toolkit for building beautifully natively-compiled apps from a single codebase. Hot reload lets us iterate fast; pixel-perfect customizable UIs reflect your brand. One codebase, consistent performance on both platforms — less time, less cost, the same exceptional quality.",
+    body: "Google's UI toolkit for building beautifully natively-compiled apps from a single codebase. Hot reload lets us iterate fast; pixel-perfect customizable UIs reflect your brand. One codebase, consistent performance on both platforms means less time, less cost, the same exceptional quality.",
   },
   {
     icon: "code" as const,
-    title: "React Native — High-Performance, Near-Native",
+    title: "React Native: High-Performance, Near-Native",
     tag: "JavaScript + React",
     body: "Fast, responsive, feature-rich apps that feel genuinely native. React Native's component architecture drives code reusability, cutting development and maintenance effort, while native components keep performance where it needs to be. The best of both worlds.",
   },
@@ -36,15 +36,15 @@ const TECH_ROWS = [
 const STEPS = [
   {
     title: "Understand",
-    body: "Discovery sessions map your idea, goals and users — behaviors, pain points and competitor gaps.",
+    body: "Discovery sessions map your idea, goals and users: behaviors, pain points and competitor gaps.",
   },
   {
     title: "Roadmap",
-    body: "Architecture, features, timelines and milestones — an MVP that delivers maximum value first.",
+    body: "Architecture, features, timelines and milestones, shaped into an MVP that delivers maximum value first.",
   },
   {
     title: "Engineer",
-    body: "Databases, security and custom features built for scale — MySQL, Firebase, AI, payments, IoT.",
+    body: "Databases, security and custom features built for scale: MySQL, Firebase, AI, payments, IoT.",
   },
   {
     title: "Test",
@@ -52,7 +52,7 @@ const STEPS = [
   },
   {
     title: "Launch",
-    body: "Play Store submission, server configuration and go-live checks — then ongoing updates.",
+    body: "Play Store submission, server configuration and go-live checks, then ongoing updates.",
   },
 ];
 
@@ -80,7 +80,7 @@ const FAQS = [
   },
   {
     q: "Do you ensure data security and compliance?",
-    a: "Yes — we implement industry-standard security measures and ensure compliance with HIPAA, DPDP, GDPR and other relevant regulations.",
+    a: "Yes. We implement industry-standard security measures and ensure compliance with HIPAA, DPDP, GDPR and other relevant regulations.",
   },
   {
     q: "Do you offer post-launch support and maintenance?",
@@ -92,12 +92,12 @@ const WHY = [
   {
     icon: "layers" as const,
     title: "Experiences that retain",
-    body: "We don't just build apps — we build digital experiences that engage, retain and grow your user base.",
+    body: "We don't just build apps. We build digital experiences that engage, retain and grow your user base.",
   },
   {
     icon: "globe" as const,
     title: "Current & capable",
-    body: "Latest technologies, design trends and security practices — apps that perform exceptionally.",
+    body: "Latest technologies, design trends and security practices go into apps that perform exceptionally.",
   },
   {
     icon: "share" as const,
@@ -107,13 +107,13 @@ const WHY = [
   {
     icon: "shield" as const,
     title: "Cross-industry dedication",
-    body: "Healthcare, retail or any industry — the same dedication and expertise on every project.",
+    body: "Healthcare, retail or any industry gets the same dedication and expertise on every project.",
   },
 ];
 
 export default function AppDevelopmentPage() {
   useEffect(() => {
-    document.title = "Mobile App Development — LLE Social Media";
+    document.title = "Mobile App Development | LLE Social Media";
   }, []);
 
   return (
@@ -149,7 +149,7 @@ export default function AppDevelopmentPage() {
             <Reveal className="lg:col-span-5">
               <p className="font-display text-2xl font-medium leading-snug tracking-tight text-paper md:text-[1.7rem]">
                 Apps build stronger relationships through personalization,
-                push notifications and seamless interactions — anytime,
+                push notifications and seamless interactions, anytime,
                 anywhere.
               </p>
             </Reveal>
@@ -213,7 +213,7 @@ export default function AppDevelopmentPage() {
                 <span className="text-coral">end to end.</span>
               </>
             }
-            note="Secure databases, HIPAA/DPDP/GDPR compliance and custom features — all under one roof."
+            note="Secure databases, HIPAA/DPDP/GDPR compliance and custom features, all under one roof."
           />
           <StepStrip steps={STEPS} accent="coral" />
         </div>
@@ -232,13 +232,13 @@ export default function AppDevelopmentPage() {
                 <span className="text-coral">In real clinics.</span>
               </>
             }
-            note="This is not a demo — it runs live every day."
+            note="This is not a demo. It runs live every day."
           />
           <CaseStudy
             num="01"
             client="Needil"
             sector="Patient Management System · Healthcare"
-            description="A dedicated patient management system built for acupuncturists and other session-based treatment practitioners — designed around how clinics actually run their day, from intake to follow-up."
+            description="A dedicated patient management system built for acupuncturists and other session-based treatment practitioners, designed around how clinics actually run their day, from intake to follow-up."
             did={[
               {
                 lead: "Session-based workflow",
@@ -250,10 +250,10 @@ export default function AppDevelopmentPage() {
               },
               {
                 lead: "Real-time operation",
-                body: "Built for live clinical use — fast, reliable and dependable during a working day.",
+                body: "Built for live clinical use, so it stays fast, reliable and dependable during a working day.",
               },
             ]}
-            result="Currently in production — used in real time by over 10 doctors across their daily practice."
+            result="Currently in production, used in real time by over 10 doctors across their daily practice."
             folder="photos/needil/app"
             frame="phone"
             accent="coral"
@@ -320,7 +320,7 @@ export default function AppDevelopmentPage() {
       <ServiceCta
         title="Ready to build"
         highlight="your mobile app?"
-        body="Whether you need a native Android app, a cross-platform Flutter app or a React Native solution — we bring your vision to life, secure, scalable and tailored to you. Get in touch and take the first step toward mobile excellence."
+        body="Whether you need a native Android app, a cross-platform Flutter app or a React Native solution, we bring your vision to life, secure, scalable and tailored to you. Get in touch and take the first step toward mobile excellence."
         buttonLabel="Start your app"
         accent="coral"
       />

@@ -30,7 +30,7 @@ export default function About() {
               <span className="text-coral">impossible to ignore.</span>
             </>
           }
-          note="10+ years, five crafts, one mission — a commanding digital presence that drives real results."
+          note="10+ years, five crafts, one mission: a commanding digital presence that drives real results."
         />
 
         <div className="grid gap-14 lg:grid-cols-12">
@@ -39,7 +39,7 @@ export default function About() {
             <Reveal>
               <p className="font-display text-2xl font-medium leading-snug tracking-tight text-paper md:text-[1.9rem]">
                 We are a passionate team of digital strategists, content
-                creators, designers and developers — transforming brands into
+                creators, designers and developers, transforming brands into
                 powerful online identities.
               </p>
             </Reveal>
@@ -47,7 +47,7 @@ export default function About() {
               <p className="mt-7 max-w-xl text-base leading-relaxed text-mist">
                 We specialize in serving medical professionals and the
                 healthcare industry with high-impact content, patient-centric
-                posts and engaging videos — while designing stunning websites,
+                posts and engaging videos, while designing stunning websites,
                 e-commerce stores and mobile apps for businesses across every
                 industry.
               </p>
@@ -55,8 +55,8 @@ export default function About() {
             <Reveal delay={0.18}>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-mist">
                 Our mission is simple: tell your brand's story boldly, clearly
-                and effectively —{" "}
-                <span className="text-paper">
+                and effectively,{" "}
+                <span className="text-coral">
                   with strategies that educate, engage and convert.
                 </span>
               </p>
@@ -84,7 +84,7 @@ export default function About() {
                   </svg>
                 </a>
                 <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-mist">
-                  — Team LLE, Chennai
+                  Team LLE · Chennai
                 </p>
               </div>
             </Reveal>

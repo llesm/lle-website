@@ -251,7 +251,7 @@ export function SectionHeading({
         <Reveal>
           <p className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.28em] text-coral">
             <Asterisk className="h-3.5 w-3.5" />
-            ( {index ? `${index} — ` : ""}
+            ( {index ? `${index} · ` : ""}
             {kicker} )
           </p>
         </Reveal>

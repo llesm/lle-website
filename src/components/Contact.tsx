@@ -182,7 +182,7 @@ export default function Contact() {
                         Brief received!
                       </h3>
                       <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink/70">
-                        Thanks, {form.name.split(" ")[0] || "friend"} — your
+                        Thanks, {form.name.split(" ")[0] || "friend"}. Your
                         project brief is in our inbox. Expect a reply at{" "}
                         <span className="font-semibold">{form.email}</span>{" "}
                         within 24 hours.
@@ -205,7 +205,7 @@ export default function Contact() {
                     >
                       <p className="mb-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.26em] text-ink/60">
                         <Asterisk className="h-3.5 w-3.5 text-coral" />
-                        Project brief — 60 seconds
+                        Project brief · 60 seconds
                       </p>
 
                       <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2">

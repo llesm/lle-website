@@ -220,7 +220,7 @@ export function Nav() {
             href="#top"
             onClick={(e) => navGo(e, "#top")}
             className="group flex items-center gap-3"
-            aria-label="LLE Social Media — home"
+            aria-label="LLE Social Media, home"
           >
             <LogoMark className="h-10 w-10 shrink-0 object-contain transition-transform duration-500 group-hover:scale-105" />
             <span className="leading-none">
@@ -252,7 +252,7 @@ export function Nav() {
                   onClick={(e) => navGo(e, "#contact")}
                   className="group relative font-mono text-xs uppercase tracking-[0.2em] text-paper/70 transition-colors hover:text-paper"
                 >
-                  Contact Us
+                  Contact
                   <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-coral transition-all duration-300 group-hover:w-full" />
                 </a>
               </li>
@@ -451,12 +451,12 @@ export function Nav() {
                               >
                                 <a
                                   href={
-                                    l.label === "About Us" ? "about-us" : l.href
+                                    l.label === "About" ? "about-us" : l.href
                                   }
                                   onClick={(e) => {
                                     navGo(
                                       e,
-                                      l.label === "About Us" ? "about-us" : l.href
+                                      l.label === "About" ? "about-us" : l.href
                                     );
                                     setMoreOpen(false);
                                   }}
@@ -500,7 +500,7 @@ export function Nav() {
                         >
                           <span className="absolute inset-0 origin-left scale-x-0 bg-coral transition-transform duration-300 ease-out group-hover:scale-x-100" />
                           <span className="relative font-display text-base font-semibold tracking-tight text-coral transition-colors duration-300 group-hover:text-ink">
-                            Contact Us
+                            Contact
                           </span>
                           <svg
                             viewBox="0 0 16 16"
@@ -611,7 +611,7 @@ export function Nav() {
               transition={{ delay: 0.45, duration: 0.5 }}
               className="group relative mt-10 inline-flex w-max items-center gap-3 rounded-full bg-coral px-7 py-3.5 font-mono text-sm font-bold uppercase tracking-[0.14em] text-ink"
             >
-              Contact Us
+              Contact
               <svg
                 viewBox="0 0 16 16"
                 className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -688,7 +688,7 @@ export function Footer() {
           <div className="mt-6 space-y-1 font-mono text-xs text-paper/70">
             <p>{CONTACT_EMAIL}</p>
             <p>{CONTACT_PHONE}</p>
-            <p className="text-mist">Chennai, Tamil Nadu — serving worldwide</p>
+            <p className="text-mist">Chennai, Tamil Nadu · serving worldwide</p>
           </div>
         </div>
 
@@ -798,7 +798,7 @@ export function Footer() {
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-6 sm:flex-row md:px-8">
           <p className="font-mono text-[11px] tracking-wide text-mist">
-            © 2026 LLE Social Media — All rights reserved.
+            © 2026 LLE Social Media. All rights reserved.
           </p>
           <p className="font-mono text-[11px] tracking-wide text-mist">
             Designed in Chennai, Tamil Nadu{" "}

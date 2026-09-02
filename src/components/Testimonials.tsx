@@ -56,7 +56,7 @@ export default function Testimonials() {
               the <span className="text-coral">internet.</span>
             </>
           }
-          note="Founders, doctors and CMOs — in their own words, after the dashboards moved."
+          note="Founders, doctors and CMOs, in their own words, after the dashboards moved."
         />
 
         <div className="grid gap-10 lg:grid-cols-12">

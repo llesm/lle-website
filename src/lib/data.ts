@@ -10,7 +10,7 @@ export const IMG = {
 };
 
 export const NAV_LINKS = [
-  { label: "About Us", href: "#about" },
+  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
   { label: "Work", href: "#work" },
@@ -37,7 +37,7 @@ export const SERVICES: Service[] = [
     accent: "coral",
     icon: "web",
     description:
-      "Our websites are designed and engineered around your brand voice — from wireframe to launch. Every layout is built to load fast, rank well and turn visitors into enquiries. The motive is not just to look good in the screens.",
+      "Our websites are designed and engineered around your brand voice, taking you from wireframe to launch. Every layout is built to load fast, rank well and turn visitors into enquiries. The motive is not just to look good in the screens.",
     deliverables: [
       "UI/UX & wireframes",
       "Custom front-end build",
@@ -73,7 +73,7 @@ export const SERVICES: Service[] = [
     accent: "amber",
     icon: "store",
     description:
-      "Shopify stores built for scale — theme customisation, app stacks, migrations and headless builds. Whether you are launching your first product, redoing a messy online store, or replatforming an existing brick and mortar store, we make Shopify work for you.",
+      "Shopify stores built for scale, with theme customisation, app stacks, migrations and headless builds. Whether you are launching your first product, redoing a messy online store, or replatforming an existing brick and mortar store, we make Shopify work for you.",
     deliverables: [
       "Store setup & theme design",
       "Headless / Hydrogen builds",
@@ -91,7 +91,7 @@ export const SERVICES: Service[] = [
     accent: "aqua",
     icon: "pulse",
     description:
-      "Patient-first content for Doctors, Surgeons, Clinics, Hospitals, Pharma and Health-tech organizations — written with Qualified Medical content creators, checked for compliance and packaged for every channel. Authority-building content that ranks.",
+      "Patient-first content for Doctors, Surgeons, Clinics, Hospitals, Pharma and Health-tech organizations. It is written with Qualified Medical content creators, checked for compliance and packaged for every channel. Authority-building content that ranks.",
     deliverables: [
       "Clinic & hospital websites",
       "Doctor-led social content",
@@ -155,7 +155,7 @@ export const WORKS: Work[] = [
     category: "Medical Content",
     image: IMG.medical,
     blurb:
-      "A 120-article patient-education engine plus doctor-led social content for a 6-location clinic chain — written with physicians, optimised for local search.",
+      "A 120-article patient-education engine plus doctor-led social content for a 6-location clinic chain, written with physicians and optimised for local search.",
     metrics: [{ value: "3.4×", label: "Organic traffic" }],
     tags: ["Healthcare SEO", "Content system"],
     span: "sm",
@@ -191,7 +191,7 @@ export const WORKS: Work[] = [
     category: "Website Designing",
     image: IMG.web,
     blurb:
-      "A monochrome portfolio site with oversized type and buttery case studies — designed to make a boutique studio feel twice its size.",
+      "A monochrome portfolio site with oversized type and buttery case studies, designed to make a boutique studio feel twice its size.",
     metrics: [
       { value: "48%", label: "Visitor → lead rate" },
       { value: "99", label: "PageSpeed score" },
@@ -219,7 +219,7 @@ export const PROCESS: Step[] = [
   {
     num: "02",
     title: "Design",
-    body: "Strategy becomes a visual system — wireframes, moodboards and prototypes you can click before a single line of production code is written.",
+    body: "Strategy becomes a visual system of wireframes, moodboards and prototypes you can click before a single line of production code is written.",
     tags: ["Wireframes", "Design system", "Prototype"],
   },
   {
@@ -263,7 +263,7 @@ export const TESTIMONIALS: {
   },
   {
     quote:
-      "LLE rebuilt our Shopify store and quietly tripled our conversion rate in two months. They talk in numbers, not jargon — it felt like hiring an in-house team overnight.",
+      "LLE rebuilt our Shopify store and quietly tripled our conversion rate in two months. They talk in numbers, not jargon. It felt like hiring an in-house team overnight.",
     name: "Betty & Barnie Hill",
     accent: "amber",
   },
@@ -292,7 +292,7 @@ export const FAQS = [
   },
   {
     q: "What does the Projects cost?",
-    a: "Our pricing is transparent and built around fixed-scope quotes — so what you see is exactly what you pay. Websites start around ₹5,000 and go up to ₹60,000. Shopify stores begin at ₹10,000 and can scale to ₹60,000. Content creation is offered as a monthly package, starting at ₹15,000/month and reaching ₹90,000 depending on video production requirements. For app development, MVPs typically start around ₹1,00,000, with SaaS-based pricing available for generic solutions. No surprises. No hidden costs. Just honest, straightforward pricing.",
+    a: "Our pricing is transparent and built around fixed-scope quotes, so what you see is exactly what you pay. Websites start around ₹5,000 and go up to ₹60,000. Shopify stores begin at ₹10,000 and can scale to ₹60,000. Content creation is offered as a monthly package, starting at ₹15,000/month and reaching ₹90,000 depending on video production requirements. For app development, MVPs typically start around ₹1,00,000, with SaaS-based pricing available for generic solutions. No surprises. No hidden costs. Just honest, straightforward pricing.",
   },
   {
     q: "Will you maintain the site after launch?",
@@ -300,7 +300,7 @@ export const FAQS = [
   },
   {
     q: "Can you take over a project another agency abandoned?",
-    a: "Every project is different. We begin by auditing your code and content, then give you a straight answer — fix it or rebuild it. From there, we take charge of the roadmap. If your technology is outdated, we'll suggest a fresh start. If the code is tangled and confusing, rebuilding is the smarter choice.",
+    a: "Every project is different. We begin by auditing your code and content, then give you a straight answer: fix it or rebuild it. From there, we take charge of the roadmap. If your technology is outdated, we'll suggest a fresh start. If the code is tangled and confusing, rebuilding is the smarter choice.",
   },
 ];
 

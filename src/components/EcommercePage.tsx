@@ -17,44 +17,44 @@ const PILLAR_ROWS = [
     icon: "layers" as const,
     title: "WordPress, WooCommerce & Smart Inventory",
     tag: "The flexible foundation",
-    body: "Custom WooCommerce stores that are visually stunning, easy to manage and optimized for conversions — with real-time stock tracking, low-stock alerts, automated updates, product variations and bulk import/export for growing catalogs.",
+    body: "Custom WooCommerce stores that are visually stunning, easy to manage and optimized for conversions, with real-time stock tracking, low-stock alerts, automated updates, product variations and bulk import/export for growing catalogs.",
   },
   {
     icon: "shield" as const,
-    title: "Payment Gateways — Secure & Seamless",
+    title: "Payment Gateways: Secure & Seamless",
     tag: "Razorpay · Stripe · PayPal",
-    body: "Trusted gateways tuned for Indian and global buyers — cards, UPI, net banking and wallets — protected with SSL encryption, PCI DSS compliance and tokenization, plus auto-invoices and payment notifications.",
+    body: "Trusted gateways tuned for Indian and global buyers, covering cards, UPI, net banking and wallets, protected with SSL encryption, PCI DSS compliance and tokenization, plus auto-invoices and payment notifications.",
   },
   {
     icon: "rocket" as const,
-    title: "Checkout Flows — Carts People Finish",
+    title: "Checkout Flows: Carts People Finish",
     tag: "Friction-free by design",
-    body: "Clean, distraction-free checkouts with progress indicators, guest checkout, auto-filled addresses, saved payment methods and one-click reorder. We eliminate the steps that cause abandonment — we design carts people actually finish.",
+    body: "Clean, distraction-free checkouts with progress indicators, guest checkout, auto-filled addresses, saved payment methods and one-click reorder. We eliminate the steps that cause abandonment, because we design carts people actually finish.",
   },
   {
     icon: "globe" as const,
     title: "Tuned for Indian & Global Buyers",
     tag: "Multi-currency · GST & VAT",
-    body: "Multi-currency pricing, localized payments, multi-language support, region-specific tax (GST/VAT) and shipping logic for domestic and international delivery — a store that appeals across borders and cultures.",
+    body: "Multi-currency pricing, localized payments, multi-language support, region-specific tax (GST/VAT) and shipping logic for domestic and international delivery add up to a store that appeals across borders and cultures.",
   },
 ];
 
 const STEPS = [
   {
     title: "Understand",
-    body: "Discovery into your catalog, pricing, customers and competitors — a customer-centric foundation.",
+    body: "Discovery into your catalog, pricing, customers and competitors builds a customer-centric foundation.",
   },
   {
     title: "Roadmap",
-    body: "Sitemap, user journey, SEO and performance planning — scalable as your catalog grows.",
+    body: "Sitemap, user journey, SEO and performance planning, all scalable as your catalog grows.",
   },
   {
     title: "Build",
-    body: "WooCommerce setup, payments, inventory and checkout — engineered for conversion.",
+    body: "WooCommerce setup, payments, inventory and checkout, engineered for conversion.",
   },
   {
     title: "Optimize",
-    body: "Speed, caching, CDN, analytics and A/B testing — we optimize until the numbers sing.",
+    body: "Speed, caching, CDN, analytics and A/B testing. We optimize until the numbers sing.",
   },
   {
     title: "Launch",
@@ -74,7 +74,7 @@ const SNAPSHOT = [
 const FAQS = [
   {
     q: "Do you build e-commerce stores for all product types?",
-    a: "Yes — physical products, digital downloads and service-based businesses across all industries.",
+    a: "Yes: physical products, digital downloads and service-based businesses across all industries.",
   },
   {
     q: "What payment gateways do you integrate?",
@@ -82,11 +82,11 @@ const FAQS = [
   },
   {
     q: "Is my e-commerce store secure for online payments?",
-    a: "Yes — SSL encryption, PCI DSS compliance and secure payment tokenization for complete safety.",
+    a: "Yes: SSL encryption, PCI DSS compliance and secure payment tokenization for complete safety.",
   },
   {
     q: "Can my store support both Indian and international buyers?",
-    a: "Yes — multi-currency, localized payments and global shipping options for international reach.",
+    a: "Yes: multi-currency, localized payments and global shipping options for international reach.",
   },
   {
     q: "How long does it take to build an e-commerce website?",
@@ -98,7 +98,7 @@ const WHY = [
   {
     icon: "rocket" as const,
     title: "Revenue-generating platforms",
-    body: "We don't just build websites — we build platforms that drive sales and grow your business.",
+    body: "We don't just build websites. We build platforms that drive sales and grow your business.",
   },
   {
     icon: "globe" as const,
@@ -108,7 +108,7 @@ const WHY = [
   {
     icon: "share" as const,
     title: "Client-centric",
-    body: "First store or an upgrade — the same dedication and expertise on every project.",
+    body: "First store or an upgrade, you get the same dedication and expertise on every project.",
   },
   {
     icon: "shield" as const,
@@ -119,7 +119,7 @@ const WHY = [
 
 export default function EcommercePage() {
   useEffect(() => {
-    document.title = "E-Commerce Website Design — LLE Social Media";
+    document.title = "E-Commerce Website Design | LLE Social Media";
   }, []);
 
   return (
@@ -149,7 +149,7 @@ export default function EcommercePage() {
                 <span className="text-aqua">digital storefront.</span>
               </>
             }
-            note="It directly shapes how customers perceive your brand — and whether they buy."
+            note="It directly shapes how customers perceive your brand, and whether they buy."
           />
           <div className="grid gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
@@ -236,13 +236,13 @@ export default function EcommercePage() {
                 <span className="text-aqua">on the way.</span>
               </>
             }
-            note="E-commerce case studies and screenshots are being added soon — check back shortly."
+            note="E-commerce case studies and screenshots are being added soon. Check back shortly."
           />
           <CaseStudy
             num="01"
             client="Your store could be next"
             sector="E-Commerce · Coming soon"
-            description="We're preparing a showcase of online stores we've designed and launched — complete with screenshots, conversion results and the strategy behind each build. Until then, this space is reserved for the numbers that matter."
+            description="We're preparing a showcase of online stores we've designed and launched, complete with screenshots, conversion results and the strategy behind each build. Until then, this space is reserved for the numbers that matter."
             did={[
               {
                 lead: "Live store walkthroughs",
@@ -319,7 +319,7 @@ export default function EcommercePage() {
       <ServiceCta
         title="Ready to launch"
         highlight="your online store?"
-        body="Whether you're a retailer, manufacturer or service provider — we build online stores that sell. Secure, scalable and optimized for conversions. Get in touch and take the first step toward e-commerce success."
+        body="Whether you're a retailer, manufacturer or service provider, we build online stores that sell. Secure, scalable and optimized for conversions. Get in touch and take the first step toward e-commerce success."
         buttonLabel="Start your store"
         accent="aqua"
       />
