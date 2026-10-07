@@ -313,4 +313,4 @@ export const SOCIALS = [
 ] as const;
 
 export const CONTACT_EMAIL = "info@llesocialmedia.com";
-export const CONTACT_PHONE = "+91 8838396187";
+export const CONTACT_PHONE = "+91 9499943490";
